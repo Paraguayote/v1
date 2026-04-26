@@ -319,6 +319,41 @@
         .stat { background: rgba(155,17,30,0.05); padding: 15px; text-align: center; border: 1px solid var(--gris-borde); border-radius: 4px; }
         .stat-num { font-size: 1.5rem; font-family: 'Cinzel'; color: var(--rojo-templario); }
         
+        /* Componentes de Área de Miembros y Login */
+        .login-box {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--blanco);
+            border: 1px solid var(--gris-borde);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-sizing: border-box; /* Previene deformación en móviles */
+        }
+        .input-codigo {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--gris-borde);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            font-family: monospace;
+            box-sizing: border-box;
+        }
+        .btn-full {
+            width: 100%;
+            max-width: 400px;
+            font-size: 1.1rem;
+            padding: 15px;
+            box-sizing: border-box;
+            white-space: normal; /* Permite que el texto baje de línea si no cabe */
+            display: inline-block;
+        }
+
         /* Responsive - Móviles pequeños */
         @media (max-width: 380px) {
             body { flex-direction: column; }
@@ -348,6 +383,9 @@
             .valor { padding: 15px; }
             table { font-size: 0.85rem; }
             th, td { padding: 8px; }
+            .login-box { padding: 30px 20px; margin: 20px auto; }
+            .input-codigo { font-size: 1rem; letter-spacing: 3px; padding: 12px; }
+            .btn-full { font-size: 0.95rem; padding: 12px; }
         }
 
         /* Responsive - Tablets vertical */
@@ -430,8 +468,8 @@
             .menu li { font-size: 1.1rem; margin: 18px 0; }
             .btn-access { font-size: 1rem; padding: 16px 30px; }
             .panel-content { max-width: 1000px; }
-            .grid { grid-template-columns: 1fr 1fr 1fr; }
-            .stats { grid-template-columns: repeat(4, 1fr); }
+            .grid { grid-template-columns: repeat(4, 1fr); }
+            .stats { grid-template-columns: repeat(3, 1fr); }
         }
 
         /* Efectos Hover para Escudos de Prioratos */
@@ -789,30 +827,30 @@
                 <p style="margin-bottom: 20px;">Accede al sistema de administración general de la Orden para gestionar registros, avances de formación y biblioteca documental.</p>
                 
                 <div class="grid" style="margin-bottom: 30px;">
-                    <div class="valor" style="text-align: center; padding: 25px 15px;">
+                    <div class="valor" style="text-align: center;">
                         <div style="font-size: 2rem; margin-bottom: 10px;">👥</div>
                         <h4>Directorio</h4>
                         <p style="font-size: 0.9rem; margin-bottom: 0;">Fichas e historial</p>
                     </div>
-                    <div class="valor" style="text-align: center; padding: 25px 15px;">
+                    <div class="valor" style="text-align: center;">
                         <div style="font-size: 2rem; margin-bottom: 10px;">🎓</div>
                         <h4>Formación</h4>
                         <p style="font-size: 0.9rem; margin-bottom: 0;">Módulos de estudio</p>
                     </div>
-                    <div class="valor" style="text-align: center; padding: 25px 15px;">
+                    <div class="valor" style="text-align: center;">
                         <div style="font-size: 2rem; margin-bottom: 10px;">📅</div>
                         <h4>Calendario</h4>
                         <p style="font-size: 0.9rem; margin-bottom: 0;">Tenidas y Rituales</p>
                     </div>
-                    <div class="valor" style="text-align: center; padding: 25px 15px;">
+                    <div class="valor" style="text-align: center;">
                         <div style="font-size: 2rem; margin-bottom: 10px;">📁</div>
                         <h4>Archivo Central</h4>
                         <p style="font-size: 0.9rem; margin-bottom: 0;">Estatutos y Actas</p>
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-bottom: 40px;">
-                    <a href="/plataforma" target="_blank" class="btn" style="font-size: 1.1rem; padding: 15px 30px;">✠ INGRESAR AL PANEL DE CONTROL ✠</a>
+                <div style="text-align: center; margin-bottom: 40px; padding: 0 10px;">
+                    <a href="/plataforma" target="_blank" class="btn btn-full">✠ INGRESAR AL PANEL DE CONTROL ✠</a>
                     <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">* Requiere credenciales de acceso de alto grado</p>
                 </div>
 
@@ -820,16 +858,16 @@
                 <div id="galeria-miembros" class="galeria-grid"></div>
             `,
             login: `
-                <div style="text-align: center; max-width: 400px; margin: 40px auto; padding: 40px; background: var(--blanco); border: 1px solid var(--gris-borde); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <div class="login-box">
                     <div style="font-size: 4rem; color: var(--rojo-templario); margin-bottom: 20px;">🔒</div>
                     <h2 style="font-family: 'Cinzel', serif; color: var(--rojo-templario); border: none; padding-bottom: 0; margin-bottom: 10px;">ACCESO RESTRINGIDO</h2>
                     <p style="color: #666; font-size: 0.9rem; margin-bottom: 25px;">Ingrese sus credenciales capitulares para acceder al área de miembros.</p>
                     
-                    <input type="password" id="codigo-acceso" placeholder="Código de acceso" style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid var(--gris-borde); border-radius: 4px; text-align: center; font-size: 1.2rem; letter-spacing: 5px; font-family: monospace;">
+                    <input type="password" id="codigo-acceso" placeholder="Código de acceso" class="input-codigo">
                     
                     <p id="login-error" style="color: red; font-size: 0.85rem; display: none; margin-top: -10px; margin-bottom: 15px;">Código incorrecto. Intente nuevamente.</p>
                     
-                    <button onclick="verificarAcceso()" class="btn" style="width: 100%; font-size: 1.1rem; padding: 15px;">✠ DESBLOQUEAR ✠</button>
+                    <button onclick="verificarAcceso()" class="btn btn-full">✠ DESBLOQUEAR ✠</button>
                 </div>
             `
         };
