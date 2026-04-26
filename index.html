@@ -4,738 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orden Templaria Ecléctica | Paraguay</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%239b111e%22>✠</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --rojo-templario: #9b111e;
-            --pergamino: #f4f1ea;
-            --texto: #2c2c2c;
-            --blanco: #ffffff;
-            --gris-borde: #dddddd;
-
-            --lila: #9370DB;
-            --negro: #0D0D0D;
-        }
-
-        /* Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* Base */
-        body {
-            background: var(--pergamino);
-            color: var(--texto);
-            font-family: 'EB Garamond', serif;
-            min-height: 100vh;
-            display: flex;
-        }
-        
-        /* Marca */
-        .brand {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-right: 1px solid var(--gris-borde);
-            padding: 40px;
-            text-align: center;
-        }
-
-        .cross {
-            font-size: 70px;
-            color: var(--rojo-templario);
-        }
-
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            letter-spacing: 4px;
-            margin: 10px 0;
-            color: var(--rojo-templario);
-            opacity: 0;
-            animation: fadeInText 1s ease-out 1.2s forwards;
-        }
-
-        .subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            color: #666;
-            letter-spacing: 2px;
-            opacity: 0;
-            animation: fadeInText 1s ease-out 1.6s forwards;
-        }
-
-        .lema {
-            font-style: italic;
-            color: #666;
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeInText 1s ease-out 2s forwards;
-        }
-        
-        /* Navegación */
-        .nav {
-            flex: 1;
-            background: rgba(255,255,255,0.5);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 50px;
-        }
-
-        .menu {
-            list-style: none;
-            max-width: 320px;
-        }
-
-        .menu li {
-            margin: 15px 0;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--gris-borde);
-            font-family: 'Cinzel', serif;
-            cursor: pointer;
-            transition: 0.3s;
-            opacity: 0;
-            animation: fadeInText 0.8s ease-out forwards;
-        }
-
-        /* Retraso en cascada para cada ítem del menú */
-        .menu li:nth-child(1) { animation-delay: 2.2s; }
-        .menu li:nth-child(2) { animation-delay: 2.4s; }
-        .menu li:nth-child(3) { animation-delay: 2.6s; }
-        .menu li:nth-child(4) { animation-delay: 2.8s; }
-        .menu li:nth-child(5) { animation-delay: 3.0s; }
-        .menu li:nth-child(6) { animation-delay: 3.2s; }
-
-        .menu li span {
-            color: var(--rojo-templario);
-        }
-
-        /* 👇 Acento lila controlado */
-        .menu li:hover {
-            color: var(--lila);
-            border-color: var(--lila);
-        }
-
-        .menu li:hover span {
-            color: var(--lila);
-        }
-
-        /* Botón principal */
-        .btn-access {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            background: var(--rojo-templario);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-family: 'Cinzel', serif;
-            cursor: pointer;
-            transition: 0.3s;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            z-index: 10;
-            opacity: 0;
-            animation: fadeInText 0.8s ease-out 3.4s forwards;
-        }
-
-        .btn-access:hover {
-            background: var(--negro);
-        }
-        
-        /* Panel */
-        #panel {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: var(--pergamino);
-            z-index: 100;
-            overflow-y: auto;
-        overflow-x: hidden;
-            padding: 50px;
-            animation: fadePanelIn 0.3s ease-out forwards;
-        }
-
-        .close-btn {
-            position: fixed;
-            top: 20px;
-            right: 30px;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-            color: var(--rojo-templario);
-            transition: 0.3s;
-        }
-
-        .close-btn:hover {
-            color: var(--lila);
-        }
-
-        /* Contenido */
-        .panel-content {
-            max-width: 800px;
-        width: 100%;
-            margin: 0 auto;
-        }
-
-        .panel-content h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--rojo-templario);
-            border-bottom: 2px solid var(--rojo-templario);
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-        }
-
-        .panel-content h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--rojo-templario);
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-
-        .panel-content p {
-            text-align: justify;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-        
-        .panel-footer {
-            text-align: center;
-            padding: 40px 20px 20px;
-            margin-top: 50px;
-            border-top: 1px solid var(--gris-borde);
-            max-width: 800px;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Cajas */
-        .llamado {
-            background: rgba(155,17,30,0.05);
-            padding: 25px;
-            border-left: 4px solid var(--rojo-templario);
-            margin-bottom: 30px;
-            border-radius: 4px;
-        }
-
-        .llamado h3 {
-            margin-top: 0;
-        }
-        
-        /* Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .valor {
-            padding: 20px;
-            background: rgba(155,17,30,0.05);
-            border-left: 3px solid var(--rojo-templario);
-            border-radius: 4px;
-        }
-
-        .valor h4 {
-            font-family: 'Cinzel', serif;
-            color: var(--rojo-templario);
-            margin-bottom: 8px;
-        }
-        
-        /* Tablas */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 12px;
-            border: 1px solid var(--gris-borde);
-            text-align: left;
-        }
-
-        th {
-            background: rgba(155,17,30,0.1);
-            font-family: 'Cinzel', serif;
-            color: var(--rojo-templario);
-        }
-        
-        /* Formulario */
-        .contact-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--blanco);
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid var(--gris-borde);
-        }
-
-        .contact-container h2 {
-            text-align: center;
-            color: var(--rojo-templario);
-            border-bottom: none;
-            padding-bottom: 0;
-}
-
-        .contact-subtitle {
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 25px;
-}
-
-        .contact-container label {
-            display: block;
-            margin-top: 15px;
-            font-weight: 600;
-            color: var(--texto);
-}
-
-.contact-container input,
-.contact-container textarea,
-        .contact-container select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid var(--gris-borde);
-            margin-top: 6px;
-            font-family: inherit;
-}
-
-        .contact-container textarea {
-            min-height: 120px;
-}
-
-        .contact-actions {
-            margin-top: 25px;
-            display: flex;
-            gap: 10px;
-}
-
-        /* Botones secundarios */
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-weight: bold;
-}
-
-        .btn { padding: 12px 20px; color: white; text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.85rem; display: inline-block; transition: 0.3s; background: var(--rojo-templario); border-radius: 4px; border: none; cursor: pointer; }
-        .btn:hover { background: var(--negro); }
-
-        /* Stats (preservados y adaptados) */
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
-        .stat { background: rgba(155,17,30,0.05); padding: 15px; text-align: center; border: 1px solid var(--gris-borde); border-radius: 4px; }
-        .stat-num { font-size: 1.5rem; font-family: 'Cinzel'; color: var(--rojo-templario); }
-        
-        /* Componentes de Área de Miembros y Login */
-        .login-box {
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-            margin: 40px auto;
-            padding: 40px;
-            background: var(--blanco);
-            border: 1px solid var(--gris-borde);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            box-sizing: border-box; /* Previene deformación en móviles */
-        }
-        .input-codigo {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid var(--gris-borde);
-            border-radius: 4px;
-            text-align: center;
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            font-family: monospace;
-            box-sizing: border-box;
-        }
-        .btn-full {
-            width: 100%;
-            max-width: 400px;
-            font-size: 1.1rem;
-            padding: 15px;
-            box-sizing: border-box;
-            white-space: normal; /* Permite que el texto baje de línea si no cabe */
-            display: inline-block;
-        }
-
-        /* Responsive - Móviles pequeños */
-        @media (max-width: 380px) {
-            body { flex-direction: column; }
-        .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 30px 10px; }
-            .nav { padding: 20px 15px; }
-            .grid { grid-template-columns: 1fr; }
-        h1 { font-size: 1.3rem; letter-spacing: 1px; }
-        .subtitle { font-size: 0.65rem; letter-spacing: 1px; }
-        .lema { font-size: 0.85rem; }
-        .menu li { padding-bottom: 8px; margin: 10px 0; font-size: 0.95rem; }
-        .panel-content h2 { font-size: 1.15rem; }
-            .stats { grid-template-columns: 1fr; gap: 10px; }
-            .stat { padding: 10px; }
-        .logos-container img { max-width: 80px !important; height: 80px !important; }
-        .prioratos-container { gap: 15px !important; }
-        .prioratos-container img { max-width: 50px !important; height: 50px !important; }
-        }
-
-        /* Responsive - Móviles estándar */
-        @media (max-width: 480px) {
-            body { flex-direction: column; }
-        .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 40px 15px; }
-        .nav { padding: 25px 15px; }
-            .grid { grid-template-columns: 1fr; }
-        h1 { font-size: 1.5rem; letter-spacing: 2px; line-height: 1.3; }
-        .subtitle { font-size: 0.75rem; letter-spacing: 1px; line-height: 1.4; margin-top: 5px; }
-            .menu li { padding-bottom: 10px; margin: 12px 0; }
-            .menu li:active { border-color: var(--lila); }
-        .stats { grid-template-columns: 1fr; gap: 12px; }
-            .llamado { padding: 15px; }
-            .valor { padding: 15px; }
-            table { font-size: 0.85rem; }
-            th, td { padding: 8px; }
-            .login-box { padding: 30px 20px; margin: 20px auto; }
-            .input-codigo { font-size: 1rem; letter-spacing: 3px; padding: 12px; }
-            .btn-full { font-size: 0.95rem; padding: 12px; }
-        #audio-credits { max-width: calc(100vw - 70px); font-size: 0.6rem; left: 10px; bottom: 10px; padding: 5px 8px; }
-        .music-toggle { right: 10px; bottom: 10px; width: 40px; height: 40px; font-size: 1rem; }
-            #btn-back-to-top { right: 10px; bottom: 60px; width: 40px; height: 40px; font-size: 1rem; }
-        }
-
-        /* Responsive - Tablets vertical */
-        @media (min-width: 481px) and (max-width: 768px) {
-            body { flex-direction: column; }
-            .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 40px 25px; }
-            .nav { padding: 30px 25px; }
-            .grid { grid-template-columns: 1fr 1fr; }
-            h1 { font-size: 1.8rem; }
-            .subtitle { font-size: 0.85rem; }
-            .stats { grid-template-columns: repeat(2, 1fr); }
-            .llamado { padding: 20px; }
-            .valor { padding: 18px; }
-        }
-        
-        /* Adaptación Global y Reordenamiento para Móviles/Tablets (Hasta 768px) */
-        @media (max-width: 768px) {
-            .nav {
-                display: flex;
-                flex-direction: column;
-                align-items: center; /* Centra el contenido horizontalmente */
-            }
-            .menu {
-                order: 2; /* Envía el menú a segundo lugar visualmente */
-                width: 100%;
-                text-align: center; /* Centra los enlaces y las cruces */
-                padding: 0;
-            }
-            .btn-access {
-                order: 1; /* Sube el botón en primer lugar visualmente */
-                position: relative;
-                top: auto;
-                right: auto;
-                margin-top: 0 !important;
-                margin-bottom: 25px;
-                width: 100%;
-            }
-            #panel {
-            padding: 65px 15px 30px 15px;
-            }
-            .close-btn {
-                top: 15px;
-                right: 15px;
-                background: var(--pergamino);
-                padding: 8px 12px;
-                border-radius: 4px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                z-index: 10;
-            }
-            .table-responsive {
-                width: 100%;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                margin-top: 15px;
-            display: block;
-            }
-            .contact-container { padding: 20px; }
-            .contact-actions { flex-direction: column; }
-            .contact-actions button { width: 100%; }
-            
-            /* Galería Automática (Fade) en Móviles */
-            .galeria-grid {
-                position: relative;
-                display: block;
-                height: 220px;
-                overflow: hidden;
-                padding-bottom: 0;
-                border-radius: 4px;
-                border: 1px solid var(--gris-borde);
-            }
-            .galeria-grid::-webkit-scrollbar { display: none; /* Oculta la barra en Chrome/Safari */ }
-            .galeria-item {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                border: none;
-                animation: fadeSlideshow 16s infinite;
-            }
-            .galeria-item:nth-child(1) { animation-delay: 0s; }
-            .galeria-item:nth-child(2) { animation-delay: 4s; }
-            .galeria-item:nth-child(3) { animation-delay: 8s; }
-            .galeria-item:nth-child(4) { animation-delay: 12s; }
-            .galeria-item img { height: 100%; transition: none; }
-        }
-
-        @keyframes fadeSlideshow {
-            0% { opacity: 0; z-index: 1; transform: scale(1); }
-            5% { opacity: 1; z-index: 2; transform: scale(1.02); }
-            25% { opacity: 1; z-index: 2; transform: scale(1.08); }
-            30% { opacity: 0; z-index: 1; transform: scale(1.1); }
-            100% { opacity: 0; z-index: 1; transform: scale(1); }
-        }
-
-        /* Responsive - Tablets horizontal y portátiles pequeños */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            body { flex-direction: row; }
-            .brand { flex: 0.8; padding: 30px; }
-            .nav { flex: 1.2; padding: 0 30px; }
-            .grid { grid-template-columns: 1fr 1fr; }
-            h1 { font-size: 2rem; }
-            .menu li { margin: 12px 0; padding-bottom: 10px; }
-            .stats { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        /* Responsive - Pantallas grandes */
-        @media (min-width: 1400px) {
-            .brand { padding: 60px; }
-            .nav { padding: 0 80px; }
-            h1 { font-size: 2.6rem; }
-            .subtitle { font-size: 1.1rem; }
-            .lema { font-size: 1.1rem; }
-            .menu { max-width: 400px; }
-            .menu li { font-size: 1.1rem; margin: 18px 0; }
-            .btn-access { font-size: 1rem; padding: 16px 30px; }
-            .panel-content { max-width: 1000px; }
-            .grid { grid-template-columns: repeat(4, 1fr); }
-            .stats { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        /* Efectos Hover para Escudos de Prioratos */
-        .escudo-hover {
-            transition: all 0.3s ease;
-        }
-        .escudo-hover:hover {
-            transform: scale(1.15);
-            filter: drop-shadow(0 0 12px var(--lila));
-        }
-
-        /* Efectos Hover y Brillo para Logos Principales */
-        .logo-principal {
-            transition: all 0.4s ease;
-            filter: drop-shadow(0 0 8px rgba(155, 17, 30, 0.4)); /* Brillo base rojo sutil */
-        }
-        .logo-principal:hover {
-            transform: scale(1.08);
-            filter: drop-shadow(0 0 20px var(--lila)); /* Brillo intenso lila al pasar el cursor */
-        }
-
-        /* Galería Aleatoria de Miembros */
-        .galeria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0 30px 0;
-        }
-        .galeria-item {
-            overflow: hidden;
-            border-radius: 4px;
-            border: 1px solid var(--gris-borde);
-        }
-        .galeria-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .galeria-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Animaciones de Entrada y Destello (Fade-in y Sweep) */
-        @keyframes fadeScaleIn {
-            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        @keyframes fadeInText {
-            0% { opacity: 0; transform: translateY(15px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Animaciones para el panel y transiciones de sección */
-        @keyframes fadePanelIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideFadeContent {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in-content {
-            animation: slideFadeContent 0.4s ease-out forwards;
-        }
-
-        @keyframes destelloLuz {
-            0% { left: -50%; opacity: 0; }
-            15% { opacity: 0.8; }
-            30% { left: 150%; opacity: 0; }
-            100% { left: 150%; opacity: 0; }
-        }
-
-        .logos-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 15px;
-            position: relative;
-            opacity: 0; /* Oculto al inicio */
-            animation: fadeScaleIn 1.5s ease-out forwards;
-        }
-
-        .logos-container::after {
-            content: "";
-            position: absolute;
-            top: -20%;
-            left: -50%;
-            width: 40%;
-            height: 140%;
-            background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
-            transform: skewX(-25deg);
-            pointer-events: none; /* Evita que el destello bloquee el click/hover de los logos */
-            z-index: 10;
-            animation: destelloLuz 6s infinite 1.5s; /* Inicia después de 1.5s, repite cada 6s */
-        }
-
-        .prioratos-container {
-            opacity: 0;
-            animation: fadeInText 1s ease-out 2.5s forwards;
-        }
-
-        /* Clase para omitir animaciones si el usuario ya visitó el inicio */
-        .no-anim h1,
-        .no-anim .subtitle,
-        .no-anim .lema,
-        .no-anim .menu li,
-        .no-anim .btn-access,
-        .no-anim .logos-container,
-        .no-anim .prioratos-container {
-            animation: none !important;
-            opacity: 1 !important;
-            transform: translateY(0) scale(1) !important;
-        }
-
-        /* Control de Música Flotante */
-        .music-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(155, 17, 30, 0.1);
-            color: var(--rojo-templario);
-            border: 1px solid var(--rojo-templario);
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 150;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        .music-toggle:hover {
-            background: var(--rojo-templario);
-            color: var(--blanco);
-            transform: scale(1.1);
-            box-shadow: 0 0 15px var(--rojo-templario);
-        }
-        
-        /* Animación de latido cuando suena la música para ubicar el reproductor */
-        @keyframes pulse-music {
-            0% { box-shadow: 0 0 0 0 rgba(155, 17, 30, 0.5); }
-            70% { box-shadow: 0 0 0 15px rgba(155, 17, 30, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(155, 17, 30, 0); }
-        }
-        .music-toggle.playing {
-            animation: pulse-music 2s infinite;
-            background: rgba(155, 17, 30, 0.2);
-        }
-
-        /* Créditos de Audio */
-        #audio-credits {
-            position: fixed;
-            bottom: 15px;
-            left: 20px;
-            background: rgba(244, 241, 234, 0.9);
-            border: 1px solid var(--gris-borde);
-            border-left: 3px solid var(--rojo-templario);
-            padding: 6px 10px;
-            border-radius: 4px;
-            font-size: 0.65rem;
-            z-index: 100;
-            /* Efecto Fade-in */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.4s ease;
-        }
-        #audio-credits.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        /* Botón Volver Arriba */
-        #btn-back-to-top {
-            position: fixed;
-            bottom: 85px; /* Se sitúa encima del botón de música */
-            right: 30px;
-            background: var(--rojo-templario);
-            color: var(--blanco);
-            border: 1px solid var(--rojo-templario);
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 150;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        #btn-back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        #btn-back-to-top:hover {
-            background: var(--negro);
-            border-color: var(--negro);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -792,27 +63,24 @@
             <div style="color: var(--rojo-templario); font-size: 1.8rem; margin-bottom: 5px; line-height: 1;">✠</div>
             <p style="font-family: 'Cinzel', serif; color: var(--rojo-templario); font-weight: bold; font-size: 0.9rem;">Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam</p>
             <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">&copy; 2026 Orden Templaria Ecléctica (OTE) - Gran Priorato del Paraguay</p>
+            
+            <!-- Contador de Visitas -->
+            <div style="margin-top: 20px;">
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Foteparaguay.org&count_bg=%239B111E&title_bg=%232C2C2C&title=VISITAS&edge_flat=true" alt="Contador de visitas" style="border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            </div>
         </footer>
         
         <!-- Botón Volver Arriba -->
         <button id="btn-back-to-top" onclick="scrollToTop()" title="Volver arriba">▲</button>
     </main>
 
-    <!-- Créditos de Audio -->
-    <div id="audio-credits">
-        🎵 Audio: Ave Maria Gregorian Chant. Fuente: <a href="https://commons.wikimedia.org/wiki/File:Ave_Maria_(Gregorian_Chant).ogg" target="_blank" style="color: var(--rojo-templario); text-decoration: none; font-weight: bold;">Wikimedia Commons</a>.
+    <!-- Contenedor del Visor Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
+        <span style="position: absolute; top: 15px; right: 30px; font-size: 50px; color: var(--rojo-templario); cursor: pointer;">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="cambiarImagen(-1, event)">&#10094;</span>
+        <img id="lightbox-img" src="" alt="Vista ampliada" onclick="event.stopPropagation()">
+        <span class="lightbox-nav lightbox-next" onclick="cambiarImagen(1, event)">&#10095;</span>
     </div>
-
-    <!-- Reproductor de Audio -->
-    <audio id="bg-music" preload="auto" crossorigin="anonymous">
-        <!-- Enlace directo Wikimedia Commons -->
-        <source src="https://upload.wikimedia.org/wikipedia/commons/2/23/Ave_Maria_%28Gregorian_Chant%29.ogg" type="audio/ogg">
-        <!-- Fallback de seguridad -->
-        <source src="https://ia600408.us.archive.org/29/items/gregorian-chant/Gregorian%20Chant.mp3" type="audio/mpeg">
-    </audio>
-    <button class="music-toggle" id="musicBtn" onclick="toggleMusic(event)" title="Reproducir/Pausar Canto Gregoriano">
-        🔇
-    </button>
 
     <script>
         // Contenido de cada sección
@@ -876,11 +144,15 @@
                         <label>Nombre</label>
                         <input type="text" id="nombre" placeholder="Tu nombre completo">
 
+                        <label>Correo Electrónico</label>
+                        <input type="email" id="email" placeholder="tu@correo.com">
+
                         <label>Organización</label>
                         <input type="text" id="organizacion" placeholder="Opcional">
 
                         <div class="contact-actions">
-                            <button type="button" class="btn-whatsapp" onclick="enviarWhatsApp()">💬 Enviar WhatsApp</button>
+                            <button type="button" class="btn" id="btn-enviar-email" onclick="enviarEmailReal()" style="flex: 1; text-align: center;">✉️ Enviar Correo</button>
+                            <button type="button" class="btn-whatsapp" onclick="enviarWhatsApp()" style="flex: 1; text-align: center;">💬 Enviar WhatsApp</button>
                         </div>
                     </form>
                 </div>
@@ -1064,10 +336,53 @@
             return true;
         }
 
-        function enviarEmail() {
+        function enviarEmailReal() {
             if (!validarFormulario()) return;
-            const cuerpo = obtenerMensaje();
-            window.location.href = "mailto:granprioratodelparaguay.ote@gmail.com?subject=Contacto OTE&body=" + cuerpo;
+            
+            const email = document.getElementById("email")?.value.trim() || "";
+            if (email === "") {
+                alert("✠ Por favor, ingresa tu correo electrónico para que podamos responderte.");
+                return;
+            }
+            
+            const btn = document.getElementById("btn-enviar-email");
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = "⏳ Enviando...";
+            btn.disabled = true;
+
+            const asunto = document.getElementById("asunto")?.value || "";
+            const mensaje = document.getElementById("mensaje")?.value || "";
+            const nombre = document.getElementById("nombre")?.value || "";
+            const org = document.getElementById("organizacion")?.value || "";
+
+            // Usamos FormSubmit mediante AJAX (fetch) de forma silenciosa
+            fetch("https://formsubmit.co/ajax/granprioratodelparaguay.ote@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: "✠ CONTACTO OTE ✠ - " + asunto,
+                    Nombre: nombre,
+                    Email: email,
+                    Organización: org,
+                    Mensaje: mensaje
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("✠ Mensaje enviado con éxito. La Orden se pondrá en contacto pronto.");
+                document.getElementById("contactForm").reset();
+            })
+            .catch(error => {
+                alert("✠ Error de red al enviar el mensaje. Por favor, utiliza el botón de WhatsApp como alternativa.");
+                console.error("Error:", error);
+            })
+            .finally(() => {
+                btn.innerHTML = textoOriginal;
+                btn.disabled = false;
+            });
         }
 
         function enviarWhatsApp() {
@@ -1091,6 +406,12 @@
             // Si no hay fotos guardadas, usar el set por defecto
             if (!fotos || fotos.length === 0) {
                 fotos = [
+                    // Imágenes Templarias Históricas (Libre uso / Wikimedia Commons)
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Convento_de_Cristo_2009.jpg/800px-Convento_de_Cristo_2009.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Knights_Templar_playing_chess.jpg/800px-Knights_Templar_playing_chess.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Temple_Church_London.jpg/800px-Temple_Church_London.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Castillo_de_Ponferrada.jpg/800px-Castillo_de_Ponferrada.jpg",
+                    // Imágenes locales de los Prioratos
                     "image/prioratos/pax_1.jpg",
                     "image/prioratos/pax_2.jpg",
                     "image/prioratos/pax_3.jpg",
@@ -1109,11 +430,45 @@
             if(contenedor) {
                 let html = '';
                 fotosAMostrar.forEach(foto => {
-                    html += `<div class="galeria-item"><img src="${foto}" alt="Fraternidad" onerror="this.outerHTML='<div style=\\'height: 150px; background: rgba(155,17,30,0.05); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--rojo-templario);\\'>✠</div>'"></div>`;
+                    html += `<div class="galeria-item"><img src="${foto}" alt="Fraternidad" onclick="abrirLightbox(this.src)" onerror="this.outerHTML='<div style=\\'height: 150px; background: rgba(155,17,30,0.05); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--rojo-templario);\\'>✠</div>'"></div>`;
                 });
                 contenedor.innerHTML = html;
             }
         }
+        
+        // Funciones del Lightbox
+        let lightboxImages = [];
+        let lightboxIndex = 0;
+
+        function abrirLightbox(src) {
+            const imgs = document.querySelectorAll('.galeria-item img');
+            lightboxImages = Array.from(imgs).map(img => img.src);
+            lightboxIndex = lightboxImages.indexOf(src);
+            
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        
+        function cerrarLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function cambiarImagen(dir, event) {
+            if(event) event.stopPropagation();
+            lightboxIndex += dir;
+            if (lightboxIndex < 0) lightboxIndex = lightboxImages.length - 1;
+            else if (lightboxIndex >= lightboxImages.length) lightboxIndex = 0;
+            document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex];
+        }
+
+        document.addEventListener('keydown', function(e) {
+            const lb = document.getElementById('lightbox');
+            if (lb && lb.style.display === 'flex') {
+                if (e.key === 'Escape') cerrarLightbox();
+                if (e.key === 'ArrowLeft') cambiarImagen(-1);
+                if (e.key === 'ArrowRight') cambiarImagen(1);
+            }
+        });
 
         // Lógica para el botón "Volver arriba"
         const panelEl = document.getElementById('panel');
@@ -1129,71 +484,6 @@
 
         function scrollToTop() {
             panelEl.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Controlador de Música Ambiental
-        let musicPlaying = false;
-        const bgMusic = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('musicBtn');
-
-        // Cargar configuración de música guardada desde el panel administrador
-        document.addEventListener("DOMContentLoaded", () => {
-            const savedUrl = localStorage.getItem('ote_bg_music_url');
-            const savedCredits = localStorage.getItem('ote_bg_music_credits');
-            
-            if (savedUrl) {
-                bgMusic.innerHTML = ''; // Elimina las fuentes predeterminadas del HTML
-                bgMusic.src = savedUrl;
-            }
-            if (savedCredits) {
-                document.getElementById('audio-credits').innerHTML = '🎵 ' + savedCredits;
-            }
-        });
-
-        // Auto-reproducir al primer clic en la pantalla (Evita el bloqueo de navegadores)
-        document.body.addEventListener('click', function initMusic() {
-            if (!musicPlaying) {
-                bgMusic.volume = 0.5; // Volumen al 50% para que se escuche bien
-                bgMusic.play().then(() => {
-                    musicPlaying = true;
-                    musicBtn.innerHTML = '🔊';
-                    musicBtn.classList.add('playing');
-                    document.getElementById('audio-credits').classList.add('visible');
-                }).catch(e => {
-                    console.log("Autoplay bloqueado o audio no encontrado", e);
-                    musicPlaying = false;
-                });
-            }
-            // Removemos el evento para que no se dispare en cada clic
-            document.body.removeEventListener('click', initMusic);
-        }, { once: true });
-
-        // Restablecer la interfaz cuando la música termine de reproducirse (1 sola vez)
-        bgMusic.addEventListener('ended', function() {
-            musicPlaying = false;
-            musicBtn.innerHTML = '🔇';
-            musicBtn.classList.remove('playing');
-            document.getElementById('audio-credits').classList.remove('visible');
-        });
-
-        function toggleMusic(event) {
-            if (event) event.stopPropagation(); // Evita conflicto con el clic del fondo
-
-            if (musicPlaying) {
-                bgMusic.pause();
-                musicBtn.innerHTML = '🔇';
-                musicPlaying = false;
-                musicBtn.classList.remove('playing');
-                document.getElementById('audio-credits').classList.remove('visible');
-            } else {
-                bgMusic.volume = 0.5;
-                bgMusic.play().then(() => {
-                    musicBtn.innerHTML = '🔊';
-                    musicPlaying = true;
-                    musicBtn.classList.add('playing');
-                    document.getElementById('audio-credits').classList.add('visible');
-                }).catch(e => alert("No se pudo reproducir. Verifica tu conexión a internet o el archivo local."));
-            }
         }
     </script>
 </body>
