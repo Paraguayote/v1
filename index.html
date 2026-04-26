@@ -414,6 +414,115 @@
             window.open("https://wa.me/" + telefono + "?text=" + cuerpo, "_blank");
         }
 
+        function enviarSolicitudIngreso() {
+            const nombre = document.getElementById("ingreso-nombre")?.value.trim() || "";
+            const email = document.getElementById("ingreso-email")?.value.trim() || "";
+            const telefono = document.getElementById("ingreso-telefono")?.value.trim() || "";
+            const edad = document.getElementById("ingreso-edad")?.value.trim() || "";
+            const profesion = document.getElementById("ingreso-profesion")?.value.trim() || "";
+            const mensaje = document.getElementById("ingreso-mensaje")?.value.trim() || "";
+
+            if (nombre === "" || email === "" || telefono === "" || mensaje === "") {
+                mostrarMensaje("Atención", "Por favor, completa todos los campos obligatorios (Nombre, Correo, Teléfono y Mensaje).");
+                return;
+            }
+
+            const btn = document.getElementById("btn-enviar-ingreso");
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = "⏳ Enviando Solicitud...";
+            btn.disabled = true;
+
+            // Usamos FormSubmit mediante AJAX silencioso
+            fetch("https://formsubmit.co/ajax/643d4eaaa5173f5c183249de7397751a", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: "✠ NUEVA POSTULACIÓN DE INGRESO ✠ - " + nombre,
+                    email: email, 
+                    _autoresponse: "Saludos cordiales. Hemos recibido tu solicitud de postulación a la Orden Templaria Ecléctica (Gran Priorato del Paraguay). Un miembro de nuestra Orden analizará tu perfil y se pondrá en contacto contigo a la brevedad para indicarte los siguientes pasos de la entrevista.\n\nNon nobis, Domine, non nobis, sed Nomini Tuo da gloriam.",
+                    Nombre: nombre,
+                    Teléfono: telefono,
+                    Edad: edad,
+                    Profesión: profesion,
+                    Motivación: mensaje
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                mostrarMensaje("Postulación Enviada", "Tu solicitud de ingreso ha sido recibida con éxito.<br><br><strong style='color: var(--rojo-templario);'>Aviso Importante:</strong> El sistema te ha enviado un correo automático. Asegúrate de revisar tu bandeja de entrada o spam.");
+                document.getElementById("ingresoForm").reset();
+            })
+            .catch(error => {
+                mostrarMensaje("Error de Conexión", "No se pudo conectar con el servidor. Por favor, intenta de nuevo más tarde.");
+                console.error("Error:", error);
+            })
+            .finally(() => {
+                btn.innerHTML = textoOriginal;
+                btn.disabled = false;
+            });
+        }
+
+        function enviarSolicitudIngreso() {
+            const nombre = document.getElementById("ingreso-nombre")?.value.trim() || "";
+            const email = document.getElementById("ingreso-email")?.value.trim() || "";
+            const fecha = document.getElementById("ingreso-fecha")?.value || "";
+            const telefono = document.getElementById("ingreso-telefono")?.value.trim() || "";
+            const ciudad = document.getElementById("ingreso-ciudad")?.value.trim() || "";
+            const motivos = document.getElementById("ingreso-motivos")?.value.trim() || "";
+            const compromiso = document.getElementById("ingreso-compromiso")?.checked;
+
+            if (!nombre || !email || !fecha || !telefono || !ciudad || !motivos) {
+                mostrarMensaje("Atención", "Por favor, completa todos los campos obligatorios del formulario.");
+                return;
+            }
+
+            if (!compromiso) {
+                mostrarMensaje("Atención", "Debes declarar y aceptar el compromiso final marcando la casilla para enviar tu solicitud.");
+                return;
+            }
+
+            const btn = document.getElementById("btn-enviar-ingreso");
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = "⏳ Enviando Solicitud...";
+            btn.disabled = true;
+
+            // Usamos FormSubmit mediante AJAX silencioso
+            fetch("https://formsubmit.co/ajax/643d4eaaa5173f5c183249de7397751a", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: "✠ SOLICITUD DE INGRESO ✠ - " + nombre,
+                    email: email, 
+                    _autoresponse: "Saludos cordiales. Hemos recibido tu solicitud de postulación a la Orden Templaria Ecléctica (Gran Priorato del Paraguay). Un miembro de nuestra Orden analizará tu perfil y se pondrá en contacto contigo a la brevedad.\n\nNon nobis, Domine, non nobis, sed Nomini Tuo da gloriam.",
+                    Nombre: nombre,
+                    "Fecha de Nacimiento": fecha,
+                    Teléfono: telefono,
+                    "Ciudad y País": ciudad,
+                    Motivación: motivos,
+                    Compromiso: "Aceptado"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                mostrarMensaje("Postulación Enviada", "Tu solicitud de ingreso ha sido recibida con éxito.<br><br><strong style='color: var(--rojo-templario);'>Aviso Importante:</strong> El sistema te ha enviado un correo automático. Asegúrate de revisar tu bandeja de entrada o carpeta de spam y <strong>dale a Activar</strong>.");
+                document.getElementById("ingresoForm").reset();
+            })
+            .catch(error => {
+                mostrarMensaje("Error de Conexión", "No se pudo conectar con el servidor. Por favor, intenta de nuevo más tarde.");
+                console.error("Error:", error);
+            })
+            .finally(() => {
+                btn.innerHTML = textoOriginal;
+                btn.disabled = false;
+            });
+        }
+
         function cargarGaleriaAleatoria() {
             let fotos = [];
             
