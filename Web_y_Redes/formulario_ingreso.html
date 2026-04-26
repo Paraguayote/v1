@@ -11,6 +11,21 @@
 </head>
 <body class="priorato-layout">
 
+    <!-- Menú Lateral Desplegable -->
+    <div id="side-menu" class="side-menu">
+        <div class="side-menu-tab" onclick="toggleSideMenu()">☰</div>
+        <div class="side-menu-header">✠ MENÚ ✠</div>
+        <ul class="side-menu-list">
+            <li onclick="window.location.href='../index.html?seccion=origen'"><span>✠</span> ORIGEN</li>
+            <li onclick="window.location.href='../index.html?seccion=regla'"><span>✠</span> REGLAMENTO</li>
+            <li onclick="window.location.href='../index.html?seccion=autoridades'"><span>✠</span> AUTORIDADES</li>
+            <li onclick="window.location.href='../index.html?seccion=reconocimientos'"><span>✠</span> RECONOCIMIENTOS</li>
+            <li onclick="window.location.href='../Formación/Biblioteca_templaria/index.html'"><span>✠</span> BIBLIOTECA</li>
+            <li onclick="window.location.href='../index.html?seccion=unete'"><span>✠</span> ÚNETE</li>
+            <li onclick="window.location.href='../index.html?seccion=contacto'"><span>✠</span> CONTACTO</li>
+        </ul>
+    </div>
+
     <!-- Botón Volver fijo arriba a la derecha -->
     <a href="../index.html" class="close-btn" style="text-decoration: none;">[ ← Volver ]</a>
 
@@ -118,6 +133,10 @@
                 btn.disabled = false;
             });
         });
+
+        function toggleSideMenu() {
+            document.getElementById('side-menu').classList.toggle('active');
+        }
     </script>
 </body>
 </html>
