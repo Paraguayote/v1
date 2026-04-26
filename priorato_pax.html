@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priorato Regional de Pax | OTE Paraguay</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --rojo-templario: #9b111e;
+            --pergamino: #f4f1ea;
+            --texto: #2c2c2c;
+            --blanco: #ffffff;
+            --gris-borde: #dddddd;
+            --lila: #9370DB;
+            --negro: #0D0D0D;
+        }
+
+        body {
+            background-color: var(--pergamino);
+            color: var(--texto);
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .cinzel {
+            font-family: 'Cinzel', serif;
+            color: var(--rojo-templario);
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--blanco);
+            border-bottom: 2px solid var(--rojo-templario);
+        }
+        
+        header img {
+            max-width: 180px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 15px rgba(147, 112, 219, 0.4));
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        header h2 {
+            color: #666;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p.lema {
+            color: #666;
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .seccion {
+            margin-bottom: 4rem;
+        }
+
+        .seccion p {
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+
+        .tarjetas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tarjeta {
+            background-color: rgba(155,17,30,0.05);
+            border: 1px solid var(--gris-borde);
+            border-left: 4px solid var(--rojo-templario);
+            padding: 2.5rem;
+            border-radius: 4px;
+            text-align: center;
+            transition: transform 0.3s ease, border-left-color 0.3s ease;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--lila);
+        }
+
+        .tarjeta .icono {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--rojo-templario);
+        }
+
+        /* Estilos de la Galería de Imágenes */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 2rem;
+        }
+        .galeria-item {
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid var(--gris-borde);
+        }
+        .galeria-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+        .galeria-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Lightbox (Visor de pantalla completa) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 13, 13, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            box-shadow: 0 0 25px rgba(147, 112, 219, 0.3);
+            border-radius: 4px;
+            animation: zoomIn 0.3s ease;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--rojo-templario);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .btn-volver:hover {
+            color: var(--lila);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: var(--blanco);
+            border-top: 1px solid var(--gris-borde);
+            margin-top: 2rem;
+        }
+
+        .btn-facebook {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #1877F2;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            transition: background-color 0.3s ease;
+        }
+        .btn-facebook:hover {
+            background-color: #166FE5;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="image/logo/Priorato.Pax.png" alt="Escudo Priorato Pax" onerror="this.outerHTML='<div style=\'font-size: 8rem; color: var(--rojo-templario); margin-bottom: 1rem;\'>✠</div>'">
+        <h1>Priorato Regional de Pax</h1>
+        <h2>Gran Priorato Nacional del Paraguay - OTE</h2>
+        <p class="lema">Vía, Veritas, Vita<br>"El Camino, la Verdad, la Vida"</p>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="btn-volver">← Volver al Gran Priorato</a>
+
+        <section class="seccion">
+            <h2>Nuestra Jurisdicción</h2>
+            <p>El <strong>Priorato Regional de Pax</strong> es una autoridad territorial dependiente del Gran Priorato Nacional del Paraguay de la Orden Templaria Ecléctica. Agrupamos a los hermanos y hermanas comprometidos con el estudio esotérico, hermético y filosófico en nuestra región, preservando la llama iniciática y el servicio a la humanidad.</p>
+        </section>
+
+        <section class="seccion">
+            <h2>Nuestras Comandancias Locales</h2>
+            <p>El trabajo operativo, de estudio y de ritual se lleva a cabo en nuestras Encomiendas distribuidas territorialmente. Actualmente, el Priorato de Pax ejerce su tutela sobre las siguientes sedes:</p>
+            
+            <div class="tarjetas-grid">
+                <div class="tarjeta">
+                    <div class="icono">🏰</div>
+                    <h3>Comandancia de Asunción</h3>
+                    <p>Sede operativa en la capital. Espacio de trabajo regular para nuestros Caballeros, Escuderos y Novicios de la zona central.</p>
+                </div>
+                
+                <div class="tarjeta">
+                    <div class="icono">⚔️</div>
+                    <h3>Comandancia de Pilar</h3>
+                    <p>Bastión templario en el sur del país. Custodios de la tradición y ejecutores del trabajo filosófico en la ciudad heroica.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion">
+            <h2>Galería de Actividades</h2>
+            <p>Registro visual de nuestros capítulos, tenidas y trabajos operativos en la región.</p>
+            
+            <div class="galeria-grid">
+                <div class="galeria-item"><img src="image/prioratos/pax_1.jpg" alt="Actividad Pax 1" onclick="abrirLightbox(this.src)" onerror="this.outerHTML='<div style=\'height: 200px; background: rgba(155,17,30,0.05); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--rojo-templario);\'>✠</div>'"></div>
+                <div class="galeria-item"><img src="image/prioratos/pax_2.jpg" alt="Actividad Pax 2" onclick="abrirLightbox(this.src)" onerror="this.outerHTML='<div style=\'height: 200px; background: rgba(155,17,30,0.05); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--rojo-templario);\'>✠</div>'"></div>
+                <div class="galeria-item"><img src="image/prioratos/pax_3.jpg" alt="Actividad Pax 3" onclick="abrirLightbox(this.src)" onerror="this.outerHTML='<div style=\'height: 200px; background: rgba(155,17,30,0.05); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--rojo-templario);\'>✠</div>'"></div>
+                <div class="galeria-item"><img src="image/prioratos/pax_4.jpg" alt="Actividad Pax 4" onclick="abrirLightbox(this.src)" onerror="this.outerHTML='<div style=\'height: 200px; background: rgba(155,17,30,0.05); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--rojo-templario);\'>✠</div>'"></div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div style="color: var(--rojo-templario); font-size: 2rem; margin-bottom: 1rem; line-height: 1;">✠</div>
+        <p class="cinzel" style="color: var(--rojo-templario); font-weight: bold;">Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam</p>
+        
+        <a href="https://www.facebook.com/people/Priorato-PAX/61569422430208/" target="_blank" class="btn-facebook">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Página Oficial en Facebook
+        </a>
+
+        <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">&copy; 2026 Orden Templaria Ecléctica (OTE) - Priorato Regional de Pax.</p>
+    </footer>
+
+    <!-- Contenedor del Visor Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
+        <span style="position: absolute; top: 15px; right: 30px; font-size: 50px; color: var(--rojo-templario); cursor: pointer;">&times;</span>
+        <img id="lightbox-img" src="" alt="Vista ampliada">
+    </div>
+
+    <script>
+        function abrirLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function cerrarLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
