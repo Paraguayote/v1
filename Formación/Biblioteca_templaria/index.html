@@ -8,100 +8,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
     <!-- Conecta con la hoja de estilos global en la raíz -->
     <link rel="stylesheet" href="../../style.css">
-    <style>
-        .table-responsive { 
-            overflow-x: auto; 
-            margin-bottom: 2rem; 
-            border-radius: 4px;
-            border: 1px solid var(--gris-borde);
-        }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            min-width: 800px; 
-            margin-top: 0;
-        }
-        th, td { 
-            padding: 12px; 
-            border: 1px solid var(--gris-borde); 
-            text-align: left; 
-            vertical-align: top; 
-        }
-        th { 
-            background: rgba(155,17,30,0.1); 
-            color: var(--rojo-templario); 
-            font-family: 'Cinzel', serif; 
-        }
-        td { 
-            font-size: 0.95rem; 
-        }
-        .btn-download { 
-            display: inline-block; 
-            padding: 6px 12px; 
-            background: var(--rojo-templario); 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 3px; 
-            font-size: 0.8rem; 
-            text-align: center; 
-            margin-top: 5px;
-            font-family: 'Cinzel', serif;
-            transition: background-color 0.3s;
-            white-space: nowrap;
-        }
-        .btn-download:hover { 
-            background: var(--negro); 
-            color: white; 
-        }
-        .filename { 
-            font-family: monospace; 
-            font-size: 0.85rem; 
-            color: #555; 
-            background: rgba(155,17,30,0.05); 
-            padding: 4px 6px; 
-            border-radius: 3px; 
-            display: block; 
-            margin-bottom: 5px;
-            border-left: 2px solid var(--rojo-templario);
-        }
-        .btn-copy {
-            background-color: transparent;
-            border: 1px solid var(--gris-borde);
-            color: #666;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .btn-copy:hover {
-            background-color: var(--rojo-templario);
-            color: white;
-            border-color: var(--rojo-templario);
-        }
-        .search-container {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .search-input {
-            width: 100%;
-            max-width: 600px;
-            padding: 12px 20px;
-            font-size: 1.1rem;
-            font-family: 'EB Garamond', serif;
-            border: 1px solid var(--gris-borde);
-            border-radius: 4px;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        .search-input:focus {
-            border-color: var(--rojo-templario);
-            box-shadow: 0 0 8px rgba(155, 17, 30, 0.2);
-        }
-    </style>
 </head>
 <body class="priorato-layout">
+
+    <!-- Menú Lateral Desplegable -->
+    <div id="side-menu" class="side-menu">
+        <div class="side-menu-tab" onclick="toggleSideMenu()">☰</div>
+        <div class="side-menu-header">✠ MENÚ ✠</div>
+        <ul class="side-menu-list">
+            <li onclick="window.location.href='../../index.html?seccion=origen'"><span>✠</span> ORIGEN</li>
+            <li onclick="window.location.href='../../index.html?seccion=regla'"><span>✠</span> REGLAMENTO</li>
+            <li onclick="window.location.href='../../index.html?seccion=autoridades'"><span>✠</span> AUTORIDADES</li>
+            <li onclick="window.location.href='../../index.html?seccion=reconocimientos'"><span>✠</span> RECONOCIMIENTOS</li>
+            <li onclick="window.location.href='index.html'"><span>✠</span> BIBLIOTECA</li>
+            <li onclick="window.location.href='../../index.html?seccion=unete'"><span>✠</span> ÚNETE</li>
+            <li onclick="window.location.href='../../index.html?seccion=contacto'"><span>✠</span> CONTACTO</li>
+            <li onclick="window.location.href='../../index.html?seccion=miembros'" style="color: var(--rojo-templario); font-weight: bold; margin-top: 10px; border-top: 1px solid rgba(155,17,30,0.3); padding-top: 20px;"><span>🔒</span> ÁREA DE MIEMBROS</li>
+        </ul>
+    </div>
+
     <div style="max-width: 1200px; margin: 30px auto 10px; padding: 0 20px;">
         <a href="../../index.html" class="btn-volver">← Volver al Inicio</a>
     </div>
@@ -393,6 +318,11 @@
             const idiomaVal = document.getElementById('idiomaFilter').value;
             const temaVal = document.getElementById('temaFilter').value;
             
+            // Guardar estado de búsqueda
+            sessionStorage.setItem('biblio_search', document.getElementById('searchInput').value);
+            sessionStorage.setItem('biblio_idioma', idiomaVal);
+            sessionStorage.setItem('biblio_tema', temaVal);
+
             const tbody = document.getElementById('tabla-libros');
             tbody.innerHTML = ''; // Limpiar tabla
             
@@ -448,8 +378,17 @@
             }).catch(err => console.error("Error al copiar: ", err));
         }
 
+        function toggleSideMenu() {
+            document.getElementById('side-menu').classList.toggle('active');
+        }
+
         // Renderizar la tabla por primera vez al cargar la página
         document.addEventListener("DOMContentLoaded", () => {
+            // Restaurar filtros si existen de una recarga anterior
+            if(sessionStorage.getItem('biblio_search')) document.getElementById('searchInput').value = sessionStorage.getItem('biblio_search');
+            if(sessionStorage.getItem('biblio_idioma')) document.getElementById('idiomaFilter').value = sessionStorage.getItem('biblio_idioma');
+            if(sessionStorage.getItem('biblio_tema')) document.getElementById('temaFilter').value = sessionStorage.getItem('biblio_tema');
+
             calcularEstadisticas();
             renderTable();
         });
