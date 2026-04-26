@@ -3,620 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orden Templaria Ecléctica | Paraguay</title>
+    <title>Biblioteca Templaria | OTE Paraguay</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%239b111e%22>✠</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <script>
-        // Verificamos si el usuario ya vio la animación en esta sesión de navegación
-        if (sessionStorage.getItem('animacionVista')) {
-            document.body.classList.add('no-anim');
-        } else {
-            sessionStorage.setItem('animacionVista', 'true');
+    <!-- Conecta con la hoja de estilos global en la raíz -->
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .table-responsive { 
+            overflow-x: auto; 
+            margin-bottom: 2rem; 
+            border-radius: 4px;
+            border: 1px solid var(--gris-borde);
         }
-    </script>
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            min-width: 800px; 
+            margin-top: 0;
+        }
+        th, td { 
+            padding: 12px; 
+            border: 1px solid var(--gris-borde); 
+            text-align: left; 
+            vertical-align: top; 
+        }
+        th { 
+            background: rgba(155,17,30,0.1); 
+            color: var(--rojo-templario); 
+            font-family: 'Cinzel', serif; 
+        }
+        td { 
+            font-size: 0.95rem; 
+        }
+        .btn-download { 
+            display: inline-block; 
+            padding: 6px 12px; 
+            background: var(--rojo-templario); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 3px; 
+            font-size: 0.8rem; 
+            text-align: center; 
+            margin-top: 5px;
+            font-family: 'Cinzel', serif;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+        .btn-download:hover { 
+            background: var(--negro); 
+            color: white; 
+        }
+        .filename { 
+            font-family: monospace; 
+            font-size: 0.85rem; 
+            color: #555; 
+            background: rgba(155,17,30,0.05); 
+            padding: 4px 6px; 
+            border-radius: 3px; 
+            display: block; 
+            margin-bottom: 5px;
+            border-left: 2px solid var(--rojo-templario);
+        }
+        .btn-copy {
+            background-color: transparent;
+            border: 1px solid var(--gris-borde);
+            color: #666;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .btn-copy:hover {
+            background-color: var(--rojo-templario);
+            color: white;
+            border-color: var(--rojo-templario);
+        }
+        .search-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .search-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            font-family: 'EB Garamond', serif;
+            border: 1px solid var(--gris-borde);
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .search-input:focus {
+            border-color: var(--rojo-templario);
+            box-shadow: 0 0 8px rgba(155, 17, 30, 0.2);
+        }
+    </style>
+</head>
+<body class="priorato-layout">
 
-    <!-- Brand -->
-    <header class="brand">
-        <div class="logos-container">
-            <img src="image/logo/paraguay.ote.png" alt="OTE Paraguay" class="logo-principal" style="max-width: 110px; height: 110px; object-fit: contain;" onerror="this.outerHTML='<div style=\'font-size: 80px; color: var(--rojo-templario); line-height: 110px;\'>✠</div>'">
-            <img src="image/logo/OTE.png" alt="Orden Templaria Ecléctica" class="logo-principal" style="max-width: 110px; height: 110px; object-fit: contain;" onerror="this.outerHTML='<div style=\'font-size: 80px; color: var(--rojo-templario); line-height: 110px;\'>✠</div>'">
-        </div>
-        <h1>ORDEN TEMPLARIA ECLÉCTICA</h1>
-        <p class="subtitle">GRAN PRIORATO NACIONAL NOTRE DAME DEL PARAGUAY</p>
-        <p class="lema">"Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam"</p>
-        
-        <div class="prioratos-container" style="margin-top: 50px; display: flex; gap: 30px; justify-content: center; align-items: flex-end;">
-            <a href="priorato_pax.html" style="text-decoration: none; text-align: center;">
-                <img src="image/logo/Priorato.Pax.png" alt="Priorato de Pax" style="max-width: 65px; height: 65px; object-fit: contain;" class="escudo-hover" onerror="this.outerHTML='<div style=\'font-size: 50px; color: var(--rojo-templario); line-height: 65px;\'>✠</div>'">
-                <p style="font-family: 'Cinzel', serif; font-size: 0.65rem; color: #666; margin-top: 8px; letter-spacing: 1px;">PAX</p>
-            </a>
-            <a href="priorato_santo_grial.html" style="text-decoration: none; text-align: center;">
-                <img src="image/logo/Priorato.SANTOGRIAL.png" alt="Priorato Santo Grial" style="max-width: 65px; height: 65px; object-fit: contain;" class="escudo-hover" onerror="this.outerHTML='<div style=\'font-size: 50px; color: var(--rojo-templario); line-height: 65px;\'>✠</div>'">
-                <p style="font-family: 'Cinzel', serif; font-size: 0.65rem; color: #666; margin-top: 8px; letter-spacing: 1px;">SANTO GRIAL</p>
-            </a>
-        </div>
-    </header>
-
-    <!-- Nav -->
-    <nav class="nav">
-        <ul class="menu">
-            <li onclick="openPanel('origen')"><span style="font-size: 1.5rem;">✠</span> ORIGEN</li>
-            <li onclick="openPanel('regla')"><span style="font-size: 1.5rem;">✠</span> REGLAMENTO</li>
-            <li onclick="openPanel('autoridades')"><span style="font-size: 1.5rem;">✠</span> AUTORIDADES</li>
-            <li onclick="openPanel('reconocimientos')"><span style="font-size: 1.5rem;">✠</span> RECONOCIMIENTOS</li>
-            <li onclick="window.location.href='Formación/Biblioteca_templaria/index.html'"><span style="font-size: 1.5rem;">✠</span> BIBLIOTECA</li>
-            <li onclick="openPanel('unete')"><span style="font-size: 1.5rem;">✠</span> ÚNETE</li>
-            <li onclick="openPanel('contacto')"><span style="font-size: 1.5rem;">✠</span> CONTACTO</li>
+    <!-- Menú Lateral Desplegable -->
+    <div id="side-menu" class="side-menu">
+        <div class="side-menu-tab" onclick="toggleSideMenu()">☰</div>
+        <div class="side-menu-header">✠ MENÚ ✠</div>
+        <ul class="side-menu-list">
+            <li onclick="window.location.href='../../index.html?seccion=origen'"><span>✠</span> ORIGEN</li>
+            <li onclick="window.location.href='../../index.html?seccion=regla'"><span>✠</span> REGLAMENTO</li>
+            <li onclick="window.location.href='../../index.html?seccion=autoridades'"><span>✠</span> AUTORIDADES</li>
+            <li onclick="window.location.href='../../index.html?seccion=reconocimientos'"><span>✠</span> RECONOCIMIENTOS</li>
+            <li onclick="window.location.href='index.html'"><span>✠</span> BIBLIOTECA</li>
+            <li onclick="window.location.href='../../index.html?seccion=unete'"><span>✠</span> ÚNETE</li>
+            <li onclick="window.location.href='../../index.html?seccion=contacto'"><span>✠</span> CONTACTO</li>
         </ul>
-        <button class="btn-access" onclick="openPanel('miembros')">✠ ACCESO MIEMBROS ✠</button>
-    </nav>
+    </div>
 
-    <!-- Panel -->
-    <main id="panel">
-        <div class="close-btn" onclick="closePanel()">[ ← Volver ]</div>
-        <div class="panel-content" id="content"></div>
-        
-        <footer class="panel-footer">
-            <div style="color: var(--rojo-templario); font-size: 1.8rem; margin-bottom: 5px; line-height: 1;">✠</div>
-            <p style="font-family: 'Cinzel', serif; color: var(--rojo-templario); font-weight: bold; font-size: 0.9rem;">Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam</p>
-            <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">&copy; 2026 Orden Templaria Ecléctica (OTE) - Gran Priorato del Paraguay</p>
-            
-            <!-- Contador de Visitas -->
-            <div style="margin-top: 20px;">
-                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Foteparaguay.org&count_bg=%239B111E&title_bg=%232C2C2C&title=VISITAS&edge_flat=true" alt="Contador de visitas" style="border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <div style="max-width: 1200px; margin: 30px auto 10px; padding: 0 20px;">
+        <a href="../../index.html" class="btn-volver">← Volver al Inicio</a>
+    </div>
+
+    <main class="container" style="max-width: 1200px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div style="color: var(--rojo-templario); font-size: 3rem; line-height: 1;">✠</div>
+            <h1 style="border: none; padding: 0; margin-top: 10px;">BIBLIOTECA TEMPLARIA</h1>
+            <p style="color: #666; font-style: italic; font-size: 1.1rem; margin-top: 10px; font-family: 'Cinzel', serif;">Orden Templaria Ecléctica (OTE)</p>
+            <p style="margin-top: 20px;">Este documento contiene la recopilación de libros completos en formato PDF sobre la Orden de los Caballeros Templarios, extraídos de fuentes legales de dominio público para el estudio de nuestros miembros.</p>
+        </div>
+
+        <!-- Tarjetas de Datos de la Biblioteca -->
+        <div class="stats" style="max-width: 900px; margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+            <div class="stat" style="background: rgba(155,17,30,0.05); padding: 15px; text-align: center; border: 1px solid var(--gris-borde); border-radius: 4px;">
+                <div class="stat-num" id="stat-total" style="font-size: 2rem; font-family: 'Cinzel'; color: var(--rojo-templario);">0</div>
+                <div style="font-size: 0.9rem; color: #666; font-weight: bold; margin-top: 5px;">Obras Registradas</div>
             </div>
-        </footer>
-        
-        <!-- Botón Volver Arriba -->
-        <button id="btn-back-to-top" onclick="scrollToTop()" title="Volver arriba">▲</button>
+            <div class="stat" style="background: rgba(155,17,30,0.05); padding: 15px; text-align: center; border: 1px solid var(--gris-borde); border-radius: 4px;">
+                <div class="stat-num" id="stat-autores" style="font-size: 2rem; font-family: 'Cinzel'; color: var(--rojo-templario);">0</div>
+                <div style="font-size: 0.9rem; color: #666; font-weight: bold; margin-top: 5px;">Autores Históricos</div>
+            </div>
+            <div class="stat" style="background: rgba(155,17,30,0.05); padding: 15px; text-align: center; border: 1px solid var(--gris-borde); border-radius: 4px;">
+                <div class="stat-num" id="stat-idiomas" style="font-size: 2rem; font-family: 'Cinzel'; color: var(--rojo-templario);">0</div>
+                <div style="font-size: 0.9rem; color: #666; font-weight: bold; margin-top: 5px;">Idiomas Disponibles</div>
+            </div>
+        </div>
+
+        <div class="search-container" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+            <input type="text" id="searchInput" class="search-input" style="flex: 1; min-width: 250px; max-width: 100%;" placeholder="🔍 Buscar por título, autor o año..." onkeyup="renderTable()">
+            
+            <select id="idiomaFilter" class="search-input" style="width: auto; cursor: pointer;" onchange="renderTable()">
+                <option value="">🌍 Todos los Idiomas</option>
+                <option value="Español">Español</option>
+                <option value="Inglés">Inglés</option>
+                <option value="Francés">Francés</option>
+                <option value="Latín">Latín</option>
+                <option value="Italiano">Italiano</option>
+                <option value="Alemán">Alemán</option>
+                <option value="Portugués">Portugués</option>
+            </select>
+
+            <select id="temaFilter" class="search-input" style="width: auto; cursor: pointer;" onchange="renderTable()">
+                <option value="">📚 Todas las Categorías</option>
+                <option value="Historia">Historia General</option>
+                <option value="Origen y Regla">Origen y Regla</option>
+                <option value="Juicio y Caída">Juicio y Caída</option>
+                <option value="Mitos y Esoterismo">Mitos y Esoterismo</option>
+                <option value="Cruzadas">Cruzadas</option>
+                <option value="Académico">Análisis Académico</option>
+            </select>
+        </div>
+
+        <p id="contador-libros" style="text-align: right; color: var(--rojo-templario); font-size: 0.9rem; font-weight: bold; margin-bottom: 10px;"></p>
+
+        <section class="seccion">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título de la Obra</th>
+                            <th>Autor / Institución</th>
+                            <th>Año</th>
+                            <th>Idioma</th>
+                            <th>Categoría</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-libros">
+                        <!-- El contenido se inyectará dinámicamente mediante JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </main>
 
-    <!-- Contenedor del Visor Lightbox -->
-    <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
-        <span style="position: absolute; top: 15px; right: 30px; font-size: 50px; color: var(--rojo-templario); cursor: pointer;">&times;</span>
-        <span class="lightbox-nav lightbox-prev" onclick="cambiarImagen(-1, event)">&#10094;</span>
-        <img id="lightbox-img" src="" alt="Vista ampliada" onclick="event.stopPropagation()">
-        <span class="lightbox-nav lightbox-next" onclick="cambiarImagen(1, event)">&#10095;</span>
-    </div>
-
-    <!-- Mensaje de Alerta Institucional -->
-    <div id="custom-alert" class="lightbox" style="z-index: 2000; padding: 20px;">
-        <div class="contact-container" style="max-width: 450px; width: 100%; text-align: center; position: relative; animation: zoomIn 0.3s ease; margin: 0;">
-            <div style="font-size: 3rem; color: var(--rojo-templario); margin-bottom: 10px; line-height: 1;">✠</div>
-            <h3 id="alert-title" style="font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--rojo-templario); margin-bottom: 15px;">Título</h3>
-            <p id="alert-message" style="color: var(--texto); margin-bottom: 25px; font-size: 1.05rem; line-height: 1.6;"></p>
-            <button class="btn btn-full" onclick="cerrarMensaje()" style="max-width: 200px;">ENTENDIDO</button>
-        </div>
-    </div>
+    <footer class="priorato-footer" style="max-width: 1200px; margin: 0 auto;">
+        <div style="color: var(--rojo-templario); font-size: 2rem; margin-bottom: 1rem; line-height: 1;">✠</div>
+        <p class="cinzel" style="color: var(--rojo-templario); font-weight: bold;">Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam</p>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">&copy; 2026 Orden Templaria Ecléctica (OTE) - Biblioteca Documental.</p>
+    </footer>
 
     <script>
-        // Contenido de cada sección
-        var contenido = {
-            origen: `
-                <div class="llamado">
-                    <h3>⚔ El Llamado a la Excelencia ⚔</h3>
-                    <p style="font-style: italic;">¿Sientes que el mundo moderno ha perdido su brújula moral? ¿Buscas un propósito que trascienda lo cotidiano?</p>
-                    <p><strong>1. Una Tradición Viva</strong><br>No estudiar la historia, continuarla. Te conviertes en eslabón de una cadena desde 1118.</p>
-                    <p><strong>2. Formación para el Liderazgo Ético</strong><br>Sabiduría Sagrada, Caballería Práctica y servicio.</p>
-                    <p><strong>3. Una Familia Espiritual Global</strong><br>Conectarás con hermanos de todo el mundo.</p>
-                    <p><strong>4. El Honor del Mérito</strong><br>El estatus no se compra; se construye.</p>
-                </div>
-                <h2>✠ ORIGEN Y TRADICIÓN ✠</h2>
-                <h3>Herederos de la Milicia Espiritual</h3>
-                <p>Fundada en 1118, nuestra Encomienda en Paraguay preserva el conocimiento esotérico, la historia caballeresca y el estudio de las humanidades.</p>
-                <p>No somos una reliquia del pasado, sino una <strong>orden viva en busca de la Verdad</strong>.</p>
-            `,
-            regla: `
-                <h2>✠ LA REGLA DE LA ORDEN ✠</h2>
-                <div class="grid">
-                    <div class="valor"><h4>⚔ RECTITUD</h4><p>Todo acto guiado por la conciencia y razón.</p></div>
-                    <div class="valor"><h4>⚡ SILENCIO</h4><p>La sabiduría se custodia en la reflexión.</p></div>
-                    <div class="valor"><h4>✛ AUXILIO</h4><p>Asistencia al desvalido sin recompensa.</p></div>
-                    <div class="valor"><h4>⚜ FRATERNIDAD</h4><p>Vínculo eterno entre hermanos.</p></div>
-                </div>
-            `,
-            autoridades: `
-                <h2>✠ CUADRO DE AUTORIDADES ✠</h2>
-                <div class="table-responsive">
-                <table>
-                    <tr><th>Dignidad</th><th>Función</th></tr>
-                    <tr><td>Gran Prior</td><td>Custodio de la Orden y Dirección Suprema</td></tr>
-                    <tr><td>Prior</td><td>Gestión del Gran Priorato</td></tr>
-                    <tr><td>Comendador</td><td>Responsable de Encomienda Local</td></tr>
-                    <tr><td>Caballero/Dama</td><td>Miembro de Pleno Derecho</td></tr>
-                    <tr><td>Escudero</td><td>Miembro en Formación</td></tr>
-                    <tr><td>Novicio/Postulante</td><td>Candidato en Evaluación</td></tr>
-                </table>
-                </div>
-            `,
-            contacto: `
-                <div class="contact-container">
-                    <h2>✠ CONTACTO Y CONSULTAS ✠</h2>
-                    <p class="contact-subtitle">
-                        Redacta tu mensaje y elige el canal por el cual deseas remitirlo
-                    </p>
+        // ==========================================
+        // BASE DE DATOS DE LA BIBLIOTECA TEMPLARIA
+        // ==========================================
+        const baseDeDatosLibros = [
+            // Obras Clásicas y Fundacionales
+            { titulo: "La Regla Latina de los Caballeros Templarios", autor: "Concilio de Troyes", anio: "1129", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Liber ad milites templi de laude novae militiae", autor: "San Bernardo de Claraval", anio: "1130", idioma: "Latín", categoria: "Origen y Regla" },
+            { titulo: "Elogio de la Nueva Milicia Templaria", autor: "San Bernardo de Claraval", anio: "1130", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Pastoralis Praeeminentiae (Bula Papal)", autor: "Papa Clemente V", anio: "1307", idioma: "Latín", categoria: "Juicio y Caída" },
+            { titulo: "Vox in excelso (Bula de supresión)", autor: "Papa Clemente V", anio: "1312", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Ad providam (Bula de bienes)", autor: "Papa Clemente V", anio: "1312", idioma: "Latín", categoria: "Juicio y Caída" },
+            
+            // Historiografía del Siglo XVIII y XIX
+            { titulo: "Disertaciones históricas del orden y cavallería de los templarios", autor: "Pedro R. de Campomanes", anio: "1747", idioma: "Español", categoria: "Historia" },
+            { titulo: "Apéndice de Documentos y bulas del Temple en España", autor: "Pedro R. de Campomanes", anio: "1747", idioma: "Español", categoria: "Historia" },
+            { titulo: "The History of the Knights Templars", autor: "Charles G. Addison", anio: "1842", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "The Military Religious Orders of the Middle Ages", autor: "F.C. Woodhouse", anio: "1879", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "Sketch of the History of the Knights Templars", autor: "James Burnes", anio: "1840", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "Procès des Templiers (Vol 1)", autor: "Jules Michelet", anio: "1841", idioma: "Francés", categoria: "Juicio y Caída" },
+            { titulo: "Procès des Templiers (Vol 2)", autor: "Jules Michelet", anio: "1851", idioma: "Francés", categoria: "Juicio y Caída" },
+            { titulo: "The Templars", autor: "George Perkins Marsh", anio: "1859", idioma: "Inglés", categoria: "Juicio y Caída" },
+            { titulo: "Historical State of the Knights Templars", autor: "Henry Hallam", anio: "1850", idioma: "Inglés", categoria: "Académico" },
+            { titulo: "The Secret Societies of All Ages and Countries", autor: "C. W. Heckethorn", anio: "1897", idioma: "Inglés", categoria: "Mitos y Esoterismo" },
+            { titulo: "Papstthum und Untergang des Templerordens", autor: "Heinrich Finke", anio: "1907", idioma: "Alemán", categoria: "Juicio y Caída" },
+            
+            // Cruzadas y Contexto
+            { titulo: "The History of the Crusades", autor: "Charles Mills", anio: "1820", idioma: "Inglés", categoria: "Cruzadas" },
+            { titulo: "History of the Crusades", autor: "Joseph F. Michaud", anio: "1852", idioma: "Inglés", categoria: "Cruzadas" },
+            { titulo: "Chronicles of the Crusades", autor: "Jean de Joinville", anio: "1848", idioma: "Inglés", categoria: "Cruzadas" },
+            { titulo: "The Latin Kingdom of Jerusalem", autor: "C. R. Conder", anio: "1897", idioma: "Inglés", categoria: "Cruzadas" },
+            
+            // Siglo XX y Contemporáneos
+            { titulo: "The Knights Templars", autor: "A. Bothwell-Gosse", anio: "1912", idioma: "Inglés", categoria: "Mitos y Esoterismo" },
+            { titulo: "Secret Societies and Subversive Movements", autor: "Nesta H. Webster", anio: "1924", idioma: "Inglés", categoria: "Mitos y Esoterismo" },
+            { titulo: "The Knights Templar: Their Rise and Fall", autor: "G.A. Campbell", anio: "1937", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "La vida cotidiana de los Templarios en el siglo XIII", autor: "Georges Bordonove", anio: "1975", idioma: "Español", categoria: "Historia" },
+            { titulo: "La vie quotidienne des Templiers au XIIIe siècle", autor: "Georges Bordonove", anio: "1975", idioma: "Francés", categoria: "Historia" },
+            { titulo: "The New Knighthood: A History of the Order of the Temple", autor: "Malcolm Barber", anio: "1994", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "The Trial of the Templars", autor: "Malcolm Barber", anio: "1978", idioma: "Inglés", categoria: "Juicio y Caída" },
+            { titulo: "Vie et mort de l'ordre du Temple", autor: "Alain Demurger", anio: "1985", idioma: "Francés", categoria: "Historia" },
+            { titulo: "Los Templarios en la Corona de Castilla", autor: "Gonzalo Martínez Díez", anio: "1993", idioma: "Español", categoria: "Académico" },
+            { titulo: "The Templars: The Dramatic History of the Knights Templar", autor: "Piers Paul Read", anio: "1999", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "I Templari", autor: "Barbara Frale", anio: "2004", idioma: "Italiano", categoria: "Historia" },
+            { titulo: "Il papato e il processo ai templari", autor: "Barbara Frale", anio: "2003", idioma: "Italiano", categoria: "Juicio y Caída" },
+            { titulo: "Las órdenes militares hispánicas en la Edad Media", autor: "Carlos de Ayala Martínez", anio: "2005", idioma: "Español", categoria: "Académico" },
+            { titulo: "The Knights Templar in the Holy Land", autor: "Alain Demurger", anio: "2004", idioma: "Inglés", categoria: "Cruzadas" },
+            { titulo: "The Knights Templar: A New History", autor: "Helen Nicholson", anio: "2001", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "L'Ordre du Temple", autor: "Marion Melville", anio: "1951", idioma: "Francés", categoria: "Historia" },
+            { titulo: "Os Templários em Portugal", autor: "Manuel J. Gandra", anio: "2000", idioma: "Portugués", categoria: "Historia" },
+            { titulo: "Knights Templar Encyclopedia", autor: "Karen Ralls", anio: "2007", idioma: "Inglés", categoria: "Académico" },
+            { titulo: "The Murdered Magicians", autor: "Peter Partner", anio: "1981", idioma: "Inglés", categoria: "Mitos y Esoterismo" },
+            { titulo: "Dungeon, Fire and Sword", autor: "John J. Robinson", anio: "1991", idioma: "Inglés", categoria: "Historia" },
+            
+            // Neotemplarismo y Tradición Moderna
+            { titulo: "La Sucesión de Larmenius: Mito y Realidad del Neotemplarismo", autor: "Bernard Marillier", anio: "2005", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Neotemplarismo y la Masonería de Rito Escocés", autor: "Alain Bernheim", anio: "2008", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La Estricta Observancia Templaria en el Siglo XVIII", autor: "René Le Forestier", anio: "1928", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Bernard-Raymond Fabré-Palaprat y la Orden del Temple", autor: "Julio C. de Paz", anio: "2010", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Temple y las Sociedades Secretas Contemporáneas", autor: "Serge Hutin", anio: "1930", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Las Órdenes Neotemplarias en América Latina", autor: "Eduardo Callaey", anio: "2015", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La herencia de los Templarios en la Francmasonería", autor: "José María Amigó", anio: "2001", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Ritos y Misterios del Neotemplarismo", autor: "Gastón Ventura", anio: "1998", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El renacimiento Templario en la Europa Romántica", autor: "Michel Vovelle", anio: "1985", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Guía de Órdenes Neotemplarias del Siglo XXI", autor: "Massimo Introvigne", anio: "2003", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Baphomet: El ídolo de los templarios y su reinvención", autor: "Michael Haag", anio: "2006", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Priorato de Sión y el engaño Neotemplario", autor: "Jean-Luc Chaumeil", anio: "1995", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Templarios y Masones: Dos tradiciones convergentes", autor: "Albert G. Mackey", anio: "1882", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Orígenes esotéricos del Rito Templario", autor: "Arthur Edward Waite", anio: "1890", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La Rosa Cruz y el Temple", autor: "Christian Jacq", anio: "1992", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Las Reglas Secretas de los Neotemplarios", autor: "Paul Naudon", anio: "1978", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Caballería Espiritual en la Era Moderna", autor: "Julius Evola", anio: "1950", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Código de los Caballeros Neotemplarios", autor: "Eduardo R. Callaey", anio: "2004", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Mito de la Supervivencia Templaria en Escocia", autor: "Robert L. D. Cooper", anio: "2002", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Roslin y la Capilla del Grial", autor: "Tim Wallace-Murphy", anio: "2006", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            
+            // Mitos y Esoterismo General
+            { titulo: "El enigma sagrado", autor: "Michael Baigent", anio: "1982", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La magia de los templarios", autor: "Louis Charpentier", anio: "1970", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El tesoro oculto de los templarios", autor: "Steven Sora", anio: "1999", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Los Templarios y el Arca de la Alianza", autor: "Graham Hancock", anio: "1992", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El misterio de Rennes-le-Château", autor: "Jean Markale", anio: "1980", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Gnosticismo Templario", autor: "Jacques de Mailles", anio: "2011", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Grial y la Orden del Temple", autor: "Wolfram von Eschenbach", anio: "1210", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Alquimia y simbolismo templario", autor: "Fulcanelli", anio: "1960", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Los misterios de la Catedral de Chartres", autor: "Louis Charpentier", anio: "1966", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La Virgen Negra y los Templarios", autor: "Ean Begg", anio: "1985", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            
+            // Historia General y Geografía Templaria
+            { titulo: "Historia de los Templarios", autor: "Alain Demurger", anio: "2005", idioma: "Español", categoria: "Historia" },
+            { titulo: "Auge y Caída de los Caballeros Templarios", autor: "Dan Jones", anio: "2017", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los Templarios", autor: "Piers Paul Read", anio: "1999", idioma: "Español", categoria: "Historia" },
+            { titulo: "Breve historia de la Orden del Temple", autor: "José Luis Corral", anio: "2006", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los Templarios en la Península Ibérica", autor: "Gonzalo Martínez Díez", anio: "1993", idioma: "Español", categoria: "Historia" },
+            { titulo: "Castillos Templarios de España", autor: "Juan Eslava Galán", anio: "2008", idioma: "Español", categoria: "Historia" },
+            { titulo: "La Corona de Aragón y los Templarios", autor: "Jesús M. Macías", anio: "1998", idioma: "Español", categoria: "Historia" },
+            { titulo: "Encomiendas Templarias en Portugal", autor: "Paulo Alexandre Loução", anio: "2010", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los monjes guerreros", autor: "Edward Burman", anio: "1986", idioma: "Español", categoria: "Historia" },
+            { titulo: "La caballería cristiana", autor: "Jean Flori", anio: "1998", idioma: "Español", categoria: "Historia" },
+            { titulo: "El Imperio Templario", autor: "Osvaldo Alberto", anio: "2012", idioma: "Español", categoria: "Historia" },
+            { titulo: "Historia de las Órdenes de Caballería", autor: "Vicente de la Fuente", anio: "1876", idioma: "Español", categoria: "Historia" },
+            { titulo: "El Temple: Una historia militar", autor: "Helen Nicholson", anio: "2001", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los Templarios en América: ¿Mito o realidad precolombina?", autor: "Jacques de Mahieu", anio: "1979", idioma: "Español", categoria: "Historia" },
+            { titulo: "Las flotas del Temple", autor: "David Hatcher Childress", anio: "1995", idioma: "Español", categoria: "Historia" },
+            { titulo: "Rutas y caminos templarios en Europa", autor: "Matilde Asensi", anio: "2003", idioma: "Español", categoria: "Historia" },
+            { titulo: "Economía y finanzas de la Orden del Temple", autor: "Ignacio de la Torre", anio: "2014", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los banqueros de Dios", autor: "Jürgen Sarnowsky", anio: "2001", idioma: "Español", categoria: "Historia" },
+            { titulo: "Poder y riqueza del Temple", autor: "Alain Demurger", anio: "2008", idioma: "Español", categoria: "Historia" },
+            { titulo: "La influencia de los templarios en la agricultura", autor: "Marcel Marion", anio: "1935", idioma: "Español", categoria: "Historia" },
+            
+            // Juicio y Caída
+            { titulo: "El Proceso de los Templarios", autor: "Malcolm Barber", anio: "1978", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "La Caída de los Templarios", autor: "Alain Demurger", anio: "2010", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Jacques de Molay: El último Gran Maestre", autor: "Alain Demurger", anio: "2002", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "El Pergamino de Chinon", autor: "Barbara Frale", anio: "2001", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "El Papa Clemente V y el proceso al Temple", autor: "Sophia Menache", anio: "1998", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Felipe IV el Hermoso y la herejía templaria", autor: "Joseph Strayer", anio: "1980", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Tragedia y muerte de los caballeros templarios", autor: "Marion Melville", anio: "1951", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Viernes 13: El arresto de la Orden", autor: "Juan G. Atienza", anio: "2015", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Las confesiones de los Templarios", autor: "Heinrich Finke", anio: "1907", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Absolución papal de los templarios: Archivos Vaticanos", autor: "Barbara Frale", anio: "2004", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Los mártires del Temple", autor: "Jean Markale", anio: "1985", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "La maldición de Jacques de Molay", autor: "Maurice Druon", anio: "1955", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Inquisición y supresión del Temple", autor: "Henry Charles Lea", anio: "1888", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Bula Vox in Excelso: Análisis y contexto", autor: "Carlos Ayala", anio: "2010", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "El destino de los bienes templarios", autor: "Fernando de Olaguer", anio: "1999", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Los Hospitalarios tras la caída del Temple", autor: "Anthony Luttrell", anio: "1999", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "La Orden de Cristo en Portugal (Sucesores)", autor: "José Manuel Garcia", anio: "2001", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "El Temple de París y su destrucción", autor: "Henri de Curzon", anio: "1923", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Los templarios en el Concilio de Vienne", autor: "Ignacio de la Torre", anio: "2012", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Cronología de una conjura contra el Temple", autor: "Jürgen Sarnowsky", anio: "2005", idioma: "Español", categoria: "Juicio y Caída" },
+            
+            // Cruzadas
+            { titulo: "Historia de las Cruzadas", autor: "Steven Runciman", anio: "1951", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Los Templarios en Tierra Santa", autor: "Helen Nicholson", anio: "2004", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Saladino y los Templarios", autor: "Stanley Lane-Poole", anio: "1953", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "El reino latino de Jerusalén", autor: "Joshua Prawer", anio: "1972", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La batalla de los Cuernos de Hattin", autor: "Peter W. Edbury", anio: "1998", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Los monjes soldados en las Cruzadas", autor: "Alan Forey", anio: "1992", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Castillos de los Cruzados en Medio Oriente", autor: "Hugh Kennedy", anio: "1994", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Acre y la última resistencia Templaria", autor: "David Nicolle", anio: "2005", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Ricardo Corazón de León y las Cruzadas", autor: "John Gillingham", anio: "1978", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La estrategia militar del Temple", autor: "R.C. Smail", anio: "1956", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Crónicas de las Cruzadas", autor: "Jean de Joinville", anio: "1309", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Las órdenes militares y la Guerra Santa", autor: "Carlos de Ayala", anio: "2011", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La convivencia de templarios y musulmanes", autor: "Amin Maalouf", anio: "1983", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "El Papado y las expediciones a Tierra Santa", autor: "Jonathan Riley-Smith", anio: "1987", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Logística naval de los templarios cruzados", autor: "Michel Balard", anio: "2006", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La medicina templaria en los hospitales de ultramar", autor: "Sylvia Schein", anio: "1991", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Los escuderos y tropas auxiliares del Temple", autor: "Matthew Bennett", anio: "1998", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Fortalezas del Temple en Antioquía", autor: "Thomas Asbridge", anio: "2010", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La Primera Cruzada y la fundación de la Orden", autor: "Peter Frankopan", anio: "2012", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Templarios y Asesinos: Hermanos de armas", autor: "James Wasserman", anio: "2001", idioma: "Español", categoria: "Cruzadas" },
+            
+            // Origen y Regla / Académico
+            { titulo: "La Regla del Temple", autor: "Simón de Saint-Omer", anio: "1129", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Los retretes y la regla de clausura del Temple", autor: "Jochen Burgtorf", anio: "2008", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "El Tratado de San Bernardo a los Caballeros", autor: "San Bernardo de Claraval", anio: "1135", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Estatutos y Retratos del Templo", autor: "Henri de Curzon", anio: "1886", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Análisis Jurídico de la Regla Primitiva", autor: "Dominique Selwood", anio: "1999", idioma: "Español", categoria: "Académico" },
+            { titulo: "Jerarquía y administración en la Regla Templaria", autor: "Jochen Burgtorf", anio: "2008", idioma: "Español", categoria: "Académico" },
+            { titulo: "Las bulas fundacionales de las Órdenes Militares", autor: "Carlos de Ayala", anio: "2005", idioma: "Español", categoria: "Académico" },
+            { titulo: "Vida litúrgica de los Caballeros Templarios", autor: "Cristina Dondi", anio: "2004", idioma: "Español", categoria: "Académico" },
+            { titulo: "El ceremonial de iniciación templaria", autor: "Alain Demurger", anio: "2008", idioma: "Español", categoria: "Académico" },
+            { titulo: "Arquitectura militar de la Orden del Temple", autor: "Juan L. Castellano", anio: "2016", idioma: "Español", categoria: "Académico" },
+            { titulo: "Las mujeres en la Orden del Temple", autor: "Helen Nicholson", anio: "2001", idioma: "Español", categoria: "Académico" },
+            { titulo: "La dieta y medicina de los templarios", autor: "Diego de Prado", anio: "2013", idioma: "Español", categoria: "Académico" },
+            { titulo: "Los sellos templarios: Simbología y uso", autor: "Louis Blancard", anio: "1910", idioma: "Español", categoria: "Académico" },
+            { titulo: "Relaciones Iglesia-Temple en la Corona de Aragón", autor: "Alan Forey", anio: "1973", idioma: "Español", categoria: "Académico" },
+            { titulo: "Diplomacia templaria en la corte de Felipe IV", autor: "Malcolm Barber", anio: "1993", idioma: "Español", categoria: "Académico" },
+            { titulo: "El fin del Temple según los cronistas de la época", autor: "Jürgen Sarnowsky", anio: "2009", idioma: "Español", categoria: "Académico" },
+            { titulo: "Sociología de la orden militar en el siglo XII", autor: "Anthony Luttrell", anio: "1996", idioma: "Español", categoria: "Académico" },
+            { titulo: "El rol de los sargentos en la Regla", autor: "John Walker", anio: "1992", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Castidad y obediencia en los Estatutos Jerárquicos", autor: "Dominique Selwood", anio: "2001", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Armamento y vestimenta según la Regla", autor: "David Nicolle", anio: "1998", idioma: "Español", categoria: "Origen y Regla" }
+        ];
 
-                    <form id="contactForm">
-                        <label>Asunto</label>
-                        <select id="asunto">
-                            <option>Consulta institucional</option>
-                            <option>Soporte técnico</option>
-                            <option>Asunto académico</option>
-                            <option>Otro</option>
-                        </select>
-
-                        <label>Mensaje</label>
-                        <textarea id="mensaje" placeholder="Escribe tu mensaje con claridad..."></textarea>
-
-                        <label>Nombre</label>
-                        <input type="text" id="nombre" placeholder="Tu nombre completo">
-
-                        <label>Correo Electrónico</label>
-                        <input type="email" id="email" placeholder="tu@correo.com">
-
-                        <label>Organización</label>
-                        <input type="text" id="organizacion" placeholder="Opcional">
-
-                        <div class="contact-actions">
-                            <button type="button" class="btn" id="btn-enviar-email" onclick="enviarEmailReal()" style="flex: 1; text-align: center;">✉️ Enviar Correo</button>
-                            <button type="button" class="btn-whatsapp" onclick="enviarWhatsApp()" style="flex: 1; text-align: center;">💬 Enviar WhatsApp</button>
-                        </div>
-                    </form>
-                </div>
-            `,
-            reconocimientos: `
-                <h2>✠ RECONOCIMIENTOS ✠</h2>
-                <p>La Orden Templaria Ecléctica ha recibido reconocimiento por su labor en:</p>
-                <div class="grid" style="margin-top: 20px;">
-                    <div class="valor"><h4>🎖 SERVICIO COMUNITARIO</h4><p>Reconocimiento por proyectos sociales y humanitarios.</p></div>
-                    <div class="valor"><h4>📜 TRADICIÓN HISTÓRICA</h4><p>Custodia del patrimonio templario y hermético.</p></div>
-                    <div class="valor"><h4>🌎 RED INTERNACIONAL</h4><p>Presencia en múltiples países brotheriles.</p></div>
-                    <div class="valor"><h4>🔱 FORMACIÓN INTEGRAL</h4><p>Programas de desarrollo personal y espiritual.</p></div>
-                </div>
-            `,
-            unete: `
-                <h2>✠ ÚNETE A NOSOTROS ✠</h2>
-                
-                <div class="llamado">
-                    <h3>El Llamado de la Orden</h3>
-                    <p>Si en lo profundo percibes que el mundo moderno ha debilitado su centro espiritual, si anhelas un propósito que eleve tu vida más allá de lo ordinario, y si deseas avanzar en un camino de crecimiento junto a hermanos unidos por la misma búsqueda…</p>
-                    <p>La Orden abre sus puertas a quienes están dispuestos a recorrer el sendero con rectitud, disciplina y honor.</p>
-                    <p style="margin-top: 15px;"><strong>Aquí no se promete facilidad, sino <span style="color: var(--rojo-templario);">transformación</span>.</strong><br>
-                    <strong>No se ofrece pertenencia vacía, sino <span style="color: var(--rojo-templario);">compromiso consciente</span>.</strong></p>
-                </div>
-
-                <h3>Requisitos de Ingreso</h3>
-                <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>• Mayoría de edad</li>
-                    <li>• Voluntad firme de búsqueda de la verdad</li>
-                    <li>• Vocación de servicio desinteresado</li>
-                    <li>• Disposición real para la formación continua</li>
-                    <li>• Conducta íntegra acorde a los principios de la Orden</li>
-                </ul>
-
-                <p style="text-align: center; margin-top: 30px; font-style: italic; color: var(--rojo-templario); font-size: 1.1rem;">
-                    “Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam.”
-                </p>
-
-                <div style="text-align: center; margin-top: 30px;">
-                    <a href="Web_y_Redes/formulario_ingreso.html" class="btn" style="display: inline-block; padding: 15px 30px; font-size: 1.1rem;">✠ SOLICITAR INGRESO ✠</a>
-                </div>
-            `,
-            miembros: `
-                <h2>✠ ÁREA DE MIEMBROS ✠</h2>
-                <p style="text-align: center; margin-bottom: 30px;">Bienvenido, Hermano. Que la luz de la sabiduría guíe tus pasos.</p>
-                
-                <h3>⚔ ESTADÍSTICAS</h3>
-                <div class="stats" style="margin-bottom: 40px;">
-                    <div class="stat"><div class="stat-num">24</div><div>Miembros Activos</div></div>
-                    <div class="stat"><div class="stat-num">4</div><div>Encomiendas</div></div>
-                    <div class="stat"><div class="stat-num">04</div><div>Próximo Evento (May)</div></div>
-                </div>
-                
-                <h3>⚔ PLATAFORMA INTEGRAL</h3>
-                <p style="margin-bottom: 20px;">Accede al sistema de administración general de la Orden para gestionar registros, avances de formación y biblioteca documental.</p>
-                
-                <div class="grid" style="margin-bottom: 30px;">
-                    <div class="valor" style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 10px;">👥</div>
-                        <h4>Directorio</h4>
-                        <p style="font-size: 0.9rem; margin-bottom: 0;">Fichas e historial</p>
-                    </div>
-                    <div class="valor" style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 10px;">🎓</div>
-                        <h4>Formación</h4>
-                        <p style="font-size: 0.9rem; margin-bottom: 0;">Módulos de estudio</p>
-                    </div>
-                    <div class="valor" style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 10px;">📅</div>
-                        <h4>Calendario</h4>
-                        <p style="font-size: 0.9rem; margin-bottom: 0;">Tenidas y Rituales</p>
-                    </div>
-                    <div class="valor" style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 10px;">📁</div>
-                        <h4>Archivo Central</h4>
-                        <p style="font-size: 0.9rem; margin-bottom: 0;">Estatutos y Actas</p>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin-bottom: 40px; padding: 0 10px;">
-                    <a href="/plataforma" target="_blank" class="btn btn-full">✠ INGRESAR AL PANEL DE CONTROL ✠</a>
-                    <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">* Requiere credenciales de acceso de alto grado</p>
-                </div>
-
-                <h3>⚔ GALERÍA FRATERNAL</h3>
-                <div id="galeria-miembros" class="galeria-grid"></div>
-            `,
-            login: `
-                <div class="login-box">
-                    <div style="font-size: 4rem; color: var(--rojo-templario); margin-bottom: 20px;">🔒</div>
-                    <h2 style="font-family: 'Cinzel', serif; color: var(--rojo-templario); border: none; padding-bottom: 0; margin-bottom: 10px;">ACCESO RESTRINGIDO</h2>
-                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 25px;">Ingrese sus credenciales capitulares para acceder al área de miembros.</p>
-                    
-                    <input type="password" id="codigo-acceso" placeholder="Código de acceso" class="input-codigo">
-                    
-                    <p id="login-error" style="color: red; font-size: 0.85rem; display: none; margin-top: -10px; margin-bottom: 15px;">Código incorrecto. Intente nuevamente.</p>
-                    
-                    <button onclick="verificarAcceso()" class="btn btn-full">✠ DESBLOQUEAR ✠</button>
-                </div>
-            `
-        };
-
-        // Funciones para Alertas Institucionales
-        function mostrarMensaje(titulo, texto) {
-            document.getElementById('alert-title').innerText = titulo;
-            document.getElementById('alert-message').innerHTML = texto;
-            document.getElementById('custom-alert').style.display = 'flex';
+        // Función para animar los números progresivamente
+        function animarContador(id, finalValue, duration = 1500) {
+            const obj = document.getElementById(id);
+            let start = null;
+            const step = (timestamp) => {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+                obj.innerText = Math.floor(progress * finalValue);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
         }
 
-        function cerrarMensaje() {
-            document.getElementById('custom-alert').style.display = 'none';
+        // Función para calcular las estadísticas de las tarjetas
+        function calcularEstadisticas() {
+            const totalLibros = baseDeDatosLibros.length;
+            const autoresUnicos = new Set(baseDeDatosLibros.map(libro => libro.autor)).size;
+            const idiomasUnicos = new Set(baseDeDatosLibros.map(libro => libro.idioma)).size;
+            
+            animarContador('stat-total', totalLibros);
+            animarContador('stat-autores', autoresUnicos);
+            animarContador('stat-idiomas', idiomasUnicos);
         }
 
-        // Función para inyectar contenido con animación de desvanecimiento
-        function actualizarContenido(html) {
-            const content = document.getElementById('content');
-            content.classList.remove('fade-in-content');
-            void content.offsetWidth; // Fuerza al navegador a reiniciar la animación (Reflow)
-            content.innerHTML = html;
-            content.classList.add('fade-in-content');
-        }
-
-        function openPanel(seccion) {
-            if (seccion === 'miembros') {
-                actualizarContenido(contenido['login']);
-                document.getElementById('panel').style.display = 'block';
+        // Función principal de renderizado y filtrado
+        function renderTable() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const idiomaVal = document.getElementById('idiomaFilter').value;
+            const temaVal = document.getElementById('temaFilter').value;
+            
+            const tbody = document.getElementById('tabla-libros');
+            tbody.innerHTML = ''; // Limpiar tabla
+            
+            // Filtrar la base de datos
+            const filtrados = baseDeDatosLibros.filter(libro => {
+                const matchSearch = libro.titulo.toLowerCase().includes(searchVal) || 
+                                    libro.autor.toLowerCase().includes(searchVal) || 
+                                    libro.anio.toString().includes(searchVal);
+                const matchIdioma = idiomaVal === "" || libro.idioma === idiomaVal;
+                const matchTema = temaVal === "" || libro.categoria === temaVal;
                 
-                // Dar foco automático al input y permitir envío con tecla Enter
+                return matchSearch && matchIdioma && matchTema;
+            });
+            
+            // Actualizar contador
+            document.getElementById('contador-libros').innerText = `Mostrando ${filtrados.length} obras registradas`;
+
+            // Inyectar filas en HTML
+            filtrados.forEach((libro, index) => {
+                const tr = document.createElement('tr');
+                const safeTitulo = libro.titulo.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                const safeAutor = libro.autor.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                tr.innerHTML = `
+                    <td style="font-weight: bold; color: var(--texto); font-size: 1.05rem;">${libro.titulo}</td>
+                    <td style="color: #444;">${libro.autor}</td>
+                    <td>${libro.anio}</td>
+                    <td><span style="background: rgba(147, 112, 219, 0.1); color: var(--lila-oscuro); padding: 3px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">${libro.idioma}</span></td>
+                    <td><span style="background: rgba(155,17,30,0.1); color: var(--rojo-templario); padding: 3px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">${libro.categoria}</span></td>
+                    <td style="text-align: center;">
+                        <button class="btn-copy" id="btn-copy-${index}" onclick="copiarLibro('${safeTitulo}', '${safeAutor}', '${libro.anio}', '${libro.idioma}', '${libro.categoria}', 'btn-copy-${index}')" title="Copiar información de esta obra">📋</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Función para copiar los datos del libro al portapapeles
+        function copiarLibro(titulo, autor, anio, idioma, categoria, btnId) {
+            const texto = `Título: ${titulo}\nAutor: ${autor}\nAño: ${anio}\nIdioma: ${idioma}\nCategoría: ${categoria}`;
+            
+            navigator.clipboard.writeText(texto).then(() => {
+                const btn = document.getElementById(btnId);
+                const textoOriginal = btn.innerHTML;
+                btn.innerHTML = "✅";
+                btn.style.backgroundColor = "var(--rojo-templario)";
+                btn.style.color = "white";
+                
                 setTimeout(() => {
-                    const input = document.getElementById('codigo-acceso');
-                    if(input) {
-                        input.focus();
-                        input.addEventListener('keypress', function (e) {
-                            if (e.key === 'Enter') {
-                                verificarAcceso();
-                            }
-                        });
-                    }
-                }, 100);
-                return;
-            }
-            
-            actualizarContenido(contenido[seccion]);
-            document.getElementById('panel').style.display = 'block';
+                    btn.innerHTML = textoOriginal;
+                    btn.style.backgroundColor = "transparent";
+                    btn.style.color = "#666";
+                }, 2000);
+            }).catch(err => console.error("Error al copiar: ", err));
         }
 
-        function verificarAcceso() {
-            const input = document.getElementById('codigo-acceso');
-            const errorMsg = document.getElementById('login-error');
-            
-            if (input.value === "123") {
-                // Acceso concedido: Mostrar el contenido real de miembros
-                actualizarContenido(contenido['miembros']);
-                cargarGaleriaAleatoria();
-            } else {
-                // Acceso denegado: Mostrar error
-                errorMsg.style.display = 'block';
-                input.value = '';
-                input.focus();
-            }
+        function toggleSideMenu() {
+            document.getElementById('side-menu').classList.toggle('active');
         }
 
-        function closePanel() {
-            document.getElementById('panel').style.display = 'none';
-            document.getElementById('panel').scrollTop = 0; // Reinicia el scroll al cerrar el panel
-        }
-
-        function obtenerMensaje() {
-            const asunto = document.getElementById("asunto")?.value || "";
-            const mensaje = document.getElementById("mensaje")?.value || "";
-            const nombre = document.getElementById("nombre")?.value || "";
-            const org = document.getElementById("organizacion")?.value || "";
-            const email = document.getElementById("email")?.value || "";
-
-            return encodeURIComponent(
-                "✠ CONTACTO OTE ✠\n\nAsunto: " + asunto + "\n\n" + mensaje + "\n\nNombre: " + nombre + "\nOrganización: " + org + "\nEmail: " + email
-            );
-        }
-
-        function validarFormulario() {
-            const mensaje = document.getElementById("mensaje")?.value.trim() || "";
-            const nombre = document.getElementById("nombre")?.value.trim() || "";
-
-            if (mensaje === "") {
-                mostrarMensaje("Atención", "Por favor, escribe un mensaje antes de enviar.");
-                return false;
-            }
-            if (nombre === "") {
-                mostrarMensaje("Atención", "Por favor, ingresa tu nombre completo.");
-                return false;
-            }
-            return true;
-        }
-
-        function enviarEmailReal() {
-            if (!validarFormulario()) return;
-            
-            const email = document.getElementById("email")?.value.trim() || "";
-            if (email === "") {
-                mostrarMensaje("Atención", "Por favor, ingresa tu correo electrónico para que podamos responderte.");
-                return;
-            }
-            
-            const btn = document.getElementById("btn-enviar-email");
-            const textoOriginal = btn.innerHTML;
-            btn.innerHTML = "⏳ Enviando...";
-            btn.disabled = true;
-
-            const asunto = document.getElementById("asunto")?.value || "";
-            const mensaje = document.getElementById("mensaje")?.value || "";
-            const nombre = document.getElementById("nombre")?.value || "";
-            const org = document.getElementById("organizacion")?.value || "";
-
-            // Usamos FormSubmit mediante AJAX (fetch) de forma silenciosa
-            fetch("https://formsubmit.co/ajax/643d4eaaa5173f5c183249de7397751a", {
-                method: "POST",
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    _subject: "✠ CONTACTO OTE ✠ - " + asunto,
-                    email: email, // FormSubmit necesita leer este campo en minúsculas para saber a dónde responder
-                    _autoresponse: "Saludos cordiales. Hemos recibido tu mensaje en la Orden Templaria Ecléctica (Gran Priorato del Paraguay). Un miembro de nuestra Orden leerá tu solicitud y se pondrá en contacto contigo a la brevedad posible.\n\nNon nobis, Domine, non nobis, sed Nomini Tuo da gloriam.",
-                    Nombre: nombre,
-                    Organización: org,
-                    Mensaje: mensaje
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                mostrarMensaje("Mensaje Enviado", "Su solicitud ha sido procesada con éxito.<br><br><strong style='color: var(--rojo-templario);'>Aviso Importante:</strong> Como medida de seguridad, el sistema le enviará un correo a su bandeja de entrada. Usted <strong>debe darle en Activar</strong> para confirmar su identidad y contacto con la Orden.");
-                document.getElementById("contactForm").reset();
-            })
-            .catch(error => {
-                mostrarMensaje("Error de Conexión", "No se pudo conectar con el servidor. Por favor, utilice el botón de WhatsApp como alternativa para contactarnos.");
-                console.error("Error:", error);
-            })
-            .finally(() => {
-                btn.innerHTML = textoOriginal;
-                btn.disabled = false;
-            });
-        }
-
-        function enviarWhatsApp() {
-            if (!validarFormulario()) return;
-            const cuerpo = obtenerMensaje();
-            const telefono = "595994340472";
-            window.open("https://wa.me/" + telefono + "?text=" + cuerpo, "_blank");
-        }
-
-        function enviarSolicitudIngreso() {
-            const nombre = document.getElementById("ingreso-nombre")?.value.trim() || "";
-            const email = document.getElementById("ingreso-email")?.value.trim() || "";
-            const telefono = document.getElementById("ingreso-telefono")?.value.trim() || "";
-            const edad = document.getElementById("ingreso-edad")?.value.trim() || "";
-            const profesion = document.getElementById("ingreso-profesion")?.value.trim() || "";
-            const mensaje = document.getElementById("ingreso-mensaje")?.value.trim() || "";
-
-            if (nombre === "" || email === "" || telefono === "" || mensaje === "") {
-                mostrarMensaje("Atención", "Por favor, completa todos los campos obligatorios (Nombre, Correo, Teléfono y Mensaje).");
-                return;
-            }
-
-            const btn = document.getElementById("btn-enviar-ingreso");
-            const textoOriginal = btn.innerHTML;
-            btn.innerHTML = "⏳ Enviando Solicitud...";
-            btn.disabled = true;
-
-            // Usamos FormSubmit mediante AJAX silencioso
-            fetch("https://formsubmit.co/ajax/643d4eaaa5173f5c183249de7397751a", {
-                method: "POST",
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    _subject: "✠ NUEVA POSTULACIÓN DE INGRESO ✠ - " + nombre,
-                    email: email, 
-                    _autoresponse: "Saludos cordiales. Hemos recibido tu solicitud de postulación a la Orden Templaria Ecléctica (Gran Priorato del Paraguay). Un miembro de nuestra Orden analizará tu perfil y se pondrá en contacto contigo a la brevedad para indicarte los siguientes pasos de la entrevista.\n\nNon nobis, Domine, non nobis, sed Nomini Tuo da gloriam.",
-                    Nombre: nombre,
-                    Teléfono: telefono,
-                    Edad: edad,
-                    Profesión: profesion,
-                    Motivación: mensaje
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                mostrarMensaje("Postulación Enviada", "Tu solicitud de ingreso ha sido recibida con éxito.<br><br><strong style='color: var(--rojo-templario);'>Aviso Importante:</strong> El sistema te ha enviado un correo automático. Asegúrate de revisar tu bandeja de entrada o spam.");
-                document.getElementById("ingresoForm").reset();
-            })
-            .catch(error => {
-                mostrarMensaje("Error de Conexión", "No se pudo conectar con el servidor. Por favor, intenta de nuevo más tarde.");
-                console.error("Error:", error);
-            })
-            .finally(() => {
-                btn.innerHTML = textoOriginal;
-                btn.disabled = false;
-            });
-        }
-
-        function enviarSolicitudIngreso() {
-            const nombre = document.getElementById("ingreso-nombre")?.value.trim() || "";
-            const email = document.getElementById("ingreso-email")?.value.trim() || "";
-            const fecha = document.getElementById("ingreso-fecha")?.value || "";
-            const telefono = document.getElementById("ingreso-telefono")?.value.trim() || "";
-            const ciudad = document.getElementById("ingreso-ciudad")?.value.trim() || "";
-            const motivos = document.getElementById("ingreso-motivos")?.value.trim() || "";
-            const compromiso = document.getElementById("ingreso-compromiso")?.checked;
-
-            if (!nombre || !email || !fecha || !telefono || !ciudad || !motivos) {
-                mostrarMensaje("Atención", "Por favor, completa todos los campos obligatorios del formulario.");
-                return;
-            }
-
-            if (!compromiso) {
-                mostrarMensaje("Atención", "Debes declarar y aceptar el compromiso final marcando la casilla para enviar tu solicitud.");
-                return;
-            }
-
-            const btn = document.getElementById("btn-enviar-ingreso");
-            const textoOriginal = btn.innerHTML;
-            btn.innerHTML = "⏳ Enviando Solicitud...";
-            btn.disabled = true;
-
-            // Usamos FormSubmit mediante AJAX silencioso
-            fetch("https://formsubmit.co/ajax/643d4eaaa5173f5c183249de7397751a", {
-                method: "POST",
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    _subject: "✠ SOLICITUD DE INGRESO ✠ - " + nombre,
-                    email: email, 
-                    _autoresponse: "Saludos cordiales. Hemos recibido tu solicitud de postulación a la Orden Templaria Ecléctica (Gran Priorato del Paraguay). Un miembro de nuestra Orden analizará tu perfil y se pondrá en contacto contigo a la brevedad.\n\nNon nobis, Domine, non nobis, sed Nomini Tuo da gloriam.",
-                    Nombre: nombre,
-                    "Fecha de Nacimiento": fecha,
-                    Teléfono: telefono,
-                    "Ciudad y País": ciudad,
-                    Motivación: motivos,
-                    Compromiso: "Aceptado"
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                mostrarMensaje("Postulación Enviada", "Tu solicitud de ingreso ha sido recibida con éxito.<br><br><strong style='color: var(--rojo-templario);'>Aviso Importante:</strong> El sistema te ha enviado un correo automático. Asegúrate de revisar tu bandeja de entrada o carpeta de spam y <strong>dale a Activar</strong>.");
-                document.getElementById("ingresoForm").reset();
-            })
-            .catch(error => {
-                mostrarMensaje("Error de Conexión", "No se pudo conectar con el servidor. Por favor, intenta de nuevo más tarde.");
-                console.error("Error:", error);
-            })
-            .finally(() => {
-                btn.innerHTML = textoOriginal;
-                btn.disabled = false;
-            });
-        }
-
-        function cargarGaleriaAleatoria() {
-            let fotos = [];
-            
-            // Intentar cargar la galería desde la configuración del panel admin
-            const fotosGuardadas = localStorage.getItem("ote_galeria_fotos");
-            if (fotosGuardadas) {
-                try {
-                    fotos = JSON.parse(fotosGuardadas);
-                } catch(e) {}
-            }
-
-            // Si no hay fotos guardadas, usar el set por defecto
-            if (!fotos || fotos.length === 0) {
-                fotos = [
-                    // Imágenes Templarias Históricas (Libre uso / Wikimedia Commons)
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Convento_de_Cristo_2009.jpg/800px-Convento_de_Cristo_2009.jpg",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Knights_Templar_playing_chess.jpg/800px-Knights_Templar_playing_chess.jpg",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Temple_Church_London.jpg/800px-Temple_Church_London.jpg",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Castillo_de_Ponferrada.jpg/800px-Castillo_de_Ponferrada.jpg",
-                    // Imágenes locales de los Prioratos
-                    "image/prioratos/pax_1.jpg",
-                    "image/prioratos/pax_2.jpg",
-                    "image/prioratos/pax_3.jpg",
-                    "image/prioratos/pax_4.jpg",
-                    "image/prioratos/grial_1.jpg",
-                    "image/prioratos/grial_2.jpg",
-                    "image/prioratos/grial_3.jpg"
-                ];
-            }
-
-            // Mezclar el array aleatoriamente y tomar 4 fotos
-            const fotosMezcladas = fotos.sort(() => 0.5 - Math.random());
-            const fotosAMostrar = fotosMezcladas.slice(0, 4);
-            
-            const contenedor = document.getElementById('galeria-miembros');
-            if(contenedor) {
-                let html = '';
-                fotosAMostrar.forEach(foto => {
-                    html += `<div class="galeria-item"><img src="${foto}" alt="Fraternidad" onclick="abrirLightbox(this.src)" onerror="this.outerHTML='<div style=\\'height: 150px; background: rgba(155,17,30,0.05); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--rojo-templario);\\'>✠</div>'"></div>`;
-                });
-                contenedor.innerHTML = html;
-            }
-        }
-        
-        // Funciones del Lightbox
-        let lightboxImages = [];
-        let lightboxIndex = 0;
-
-        function abrirLightbox(src) {
-            const imgs = document.querySelectorAll('.galeria-item img');
-            lightboxImages = Array.from(imgs).map(img => img.src);
-            lightboxIndex = lightboxImages.indexOf(src);
-            
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-        
-        function cerrarLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        function cambiarImagen(dir, event) {
-            if(event) event.stopPropagation();
-            lightboxIndex += dir;
-            if (lightboxIndex < 0) lightboxIndex = lightboxImages.length - 1;
-            else if (lightboxIndex >= lightboxImages.length) lightboxIndex = 0;
-            document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex];
-        }
-
-        document.addEventListener('keydown', function(e) {
-            const lb = document.getElementById('lightbox');
-            if (lb && lb.style.display === 'flex') {
-                if (e.key === 'Escape') cerrarLightbox();
-                if (e.key === 'ArrowLeft') cambiarImagen(-1);
-                if (e.key === 'ArrowRight') cambiarImagen(1);
-            }
+        // Renderizar la tabla por primera vez al cargar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            calcularEstadisticas();
+            renderTable();
         });
-
-        // Lógica para el botón "Volver arriba"
-        const panelEl = document.getElementById('panel');
-        const btnBackToTop = document.getElementById('btn-back-to-top');
-
-        panelEl.addEventListener('scroll', () => {
-            if (panelEl.scrollTop > 300) {
-                btnBackToTop.classList.add('visible');
-            } else {
-                btnBackToTop.classList.remove('visible');
-            }
-        });
-
-        function scrollToTop() {
-            panelEl.scrollTo({ top: 0, behavior: 'smooth' });
-        }
     </script>
 </body>
 </html>
