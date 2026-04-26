@@ -152,7 +152,9 @@
             background: var(--pergamino);
             z-index: 100;
             overflow-y: auto;
+        overflow-x: hidden;
             padding: 50px;
+            animation: fadePanelIn 0.3s ease-out forwards;
         }
 
         .close-btn {
@@ -172,6 +174,7 @@
         /* Contenido */
         .panel-content {
             max-width: 800px;
+        width: 100%;
             margin: 0 auto;
         }
 
@@ -194,6 +197,17 @@
             text-align: justify;
             line-height: 1.7;
             margin-bottom: 15px;
+        }
+        
+        .panel-footer {
+            text-align: center;
+            padding: 40px 20px 20px;
+            margin-top: 50px;
+            border-top: 1px solid var(--gris-borde);
+            max-width: 800px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Cajas */
@@ -357,28 +371,32 @@
         /* Responsive - Móviles pequeños */
         @media (max-width: 380px) {
             body { flex-direction: column; }
-            .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 30px 15px; }
+        .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 30px 10px; }
             .nav { padding: 20px 15px; }
             .grid { grid-template-columns: 1fr; }
-            h1 { font-size: 1.4rem; letter-spacing: 2px; }
-            .subtitle { font-size: 0.7rem; }
-            .menu li { padding-bottom: 8px; margin: 10px 0; }
-            .panel-content h2 { font-size: 1.2rem; }
+        h1 { font-size: 1.3rem; letter-spacing: 1px; }
+        .subtitle { font-size: 0.65rem; letter-spacing: 1px; }
+        .lema { font-size: 0.85rem; }
+        .menu li { padding-bottom: 8px; margin: 10px 0; font-size: 0.95rem; }
+        .panel-content h2 { font-size: 1.15rem; }
             .stats { grid-template-columns: 1fr; gap: 10px; }
             .stat { padding: 10px; }
+        .logos-container img { max-width: 80px !important; height: 80px !important; }
+        .prioratos-container { gap: 15px !important; }
+        .prioratos-container img { max-width: 50px !important; height: 50px !important; }
         }
 
         /* Responsive - Móviles estándar */
         @media (max-width: 480px) {
             body { flex-direction: column; }
-            .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 40px 20px; }
-            .nav { padding: 25px 20px; }
+        .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 40px 15px; }
+        .nav { padding: 25px 15px; }
             .grid { grid-template-columns: 1fr; }
-            h1 { font-size: 1.6rem; letter-spacing: 3px; }
-            .subtitle { font-size: 0.75rem; }
+        h1 { font-size: 1.5rem; letter-spacing: 2px; line-height: 1.3; }
+        .subtitle { font-size: 0.75rem; letter-spacing: 1px; line-height: 1.4; margin-top: 5px; }
             .menu li { padding-bottom: 10px; margin: 12px 0; }
             .menu li:active { border-color: var(--lila); }
-            .stats { grid-template-columns: 1fr; }
+        .stats { grid-template-columns: 1fr; gap: 12px; }
             .llamado { padding: 15px; }
             .valor { padding: 15px; }
             table { font-size: 0.85rem; }
@@ -386,6 +404,9 @@
             .login-box { padding: 30px 20px; margin: 20px auto; }
             .input-codigo { font-size: 1rem; letter-spacing: 3px; padding: 12px; }
             .btn-full { font-size: 0.95rem; padding: 12px; }
+        #audio-credits { max-width: calc(100vw - 70px); font-size: 0.6rem; left: 10px; bottom: 10px; padding: 5px 8px; }
+        .music-toggle { right: 10px; bottom: 10px; width: 40px; height: 40px; font-size: 1rem; }
+            #btn-back-to-top { right: 10px; bottom: 60px; width: 40px; height: 40px; font-size: 1rem; }
         }
 
         /* Responsive - Tablets vertical */
@@ -424,7 +445,7 @@
                 width: 100%;
             }
             #panel {
-                padding: 70px 20px 30px 20px; /* Da más espacio arriba para que el botón de volver no se superponga al título */
+            padding: 65px 15px 30px 15px;
             }
             .close-btn {
                 top: 15px;
@@ -440,10 +461,25 @@
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
                 margin-top: 15px;
+            display: block;
             }
             .contact-container { padding: 20px; }
             .contact-actions { flex-direction: column; }
             .contact-actions button { width: 100%; }
+            
+            /* Galería Carrusel en Móviles */
+            .galeria-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 10px;
+                scrollbar-width: none; /* Oculta la barra en Firefox */
+            }
+            .galeria-grid::-webkit-scrollbar { display: none; /* Oculta la barra en Chrome/Safari */ }
+            .galeria-item {
+                flex: 0 0 85%; /* La foto ocupa el 85% del ancho para dejar ver un borde de la siguiente */
+                scroll-snap-align: center;
+            }
         }
 
         /* Responsive - Tablets horizontal y portátiles pequeños */
@@ -522,6 +558,21 @@
         @keyframes fadeInText {
             0% { opacity: 0; transform: translateY(15px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animaciones para el panel y transiciones de sección */
+        @keyframes fadePanelIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideFadeContent {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in-content {
+            animation: slideFadeContent 0.4s ease-out forwards;
         }
 
         @keyframes destelloLuz {
@@ -633,6 +684,36 @@
             visibility: visible;
             transform: translateY(0);
         }
+
+        /* Botón Volver Arriba */
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 85px; /* Se sitúa encima del botón de música */
+            right: 30px;
+            background: var(--rojo-templario);
+            color: var(--blanco);
+            border: 1px solid var(--rojo-templario);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 150;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        #btn-back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        #btn-back-to-top:hover {
+            background: var(--negro);
+            border-color: var(--negro);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
@@ -685,6 +766,15 @@
     <main id="panel">
         <div class="close-btn" onclick="closePanel()">[ ← Volver ]</div>
         <div class="panel-content" id="content"></div>
+        
+        <footer class="panel-footer">
+            <div style="color: var(--rojo-templario); font-size: 1.8rem; margin-bottom: 5px; line-height: 1;">✠</div>
+            <p style="font-family: 'Cinzel', serif; color: var(--rojo-templario); font-weight: bold; font-size: 0.9rem;">Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam</p>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">&copy; 2026 Orden Templaria Ecléctica (OTE) - Gran Priorato del Paraguay</p>
+        </footer>
+        
+        <!-- Botón Volver Arriba -->
+        <button id="btn-back-to-top" onclick="scrollToTop()" title="Volver arriba">▲</button>
     </main>
 
     <!-- Créditos de Audio -->
@@ -872,9 +962,18 @@
             `
         };
 
+        // Función para inyectar contenido con animación de desvanecimiento
+        function actualizarContenido(html) {
+            const content = document.getElementById('content');
+            content.classList.remove('fade-in-content');
+            void content.offsetWidth; // Fuerza al navegador a reiniciar la animación (Reflow)
+            content.innerHTML = html;
+            content.classList.add('fade-in-content');
+        }
+
         function openPanel(seccion) {
             if (seccion === 'miembros') {
-                document.getElementById('content').innerHTML = contenido['login'];
+                actualizarContenido(contenido['login']);
                 document.getElementById('panel').style.display = 'block';
                 
                 // Dar foco automático al input y permitir envío con tecla Enter
@@ -892,7 +991,7 @@
                 return;
             }
             
-            document.getElementById('content').innerHTML = contenido[seccion];
+            actualizarContenido(contenido[seccion]);
             document.getElementById('panel').style.display = 'block';
         }
 
@@ -902,7 +1001,7 @@
             
             if (input.value === "123") {
                 // Acceso concedido: Mostrar el contenido real de miembros
-                document.getElementById('content').innerHTML = contenido['miembros'];
+                actualizarContenido(contenido['miembros']);
                 cargarGaleriaAleatoria();
             } else {
                 // Acceso denegado: Mostrar error
@@ -914,6 +1013,7 @@
 
         function closePanel() {
             document.getElementById('panel').style.display = 'none';
+            document.getElementById('panel').scrollTop = 0; // Reinicia el scroll al cerrar el panel
         }
 
         function obtenerMensaje() {
@@ -992,6 +1092,22 @@
                 });
                 contenedor.innerHTML = html;
             }
+        }
+
+        // Lógica para el botón "Volver arriba"
+        const panelEl = document.getElementById('panel');
+        const btnBackToTop = document.getElementById('btn-back-to-top');
+
+        panelEl.addEventListener('scroll', () => {
+            if (panelEl.scrollTop > 300) {
+                btnBackToTop.classList.add('visible');
+            } else {
+                btnBackToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            panelEl.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Controlador de Música Ambiental

@@ -197,6 +197,22 @@
         .btn-facebook:hover {
             background-color: #166FE5;
         }
+
+        /* Adaptación móvil - Galería Carrusel */
+        @media (max-width: 768px) {
+            .galeria-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                padding-bottom: 10px;
+                scrollbar-width: none;
+            }
+            .galeria-grid::-webkit-scrollbar { display: none; }
+            .galeria-item {
+                flex: 0 0 85%;
+                scroll-snap-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -208,7 +224,7 @@
         <p class="lema">Vía, Veritas, Vita<br>"El Camino, la Verdad, la Vida"</p>
     </header>
 
-    <div class="container">
+    <main class="container">
         <a href="index.html" class="btn-volver">← Volver al Gran Priorato</a>
 
         <section class="seccion">
@@ -246,7 +262,7 @@
                 <div class="galeria-item"><img src="image/prioratos/pax_4.jpg" alt="Actividad Pax 4" onclick="abrirLightbox(this.src)" onerror="this.outerHTML='<div style=\'height: 200px; background: rgba(155,17,30,0.05); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--rojo-templario);\'>✠</div>'"></div>
             </div>
         </section>
-    </div>
+    </main>
 
     <footer>
         <div style="color: var(--rojo-templario); font-size: 2rem; margin-bottom: 1rem; line-height: 1;">✠</div>
