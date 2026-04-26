@@ -1,0 +1,161 @@
+/*
+==============================================
+PLANTILLA BASE - OTE PARAGUAY
+Minimalista Templaria
+==============================================
+
+Paleta de Colores:
+- Lila Templario: #9370DB (identidad)
+- Rojo Sangre: #8B0000 (cruz)
+- Blanco: #FFFFFF
+- Negro Noche: #0D0D0D
+- Gris Plata: #C0C0C0
+- Gris Oscuro: #2D2D2D
+
+==============================================
+*/
+
+:root {
+    /* Colores principales */
+    --lila: #9370DB;
+    --rojo: #8B0000;
+    --blanco: #FFFFFF;
+    --negro: #0D0D0D;
+    --gris-plata: #C0C0C0;
+    --gris-oscuro: #2D2D2D;
+    --lila-oscuro: #4B0082;
+    --lila-claro: #E6E6FA;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Georgia', Arial, sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    line-height: 1.7;
+    padding: 20px;
+}
+
+/* Contenedor */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--gris-oscuro);
+    padding: 35px;
+    border-radius: 4px;
+    border: 1px solid var(--gris-plata);
+}
+
+/* Títulos */
+h1 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: var(--lila);
+    border-bottom: 2px solid var(--rojo);
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+h2 {
+    color: var(--lila);
+    margin: 28px 0 14px;
+    font-size: 1.25em;
+    border-left: 3px solid var(--rojo);
+    padding-left: 12px;
+}
+
+h3 {
+    color: var(--gris-plata);
+    margin: 18px 0 10px;
+    font-size: 1em;
+}
+
+/* Párrafos */
+p {
+    margin: 14px 0;
+    text-align: justify;
+}
+
+/* Listas */
+ul, ol {
+    margin: 14px 0 14px 28px;
+}
+
+li {
+    margin: 6px 0;
+}
+
+/* Énfasis */
+strong {
+    color: var(--lila);
+}
+
+/* Líneas divisorias */
+hr {
+    border: none;
+    border-top: 1px solid var(--gris-plata);
+    margin: 28px 0;
+}
+
+/* Navegación */
+.nav {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.nav a {
+    color: var(--lila);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.nav a:hover {
+    color: var(--rojo);
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+}
+
+th, td {
+    border: 1px solid var(--gris-plata);
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: var(--negro);
+    color: var(--lila);
+}
+
+td {
+    background: var(--negro);
+}
+
+/* Bloques */
+.area {
+    background: var(--negro);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin: 12px 0;
+    border-left: 2px solid var(--lila);
+}
+
+/* Citas */
+blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    border-left: 2px solid var(--gris-plata);
+    font-style: italic;
+    color: var(--gris-plata);
+}

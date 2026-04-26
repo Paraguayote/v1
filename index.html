@@ -52,6 +52,8 @@
             letter-spacing: 4px;
             margin: 10px 0;
             color: var(--rojo-templario);
+            opacity: 0;
+            animation: fadeInText 1s ease-out 1.2s forwards;
         }
 
         .subtitle {
@@ -59,12 +61,16 @@
             font-size: 0.9rem;
             color: #666;
             letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInText 1s ease-out 1.6s forwards;
         }
 
         .lema {
             font-style: italic;
             color: #666;
             margin-top: 20px;
+            opacity: 0;
+            animation: fadeInText 1s ease-out 2s forwards;
         }
         
         /* Navegación */
@@ -89,7 +95,17 @@
             font-family: 'Cinzel', serif;
             cursor: pointer;
             transition: 0.3s;
+            opacity: 0;
+            animation: fadeInText 0.8s ease-out forwards;
         }
+
+        /* Retraso en cascada para cada ítem del menú */
+        .menu li:nth-child(1) { animation-delay: 2.2s; }
+        .menu li:nth-child(2) { animation-delay: 2.4s; }
+        .menu li:nth-child(3) { animation-delay: 2.6s; }
+        .menu li:nth-child(4) { animation-delay: 2.8s; }
+        .menu li:nth-child(5) { animation-delay: 3.0s; }
+        .menu li:nth-child(6) { animation-delay: 3.2s; }
 
         .menu li span {
             color: var(--rojo-templario);
@@ -120,6 +136,8 @@
             border-radius: 4px;
             font-size: 0.85rem;
             z-index: 10;
+            opacity: 0;
+            animation: fadeInText 0.8s ease-out 3.4s forwards;
         }
 
         .btn-access:hover {
@@ -318,28 +336,155 @@
             transform: scale(1.15);
             filter: drop-shadow(0 0 12px var(--lila));
         }
+
+        /* Efectos Hover y Brillo para Logos Principales */
+        .logo-principal {
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 8px rgba(155, 17, 30, 0.4)); /* Brillo base rojo sutil */
+        }
+        .logo-principal:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 20px var(--lila)); /* Brillo intenso lila al pasar el cursor */
+        }
+
+        /* Galería Aleatoria de Miembros */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0 30px 0;
+        }
+        .galeria-item {
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid var(--gris-borde);
+        }
+        .galeria-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .galeria-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Animaciones de Entrada y Destello (Fade-in y Sweep) */
+        @keyframes fadeScaleIn {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes destelloLuz {
+            0% { left: -50%; opacity: 0; }
+            15% { opacity: 0.8; }
+            30% { left: 150%; opacity: 0; }
+            100% { left: 150%; opacity: 0; }
+        }
+
+        .logos-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 15px;
+            position: relative;
+            opacity: 0; /* Oculto al inicio */
+            animation: fadeScaleIn 1.5s ease-out forwards;
+        }
+
+        .logos-container::after {
+            content: "";
+            position: absolute;
+            top: -20%;
+            left: -50%;
+            width: 40%;
+            height: 140%;
+            background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
+            transform: skewX(-25deg);
+            pointer-events: none; /* Evita que el destello bloquee el click/hover de los logos */
+            z-index: 10;
+            animation: destelloLuz 6s infinite 1.5s; /* Inicia después de 1.5s, repite cada 6s */
+        }
+
+        .prioratos-container {
+            opacity: 0;
+            animation: fadeInText 1s ease-out 2.5s forwards;
+        }
+
+        /* Clase para omitir animaciones si el usuario ya visitó el inicio */
+        .no-anim h1,
+        .no-anim .subtitle,
+        .no-anim .lema,
+        .no-anim .menu li,
+        .no-anim .btn-access,
+        .no-anim .logos-container,
+        .no-anim .prioratos-container {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: translateY(0) scale(1) !important;
+        }
+
+        /* Control de Música Flotante */
+        .music-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(155, 17, 30, 0.1);
+            color: var(--rojo-templario);
+            border: 1px solid var(--rojo-templario);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 150;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .music-toggle:hover {
+            background: var(--rojo-templario);
+            color: var(--blanco);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--rojo-templario);
+        }
     </style>
 </head>
 <body>
 
+    <script>
+        // Verificamos si el usuario ya vio la animación en esta sesión de navegación
+        if (sessionStorage.getItem('animacionVista')) {
+            document.body.classList.add('no-anim');
+        } else {
+            sessionStorage.setItem('animacionVista', 'true');
+        }
+    </script>
+
     <!-- Brand -->
     <div class="brand">
-        <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 15px;">
-            <img src="image/logo/paraguay_ote.png" alt="OTE Paraguay" style="max-width: 80px; height: 80px; object-fit: contain;">
-            <img src="image/logo/OTE.png" alt="Orden Templaria Ecléctica" style="max-width: 80px; height: 80px; object-fit: contain;">
+        <div class="logos-container">
+            <img src="image/logo/paraguay.ote.png" alt="OTE Paraguay" class="logo-principal" style="max-width: 110px; height: 110px; object-fit: contain;" onerror="this.outerHTML='<div style=\'font-size: 80px; color: var(--rojo-templario); line-height: 110px;\'>✠</div>'">
+            <img src="image/logo/OTE.png" alt="Orden Templaria Ecléctica" class="logo-principal" style="max-width: 110px; height: 110px; object-fit: contain;" onerror="this.outerHTML='<div style=\'font-size: 80px; color: var(--rojo-templario); line-height: 110px;\'>✠</div>'">
         </div>
         <h1>ORDEN TEMPLARIA ECLÉCTICA</h1>
         <p class="subtitle">GRAN PRIORATO NACIONAL NOTRE DAME DEL PARAGUAY</p>
         <p class="lema">"Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam"</p>
         
-        <div style="margin-top: 50px; display: flex; gap: 30px; justify-content: center; align-items: flex-end;">
+        <div class="prioratos-container" style="margin-top: 50px; display: flex; gap: 30px; justify-content: center; align-items: flex-end;">
             <a href="Prioratos_Regionales/priorato_pax.html" style="text-decoration: none; text-align: center;">
-                <img src="image/logo/escudo_pax.png" alt="Priorato de Pax" style="max-width: 45px; height: 45px; object-fit: contain;" class="escudo-hover">
-                <p style="font-family: 'Cinzel', serif; font-size: 0.6rem; color: #666; margin-top: 5px; letter-spacing: 1px;">PAX</p>
+                <img src="image/logo/Priorato.Pax.png" alt="Priorato de Pax" style="max-width: 65px; height: 65px; object-fit: contain;" class="escudo-hover" onerror="this.outerHTML='<div style=\'font-size: 50px; color: var(--rojo-templario); line-height: 65px;\'>✠</div>'">
+                <p style="font-family: 'Cinzel', serif; font-size: 0.65rem; color: #666; margin-top: 8px; letter-spacing: 1px;">PAX</p>
             </a>
             <a href="Prioratos_Regionales/priorato_santo_grial.html" style="text-decoration: none; text-align: center;">
-                <img src="image/logo/escudo_santo_grial.png" alt="Priorato Santo Grial" style="max-width: 45px; height: 45px; object-fit: contain;" class="escudo-hover">
-                <p style="font-family: 'Cinzel', serif; font-size: 0.6rem; color: #666; margin-top: 5px; letter-spacing: 1px;">SANTO GRIAL</p>
+                <img src="image/logo/Priorato.SANTOGRIAL.png" alt="Priorato Santo Grial" style="max-width: 65px; height: 65px; object-fit: contain;" class="escudo-hover" onerror="this.outerHTML='<div style=\'font-size: 50px; color: var(--rojo-templario); line-height: 65px;\'>✠</div>'">
+                <p style="font-family: 'Cinzel', serif; font-size: 0.65rem; color: #666; margin-top: 8px; letter-spacing: 1px;">SANTO GRIAL</p>
             </a>
         </div>
     </div>
@@ -362,6 +507,15 @@
         <div class="close-btn" onclick="closePanel()">[ ← Volver ]</div>
         <div class="panel-content" id="content"></div>
     </div>
+
+    <!-- Reproductor de Audio -->
+    <audio id="bg-music" loop preload="auto" crossorigin="anonymous">
+        <!-- Enlace MP3 directo y universal (Archive.org) que no falla -->
+        <source src="https://ia600408.us.archive.org/29/items/gregorian-chant/Gregorian%20Chant.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-toggle" id="musicBtn" onclick="toggleMusic(event)" title="Reproducir/Pausar Canto Gregoriano">
+        🔇
+    </button>
 
     <script>
         // Contenido de cada sección
@@ -474,6 +628,9 @@
                 <h2>✠ ÁREA DE MIEMBROS ✠</h2>
                 <p style="text-align: center; margin-bottom: 30px;">Bienvenido, Hermano.</p>
                 
+                <h3>⚔ GALERÍA FRATERNAL</h3>
+                <div id="galeria-miembros" class="galeria-grid"></div>
+
                 <h3>⚔ GESTIÓN DE LA ORDEN</h3>
                 <ul style="margin-left: 20px;">
                     <li style="margin-bottom: 10px;"><strong>Registro de Miembros</strong><br>Carpeta de Integrantes, fichas, historial</li>
@@ -506,6 +663,11 @@
                 }
             }
             document.getElementById('content').innerHTML = contenido[seccion];
+            
+            if (seccion === 'miembros') {
+                cargarGaleriaAleatoria();
+            }
+            
             document.getElementById('panel').style.display = 'block';
         }
 
@@ -534,6 +696,70 @@
             const cuerpo = obtenerMensaje();
             const telefono = "595994340472";
             window.open("https://wa.me/" + telefono + "?text=" + cuerpo, "_blank");
+        }
+
+        function cargarGaleriaAleatoria() {
+            // Array con la ruta de tus fotos. Si consigues enlaces web directos, pégalos aquí.
+            const fotos = [
+                "image/prioratos/pax_1.jpg",
+                "image/prioratos/pax_2.jpg",
+                "image/prioratos/pax_3.jpg",
+                "image/prioratos/pax_4.jpg",
+                "image/prioratos/grial_1.jpg",
+                "image/prioratos/grial_2.jpg",
+                "image/prioratos/grial_3.jpg",
+                "image/prioratos/grial_4.jpg"
+            ];
+
+            // Mezclar el array aleatoriamente y tomar 4 fotos
+            const fotosMezcladas = fotos.sort(() => 0.5 - Math.random());
+            const fotosAMostrar = fotosMezcladas.slice(0, 4);
+            
+            const contenedor = document.getElementById('galeria-miembros');
+            if(contenedor) {
+                let html = '';
+                fotosAMostrar.forEach(foto => {
+                    html += `<div class="galeria-item"><img src="${foto}" alt="Fraternidad" onerror="this.outerHTML='<div style=\\'height: 150px; background: rgba(155,17,30,0.05); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--rojo-templario);\\'>✠</div>'"></div>`;
+                });
+                contenedor.innerHTML = html;
+            }
+        }
+
+        // Controlador de Música Ambiental
+        let musicPlaying = false;
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('musicBtn');
+
+        // Auto-reproducir al primer clic en la pantalla (Evita el bloqueo de navegadores)
+        document.body.addEventListener('click', function initMusic() {
+            if (!musicPlaying) {
+                bgMusic.volume = 0.5; // Volumen al 50% para que se escuche bien
+                bgMusic.play().then(() => {
+                    musicPlaying = true;
+                    musicBtn.innerHTML = '🔊';
+                }).catch(e => {
+                    console.log("Autoplay bloqueado o audio no encontrado", e);
+                    musicPlaying = false;
+                });
+            }
+            // Removemos el evento para que no se dispare en cada clic
+            document.body.removeEventListener('click', initMusic);
+        }, { once: true });
+
+        function toggleMusic(event) {
+            if (event) event.stopPropagation(); // Evita conflicto con el clic del fondo
+
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicBtn.innerHTML = '🔇';
+                musicPlaying = false;
+            } else {
+                bgMusic.volume = 0.5;
+                bgMusic.play().then(() => {
+                    musicBtn.innerHTML = '🔊';
+                    musicPlaying = true;
+                }).catch(e => alert("No se pudo reproducir. Verifica tu conexión a internet o el archivo local."));
+            }
         }
     </script>
 </body>
