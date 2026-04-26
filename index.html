@@ -319,13 +319,79 @@
         .stat { background: rgba(155,17,30,0.05); padding: 15px; text-align: center; border: 1px solid var(--gris-borde); border-radius: 4px; }
         .stat-num { font-size: 1.5rem; font-family: 'Cinzel'; color: var(--rojo-templario); }
         
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Responsive - Móviles pequeños */
+        @media (max-width: 380px) {
             body { flex-direction: column; }
-            .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 50px 20px; }
-            .nav { padding: 30px 20px; }
+            .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 30px 15px; }
+            .nav { padding: 20px 15px; }
             .grid { grid-template-columns: 1fr; }
-            .btn-access { top: 15px; right: 15px; padding: 8px 12px; font-size: 0.75rem; }
+            h1 { font-size: 1.4rem; letter-spacing: 2px; }
+            .subtitle { font-size: 0.7rem; }
+            .menu li { padding-bottom: 8px; margin: 10px 0; }
+            .btn-access { position: relative; margin-top: 20px; width: 100%; }
+            .panel-content h2 { font-size: 1.2rem; }
+            .stats { grid-template-columns: 1fr; gap: 10px; }
+            .stat { padding: 10px; }
+        }
+
+        /* Responsive - Móviles estándar */
+        @media (max-width: 480px) {
+            body { flex-direction: column; }
+            .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 40px 20px; }
+            .nav { padding: 25px 20px; }
+            .grid { grid-template-columns: 1fr; }
+            .btn-access { position: relative; margin-top: 20px; width: 100%; }
+            h1 { font-size: 1.6rem; letter-spacing: 3px; }
+            .subtitle { font-size: 0.75rem; }
+            .menu li { padding-bottom: 10px; margin: 12px 0; }
+            .menu li:active { border-color: var(--lila); }
+            .stats { grid-template-columns: 1fr; }
+            .llamado { padding: 15px; }
+            .valor { padding: 15px; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 8px; }
+        }
+
+        /* Responsive - Tablets vertical */
+        @media (min-width: 481px) and (max-width: 768px) {
+            body { flex-direction: column; }
+            .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 40px 25px; }
+            .nav { padding: 30px 25px; }
+            .grid { grid-template-columns: 1fr 1fr; }
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 0.85rem; }
+            .btn-access { position: relative; margin-top: 25px; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .llamado { padding: 20px; }
+            .valor { padding: 18px; }
+            .contact-actions { flex-direction: column; }
+            .contact-actions button { width: 100%; }
+        }
+
+        /* Responsive - Tablets horizontal y portátiles pequeños */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            body { flex-direction: row; }
+            .brand { flex: 0.8; padding: 30px; }
+            .nav { flex: 1.2; padding: 0 30px; }
+            .grid { grid-template-columns: 1fr 1fr; }
+            h1 { font-size: 2rem; }
+            .menu li { margin: 12px 0; padding-bottom: 10px; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Responsive - Pantallas grandes */
+        @media (min-width: 1400px) {
+            .brand { padding: 60px; }
+            .nav { padding: 0 80px; }
+            h1 { font-size: 2.6rem; }
+            .subtitle { font-size: 1.1rem; }
+            .lema { font-size: 1.1rem; }
+            .menu { max-width: 400px; }
+            .menu li { font-size: 1.1rem; margin: 18px 0; }
+            .btn-access { font-size: 1rem; padding: 16px 30px; }
+            .panel-content { max-width: 1000px; }
+            .grid { grid-template-columns: 1fr 1fr 1fr; }
+            .stats { grid-template-columns: repeat(4, 1fr); }
         }
 
         /* Efectos Hover para Escudos de Prioratos */
@@ -508,10 +574,13 @@
         <div class="panel-content" id="content"></div>
     </div>
 
-    <!-- Reproductor de Audio -->
-    <audio id="bg-music" loop preload="auto" crossorigin="anonymous">
+    <!-- Reproductor de Audio (oculto) -->
+    <audio id="bg-music" loop preload="auto" crossorigin="anonymous" style="display:none" aria-hidden="true">
         <!-- Enlace MP3 directo y universal (Archive.org) que no falla -->
         <source src="https://ia600408.us.archive.org/29/items/gregorian-chant/Gregorian%20Chant.mp3" type="audio/mpeg">
+        <!-- Fallback local (si se añade en /public/audio) -->
+        <source src="/audio/ote-theme.mp3" type="audio/mpeg">
+        <source src="/audio/ote-theme.ogg" type="audio/ogg">
     </audio>
     <button class="music-toggle" id="musicBtn" onclick="toggleMusic(event)" title="Reproducir/Pausar Canto Gregoriano">
         🔇
@@ -729,9 +798,13 @@
         let musicPlaying = false;
         const bgMusic = document.getElementById('bg-music');
         const musicBtn = document.getElementById('musicBtn');
+        if (!bgMusic || !musicBtn) {
+          console.warn('Audio elements not found');
+        }
 
         // Auto-reproducir al primer clic en la pantalla (Evita el bloqueo de navegadores)
         document.body.addEventListener('click', function initMusic() {
+            if (!bgMusic) return;
             if (!musicPlaying) {
                 bgMusic.volume = 0.5; // Volumen al 50% para que se escuche bien
                 bgMusic.play().then(() => {
@@ -747,6 +820,7 @@
         }, { once: true });
 
         function toggleMusic(event) {
+            if (!bgMusic) return;
             if (event) event.stopPropagation(); // Evita conflicto con el clic del fondo
 
             if (musicPlaying) {
