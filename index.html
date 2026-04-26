@@ -609,7 +609,7 @@
     </script>
 
     <!-- Brand -->
-    <div class="brand">
+    <header class="brand">
         <div class="logos-container">
             <img src="image/logo/paraguay.ote.png" alt="OTE Paraguay" class="logo-principal" style="max-width: 110px; height: 110px; object-fit: contain;" onerror="this.outerHTML='<div style=\'font-size: 80px; color: var(--rojo-templario); line-height: 110px;\'>✠</div>'">
             <img src="image/logo/OTE.png" alt="Orden Templaria Ecléctica" class="logo-principal" style="max-width: 110px; height: 110px; object-fit: contain;" onerror="this.outerHTML='<div style=\'font-size: 80px; color: var(--rojo-templario); line-height: 110px;\'>✠</div>'">
@@ -628,10 +628,10 @@
                 <p style="font-family: 'Cinzel', serif; font-size: 0.65rem; color: #666; margin-top: 8px; letter-spacing: 1px;">SANTO GRIAL</p>
             </a>
         </div>
-    </div>
+    </header>
 
     <!-- Nav -->
-    <div class="nav">
+    <nav class="nav">
         <ul class="menu">
             <li onclick="openPanel('origen')"><span style="font-size: 1.5rem;">✠</span> ORIGEN</li>
             <li onclick="openPanel('regla')"><span style="font-size: 1.5rem;">✠</span> REGLAMENTO</li>
@@ -641,13 +641,13 @@
             <li onclick="openPanel('contacto')"><span style="font-size: 1.5rem;">✠</span> CONTACTO</li>
         </ul>
         <button class="btn-access" onclick="openPanel('miembros')">✠ ACCESO MIEMBROS ✠</button>
-    </div>
+    </nav>
 
     <!-- Panel -->
-    <div id="panel">
+    <main id="panel">
         <div class="close-btn" onclick="closePanel()">[ ← Volver ]</div>
         <div class="panel-content" id="content"></div>
-    </div>
+    </main>
 
     <!-- Créditos de Audio -->
     <div id="audio-credits">
@@ -812,8 +812,7 @@
                 </div>
 
                 <div style="text-align: center; margin-bottom: 40px;">
-                    <!-- Nota: El enlace apunta a localhost:3000 suponiendo que el panel en React se ejecuta localmente así -->
-                    <a href="http://localhost:3000" target="_blank" class="btn" style="font-size: 1.1rem; padding: 15px 30px;">✠ INGRESAR AL PANEL DE CONTROL ✠</a>
+                    <a href="/plataforma" target="_blank" class="btn" style="font-size: 1.1rem; padding: 15px 30px;">✠ INGRESAR AL PANEL DE CONTROL ✠</a>
                     <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">* Requiere credenciales de acceso de alto grado</p>
                 </div>
 
@@ -920,17 +919,28 @@
         }
 
         function cargarGaleriaAleatoria() {
-            // Array con la ruta de tus fotos. Si consigues enlaces web directos, pégalos aquí.
-            const fotos = [
-                "image/prioratos/pax_1.jpg",
-                "image/prioratos/pax_2.jpg",
-                "image/prioratos/pax_3.jpg",
-                "image/prioratos/pax_4.jpg",
-                "image/prioratos/grial_1.jpg",
-                "image/prioratos/grial_2.jpg",
-                "image/prioratos/grial_3.jpg",
-                "image/prioratos/grial_4.jpg"
-            ];
+            let fotos = [];
+            
+            // Intentar cargar la galería desde la configuración del panel admin
+            const fotosGuardadas = localStorage.getItem("ote_galeria_fotos");
+            if (fotosGuardadas) {
+                try {
+                    fotos = JSON.parse(fotosGuardadas);
+                } catch(e) {}
+            }
+
+            // Si no hay fotos guardadas, usar el set por defecto
+            if (!fotos || fotos.length === 0) {
+                fotos = [
+                    "image/prioratos/pax_1.jpg",
+                    "image/prioratos/pax_2.jpg",
+                    "image/prioratos/pax_3.jpg",
+                    "image/prioratos/pax_4.jpg",
+                    "image/prioratos/grial_1.jpg",
+                    "image/prioratos/grial_2.jpg",
+                    "image/prioratos/grial_3.jpg"
+                ];
+            }
 
             // Mezclar el array aleatoriamente y tomar 4 fotos
             const fotosMezcladas = fotos.sort(() => 0.5 - Math.random());
