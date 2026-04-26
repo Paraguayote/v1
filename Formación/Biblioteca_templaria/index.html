@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Templaria | OTE Paraguay</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%239b111e%22>✠</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Conecta con la hoja de estilos global en la raíz -->
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .table-responsive { 
+            overflow-x: auto; 
+            margin-bottom: 2rem; 
+            border-radius: 4px;
+            border: 1px solid var(--gris-borde);
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            min-width: 800px; 
+            margin-top: 0;
+        }
+        th, td { 
+            padding: 12px; 
+            border: 1px solid var(--gris-borde); 
+            text-align: left; 
+            vertical-align: top; 
+        }
+        th { 
+            background: rgba(155,17,30,0.1); 
+            color: var(--rojo-templario); 
+            font-family: 'Cinzel', serif; 
+        }
+        td { 
+            font-size: 0.95rem; 
+        }
+        .btn-download { 
+            display: inline-block; 
+            padding: 6px 12px; 
+            background: var(--rojo-templario); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 3px; 
+            font-size: 0.8rem; 
+            text-align: center; 
+            margin-top: 5px;
+            font-family: 'Cinzel', serif;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+        .btn-download:hover { 
+            background: var(--negro); 
+            color: white; 
+        }
+        .filename { 
+            font-family: monospace; 
+            font-size: 0.85rem; 
+            color: #555; 
+            background: rgba(155,17,30,0.05); 
+            padding: 4px 6px; 
+            border-radius: 3px; 
+            display: block; 
+            margin-bottom: 5px;
+            border-left: 2px solid var(--rojo-templario);
+        }
+        .search-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .search-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            font-family: 'EB Garamond', serif;
+            border: 1px solid var(--gris-borde);
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .search-input:focus {
+            border-color: var(--rojo-templario);
+            box-shadow: 0 0 8px rgba(155, 17, 30, 0.2);
+        }
+    </style>
+</head>
+<body class="priorato-layout">
+    <div style="max-width: 1200px; margin: 30px auto 10px; padding: 0 20px;">
+        <a href="../../index.html" class="btn-volver">← Volver al Inicio</a>
+    </div>
+
+    <main class="container" style="max-width: 1200px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div style="color: var(--rojo-templario); font-size: 3rem; line-height: 1;">✠</div>
+            <h1 style="border: none; padding: 0; margin-top: 10px;">BIBLIOTECA TEMPLARIA</h1>
+            <p style="color: #666; font-style: italic; font-size: 1.1rem; margin-top: 10px; font-family: 'Cinzel', serif;">Orden Templaria Ecléctica (OTE)</p>
+            <p style="margin-top: 20px;">Este documento contiene la recopilación de libros completos en formato PDF sobre la Orden de los Caballeros Templarios, extraídos de fuentes legales de dominio público para el estudio de nuestros miembros.</p>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar libro por título, autor o palabra clave..." onkeyup="filtrarBiblioteca()">
+        </div>
+
+        <section class="seccion">
+            <h2 style="border-bottom: 2px solid var(--rojo-templario); padding-bottom: 10px;">Fase 1: Historia, Mitos y Cruzadas</h2>
+            
+            <h3>📜 Historia General</h3>
+            <div class="table-responsive">
+                <table>
+                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
+                    <tr><td><span class="filename">[Historia general] - Addison - History of the Knights Templars (1842).pdf</span></td><td><strong>The History of the Knights Templars</strong></td><td>Charles G. Addison</td><td>1842</td><td><a href="https://archive.org/download/historyofknight00addi/historyofknight00addi.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Obra clásica y exhaustiva sobre la historia de la Orden y la Iglesia del Temple en Londres.</td></tr>
+                    <tr><td><span class="filename">[Historia general] - Woodhouse - Military Religious Orders (1879).pdf</span></td><td><strong>The Military Religious Orders of the Middle Ages</strong></td><td>F.C. Woodhouse</td><td>1879</td><td><a href="https://archive.org/download/militaryreligiou00wood/militaryreligiou00wood.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Análisis comparativo de las órdenes militares, con amplio enfoque en los Templarios.</td></tr>
+                    <tr><td><span class="filename">[Historia general] - Burnes - Sketch of the History of Knights Templars (1840).pdf</span></td><td><strong>Sketch of the History of the Knights Templars</strong></td><td>James Burnes</td><td>1840</td><td><a href="https://archive.org/download/sketchofhistoryo00burn/sketchofhistoryo00burn.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Ensayo fundacional escocés sobre la cronología templaria.</td></tr>
+                    <tr><td><span class="filename">[Historia general] - Bothwell-Gosse - The Knights Templars (1912).pdf</span></td><td><strong>The Knights Templars</strong></td><td>A. Bothwell-Gosse</td><td>1912</td><td><a href="https://archive.org/download/knightstemplars00both/knightstemplars00both.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Recopilación histórica y simbólica de principios del siglo XX.</td></tr>
+                </table>
+            </div>
+
+            <h3>🏛️ Origen y Fundación</h3>
+            <div class="table-responsive">
+                <table>
+                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
+                    <tr><td><span class="filename">[Origen] - San Bernardo - In Praise of the New Knighthood (1129).pdf</span></td><td><strong>In Praise of the New Knighthood</strong></td><td>Bernardo de Claraval</td><td>1129</td><td><a href="https://archive.org/download/inpraiseofnewkni0000bern/inpraiseofnewkni0000bern.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Documento histórico (traducido) que justificó teológicamente la creación de la Orden.</td></tr>
+                    <tr><td><span class="filename">[Origen] - Campbell - The Knights Templar Rise and Fall (1937).pdf</span></td><td><strong>The Knights Templar: Their Rise and Fall</strong></td><td>G.A. Campbell</td><td>1937</td><td><a href="https://archive.org/download/knightstemplarth0000camp/knightstemplarth0000camp.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Estudio enfocado en los primeros años de formación y su eventual declive.</td></tr>
+                    <tr><td><span class="filename">[Origen] - Froude - History of the Templars (1886).pdf</span></td><td><strong>The Knights Templars</strong></td><td>J.A. Froude</td><td>1886</td><td><a href="https://archive.org/download/knightstemplars00frou/knightstemplars00frou.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Conferencias sobre los orígenes de la orden en Jerusalén.</td></tr>
+                </table>
+            </div>
+
+            <h3>⚖️ Caída de la Orden</h3>
+            <div class="table-responsive">
+                <table>
+                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
+                    <tr><td><span class="filename">[Caída] - Michelet - Proces des Templiers Vol 1 (1841).pdf</span></td><td><strong>Procès des Templiers (Vol 1)</strong></td><td>Jules Michelet</td><td>1841</td><td><a href="https://archive.org/download/procsdestemplier01mich/procsdestemplier01mich.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Transcripciones originales en francés y latín de los juicios (Valor histórico incalculable).</td></tr>
+                    <tr><td><span class="filename">[Caída] - Marsh - The Templars (1859).pdf</span></td><td><strong>The Templars</strong></td><td>George Perkins Marsh</td><td>1859</td><td><a href="https://archive.org/download/templars00mars/templars00mars.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Crónica detallada sobre el arresto de Jacques de Molay y el viernes 13.</td></tr>
+                </table>
+            </div>
+
+            <h3>🔮 Mitos y Leyendas</h3>
+            <div class="table-responsive">
+                <table>
+                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
+                    <tr><td><span class="filename">[Mitos] - Heckethorn - Secret Societies All Ages (1897).pdf</span></td><td><strong>The Secret Societies of All Ages and Countries</strong></td><td>C. W. Heckethorn</td><td>1897</td><td><a href="https://archive.org/download/secretsocietieso01heck/secretsocietieso01heck.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Tomo 1 con teorías sobre los ídolos (Baphomet) y mitos de la Orden.</td></tr>
+                    <tr><td><span class="filename">[Mitos] - Webster - Subversive Movements (1924).pdf</span></td><td><strong>Secret Societies and Subversive Movements</strong></td><td>Nesta H. Webster</td><td>1924</td><td><a href="https://archive.org/download/secretsocietiesa00webs/secretsocietiesa00webs.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Un vistazo a cómo se percibían los mitos templarios a principios del siglo XX.</td></tr>
+                </table>
+            </div>
+
+            <h3>⚔️ Relación con las Cruzadas</h3>
+            <div class="table-responsive">
+                <table>
+                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
+                    <tr><td><span class="filename">[Cruzadas] - Mills - History of the Crusades (1820).pdf</span></td><td><strong>The History of the Crusades</strong></td><td>Charles Mills</td><td>1820</td><td><a href="https://archive.org/download/historyofcrusade01mill/historyofcrusade01mill.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Contexto geopolítico militar en el que los Templarios operaron en Tierra Santa.</td></tr>
+                    <tr><td><span class="filename">[Cruzadas] - Michaud - History of the Crusades (1852).pdf</span></td><td><strong>History of the Crusades</strong></td><td>Joseph F. Michaud</td><td>1852</td><td><a href="https://archive.org/download/historyofcrusade01mich/historyofcrusade01mich.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Tomo clásico de la historia de las batallas en Jerusalén.</td></tr>
+                    <tr><td><span class="filename">[Cruzadas] - Joinville - Chronicles of the Crusades (1848).pdf</span></td><td><strong>Chronicles of the Crusades</strong></td><td>Jean de Joinville</td><td>1848</td><td><a href="https://archive.org/download/chroniclesofcrus00join/chroniclesofcrus00join.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Crónicas de primera mano de las cruzadas contemporáneas a la Orden.</td></tr>
+                </table>
+            </div>
+
+            <h3>📚 Análisis Académico</h3>
+            <div class="table-responsive">
+                <table>
+                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
+                    <tr><td><span class="filename">[Académico] - Hallam - State of the Knights Templars (1850).pdf</span></td><td><strong>Historical State of the Knights Templars</strong></td><td>Henry Hallam</td><td>1850</td><td><a href="https://archive.org/download/historicalstate00hall/historicalstate00hall.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Análisis objetivo y jurídico sobre la situación política de los monjes guerreros.</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <section class="seccion">
+            <h2 style="border-bottom: 2px solid var(--rojo-templario); padding-bottom: 10px;">Fase 2: Textos en Español y Documentación Pontificia</h2>
+            <p>Recopilación especializada de documentos fundamentales traducidos al español, incluyendo las bulas papales clave y análisis académico hispano de acceso abierto.</p>
+            
+            <div class="table-responsive">
+                <table>
+                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
+                    <tr><td><span class="filename">[Origen] - Concilio de Troyes - La Regla Primitiva del Temple (1129).pdf</span></td><td><strong>La Regla Latina de los Caballeros Templarios</strong></td><td>Concilio de Troyes</td><td>1129</td><td><a href="https://archive.org/download/reglalatinadelos00unse/reglalatinadelos00unse.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Traducción al español de los 72 artículos originales que sentaron las bases monásticas y militares de la Orden.</td></tr>
+                    <tr><td><span class="filename">[Origen] - San Bernardo - Elogio de la Nueva Milicia Templaria (1130).pdf</span></td><td><strong>Liber ad milites templi de laude novae militiae</strong></td><td>San Bernardo de Claraval</td><td>1130</td><td><a href="https://archive.org/download/elogiodelanuevam00bern/elogiodelanuevam00bern.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>El tratado fundacional que justificó teológicamente el concepto del "monje-guerrero".</td></tr>
+                    <tr><td><span class="filename">[Caída] - Papa Clemente V - Bula Pastoralis Praeeminentiae (1307).pdf</span></td><td><strong>Pastoralis Praeeminentiae</strong></td><td>Papa Clemente V</td><td>1307</td><td><a href="https://archive.org/download/bulapastoralispr00clem/bulapastoralispr00clem.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Traducción de la bula original ordenando el arresto de los Templarios y la incautación de sus bienes.</td></tr>
+                    <tr><td><span class="filename">[Caída] - Papa Clemente V - Bula Vox in Excelso (1312).pdf</span></td><td><strong>Vox in excelso (Bula de supresión)</strong></td><td>Papa Clemente V</td><td>1312</td><td><a href="https://archive.org/download/bulavoxinexcelso00clem/bulavoxinexcelso00clem.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Traducción al español de la bula papal que decretó la disolución y supresión oficial de la Orden a nivel global.</td></tr>
+                    <tr><td><span class="filename">[Historia] - Campomanes - Disertaciones historicas de los templarios (1747).pdf</span></td><td><strong>Disertaciones históricas del orden y cavallería de los templarios</strong></td><td>Pedro R. de Campomanes</td><td>1747</td><td><a href="https://archive.org/download/disertacioneshis00camp/disertacioneshis00camp.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Obra fundamental de la historiografía española del siglo XVIII sobre la presencia y caída de los templarios en la Península Ibérica.</td></tr>
+                    <tr><td><span class="filename">[Historia] - Campomanes - Apendice de Documentos Templarios (1747).pdf</span></td><td><strong>Apéndice de Documentos y bulas del Temple en España</strong></td><td>Pedro R. de Campomanes</td><td>1747</td><td><a href="https://archive.org/download/apendicedocument00camp/apendicedocument00camp.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Anexo documental del s. XVIII que contiene un valiosísimo archivo de donaciones y fueros templarios en España.</td></tr>
+                    <tr><td><span class="filename">[Académico] - Ayala Martinez - Las ordenes militares hispanicas (2005).pdf</span></td><td><strong>Las órdenes militares hispánicas en la Edad Media</strong></td><td>Carlos de Ayala Martínez</td><td>2005</td><td><a href="https://archive.org/download/lasordenesmilita00ayal/lasordenesmilita00ayal.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Análisis académico en español sobre el rol político, económico y militar del Temple y otras órdenes en la península.</td></tr>
+                    <tr><td><span class="filename">[Mitos] - Bordonove - La vida cotidiana de los Templarios (1975)</span></td><td><strong>La vida cotidiana de los Templarios en el siglo XIII</strong></td><td>Georges Bordonove</td><td>1975</td><td><span style="color: #888; font-size: 0.85rem; font-style: italic;">No disponible en PDF</span></td><td>Estudio detallado y desmitificador en español sobre cómo vivían realmente los templarios.</td></tr>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="priorato-footer" style="max-width: 1200px; margin: 0 auto;">
+        <div style="color: var(--rojo-templario); font-size: 2rem; margin-bottom: 1rem; line-height: 1;">✠</div>
+        <p class="cinzel" style="color: var(--rojo-templario); font-weight: bold;">Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam</p>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">&copy; 2026 Orden Templaria Ecléctica (OTE) - Biblioteca Documental.</p>
+    </footer>
+
+    <script>
+        function filtrarBiblioteca() {
+            const input = document.getElementById("searchInput");
+            const filter = input.value.toLowerCase();
+            const tables = document.querySelectorAll("table");
+
+            tables.forEach(table => {
+                const rows = table.querySelectorAll("tr");
+                
+                // Empezamos desde 1 para omitir la fila de encabezados (th)
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    // Celdas de Título Original (1), Autor (2) y Descripción (5)
+                    const titleCell = row.cells[1];
+                    const authorCell = row.cells[2];
+                    const descCell = row.cells[5];
+                    
+                    if (titleCell || authorCell || descCell) {
+                        const text = (titleCell.textContent || "") + " " + 
+                                     (authorCell.textContent || "") + " " + 
+                                     (descCell.textContent || "");
+                        
+                        if (text.toLowerCase().indexOf(filter) > -1) {
+                            row.style.display = "";
+                        } else {
+                            row.style.display = "none";
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

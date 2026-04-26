@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Grados - OTE Paraguay</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a1a; color: #d4af37; line-height: 1.7; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: #252525; padding: 40px; border-radius: 8px; border: 1px solid #3d3027; }
+        h1 { text-align: center; font-size: 1.6em; margin-bottom: 10px; }
+        h2 { color: #c9b896; margin: 30px 0 12px; font-size: 1.2em; border-left: 3px solid #d4af37; padding-left: 12px; }
+        h3 { color: #8b7355; margin: 18px 0 8px; font-size: 1em; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9em; }
+        th, td { border: 1px solid #3d3027; padding: 8px; text-align: left; }
+        th { background: #1a0f0a; color: #c9b896; }
+        td { background: #1f1f1f; }
+        ul, ol { margin: 10px 0 10px 25px; font-size: 0.9em; }
+        li { margin: 5px 0; }
+        strong { color: #d4af37; }
+        hr { border: none; border-top: 1px solid #3d3027; margin: 20px 0; }
+        .grado { background: #1a0f0a; padding: 15px; border-radius: 5px; margin: 10px 0; border-left: 3px solid #d4af37; }
+        .numeracion { font-size: 1.5em; color: #d4af37; margin-right: 10px; }
+        .aviso { background: #2a1f1a; padding: 15px; border-radius: 5px; border: 2px solid #e57373; margin: 20px 0; }
+        .progresion { background: #1a0f0a; padding: 15px 20px; border-radius: 5px; font-family: monospace; margin: 15px 0; }
+        .nav { text-align: center; margin-bottom: 20px; }
+        .nav a { color: #8b7355; text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">← Índice</a>
+    </div>
+    <div class="container">
+        <h1>SISTEMA DE GRADOS</h1>
+        <p style="text-align: center; color: #8b7355; margin-bottom: 25px;">OTE PARAGUAY</p>
+
+        <h2>GRADOS OFICIALES</h2>
+        <table>
+            <tr><th>Nivel</th><th>Grado</th><th>Ritual Asociado</th></tr>
+            <tr><td>1</td><td><strong>NOVICIO</strong></td><td>Ritual Novicio</td></tr>
+            <tr><td>2</td><td><strong>ESCUDERO</strong></td><td>Juramento de Escuderos</td></tr>
+            <tr><td>3</td><td><strong>CABALLERO</strong></td><td>Ritual de Investidura</td></tr>
+            <tr><td>4</td><td><strong>COMENDADOR</strong></td><td>Cargo administrativo</td></tr>
+            <tr><td>5</td><td><strong>PRIOR</strong></td><td>Autoridad territorial</td></tr>
+            <tr><td>6</td><td><strong>GRAN PRIOR</strong></td><td>Máxima autoridad</td></tr>
+        </table>
+
+        <div class="aviso">
+            <strong>📢 NOTA IMPORTANTE</strong>
+            <p>Este sistema de grados es <strong>TEMPLARIO</strong>, no masónico.</p>
+            <p>NO incluye: Aprendiz - Compañero - Maestro</p>
+            <p>El sistema Templario se basa en la tradición caballeresca medieval:</p>
+            <p><strong>Novicio → Escudero → Caballero → Comendador → Prior → Gran Prior</strong></p>
+        </div>
+
+        <h2>DEFINICIONES</h2>
+
+        <div class="grado">
+            <h3><span class="numeracion">1</span>NOVICIO</h3>
+            <p><strong>Definición:</strong> Postulante en período de observación y formación básica.</p>
+            <p><strong>Ritual:</strong> Ritual Novicio Templaria</p>
+            <ul>
+                <li>Solicitud formal de ingreso</li>
+                <li>Ser propuesto por 2 miembros</li>
+                <li>Entrevista con Maestro de Ceremonias</li>
+                <li>Período de observación (mínimo 1 mes)</li>
+            </ul>
+        </div>
+
+        <div class="grado">
+            <h3><span class="numeracion">2</span>ESCUDERO</h3>
+            <p><strong>Definición:</strong> Miembro comprometido que ha prestado juramento.</p>
+            <p><strong>Ritual:</strong> Juramento de Escuderos</p>
+            <ul>
+                <li>Completar período de noviciado</li>
+                <li>Aprobar evaluación básica</li>
+                <li>Prestar juramento formal</li>
+                <li>2 testigos miembros</li>
+            </ul>
+            <p><strong>Juramento:</strong></p>
+            <blockquote style="margin: 10px 0; padding: 10px; border-left: 2px solid #8b7355;">
+                "Juro por mi honor y ante esta Sagrada Hermandad:<br>
+                1. Dedicarme a la búsqueda de la verdad<br>
+                2. Guardar silencio sobre los misterios<br>
+                3. Servir desinteresadamente<br>
+                4. Honrar a la Orden con mi conducta<br>
+                5. Respetar las leyes y estatutos<br>
+                6. Estar dispuesto a dar mi vida por la Hermandad<br>
+                7. Cultivar mi espíritu"
+            </blockquote>
+        </div>
+
+        <div class="grado">
+            <h3><span class="numeracion">3</span>CABALLERO</h3>
+            <p><strong>Definición:</strong> Miembro pleno con derechos y responsabilidades completas.</p>
+            <p><strong>Ritual:</strong> Ritual de Investidura</p>
+            <ul>
+                <li>Mínimo 1 año como Escudero</li>
+                <li>Evaluación de conducta</li>
+                <li>Aprobación del Maestro de Ceremonias</li>
+                <li>Ceremonia de'investidura</li>
+            </ul>
+            <p><strong>Derechos:</strong></p>
+            <ul>
+                <li>Voto en Capítulos</li>
+                <li>Opción a cargos operativos</li>
+                <li>Participación en rituales completos</li>
+                <li>Representar a la'Orden</li>
+            </ul>
+        </div>
+
+        <div class="grado">
+            <h3><span class="numeracion">4</span>COMENDADOR</h3>
+            <p><strong>Definición:</strong> Autoridad operativa de una Encomienda local.</p>
+            <ul>
+                <li>Mínimo 2 años como Caballero</li>
+                <li>Evaluación de servicio</li>
+                <li>Voto del Prior Regional</li>
+            </ul>
+            <p><strong>Funciones:</strong> Dirigir Encomienda local, Coordinar miembros, Gestión operativa</p>
+        </div>
+
+        <div class="grado">
+            <h3><span class="numeracion">5</span>PRIOR</h3>
+            <p><strong>Definición:</strong> Autoridad territorial de un Priorato Regional.</p>
+            <ul>
+                <li>Mínimo 3 años como Comendador</li>
+                <li>Evaluación del Gran Consejo</li>
+            </ul>
+            <p><strong>Funciones:</strong> Liderar Priorato Regional, Coordinación de Encomiendas, Informe al Gran Priorato</p>
+        </div>
+
+        <div class="grado">
+            <h3><span class="numeracion">6</span>GRAN PRIOR</h3>
+            <p><strong>Definición:</strong> Máxima autoridad del Gran Priorato Nacional.</p>
+            <ul>
+                <li>Mínimo 5 años en la'Orden</li>
+                <li>Voto unanimously del Consejo Superior</li>
+            </ul>
+            <p><strong>Funciones:</strong> Dirección doctrinal, Representación externa, Confirma nombramientos</p>
+        </div>
+
+        <h2>PROGRESIÓN</h2>
+        <div class="progresion">
+            NOVICIO (Observación)<br>
+            &nbsp;&nbsp;↓ (1 mes + evaluación)<br>
+            ESCUDERO (Juramento)<br>
+            &nbsp;&nbsp;↓ (1 año + evaluación)<br>
+            CABALLERO (Investidumbre)<br>
+            &nbsp;&nbsp;↓ (2 años + evaluación)<br>
+            COMENDADOR (Administración)<br>
+            &nbsp;&nbsp;↓ (3 años + voto)<br>
+            PRIOR (Territorial)<br>
+            &nbsp;&nbsp;↓ (5 años + voto)<br>
+            GRAN PRIOR (Nacional)
+        </div>
+
+        <h2>EVALUACIONES</h2>
+        <table>
+            <tr><th>Transición</th><th>Evaluación</th><th>Frecuencia</th></tr>
+            <tr><td>Novicio → Escudero</td><td>Conocimiento básico + conducta</td><td>1 mes</td></tr>
+            <tr><td>Escudero → Caballero</td><td>Servicio + formación + conducta</td><td>1 año</td></tr>
+            <tr><td>Caballero → Comendador</td><td>Liderazgo + evaluación</td><td>2 años</td></tr>
+            <tr><td>Comendador → Prior</td><td>Gestión + voto</td><td>3 años</td></tr>
+            <tr><td>Prior → Gran Prior</td><td>Consejo + voto</td><td>5 años</td></tr>
+        </table>
+
+        <hr>
+        <p style="color: #8b7355; font-style: italic;">Sistema de Grados - OTE Paraguay v1.0</p>
+        <p style="color: #8b7355; font-style: italic;">Basado en documentos oficiales de Origen</p>
+    </div>
+</body>
+</html>

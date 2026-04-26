@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contadores de Clics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f1ea;
+            color: #2c2c2c;
+            font-family: 'EB Garamond', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: #9b111e;
+            margin-bottom: 30px;
+        }
+        .contenedor-botones {
+            display: flex;
+            gap: 20px;
+        }
+        .btn-contador {
+            background-color: #9b111e;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn-contador:hover {
+            background-color: #0D0D0D;
+        }
+        .btn-contador:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <h1>Contadores (Inician en 7)</h1>
+    <div class="contenedor-botones">
+        <button class="btn-contador" onclick="sumarClic(this)" data-count="7">Clics: 7</button>
+        <button class="btn-contador" onclick="sumarClic(this)" data-count="7">Clics: 7</button>
+        <button class="btn-contador" onclick="sumarClic(this)" data-count="7">Clics: 7</button>
+    </div>
+
+    <script>
+        function sumarClic(boton) {
+            // 1. Obtenemos el valor actual guardado en 'data-count' y lo convertimos a número
+            let conteoActual = parseInt(boton.getAttribute('data-count'));
+            
+            // 2. Le sumamos 1
+            conteoActual++;
+            
+            // 3. Guardamos el nuevo valor en el atributo
+            boton.setAttribute('data-count', conteoActual);
+            
+            // 4. Actualizamos el texto visible del botón
+            boton.innerText = 'Clics: ' + conteoActual;
+        }
+    </script>
+</body>
+</html>
