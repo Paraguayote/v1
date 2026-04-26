@@ -1,65 +1,53 @@
-# ✠ Orden Templaria Ecléctica (OTE)
-**Gran Priorato Nacional del Paraguay**
+# Gestión de Biblioteca Templaria para Google Drive
 
-Este repositorio contiene la arquitectura digital, los reglamentos internos, el manual de marca y la estructura web completa del Gran Priorato Nacional del Paraguay de la Orden Templaria Ecléctica (OTE).
+Este directorio sirve como base de operaciones para la recopilación, organización y eventual subida a Google Drive de material de investigación histórica sobre la Orden del Temple.
 
-## 🗂️ Estructura del Proyecto
+##  Estructura de Carpetas Sugerida (Para Drive)
 
-El sistema está organizado en áreas operativas, normativas y digitales para facilitar su escalabilidad:
+A medida que descargues los PDFs desde los enlaces del archivo `index.md`, deberás organizarlos localmente (o directamente en tu Google Drive) manteniendo el siguiente árbol de directorios para asegurar un control de calidad óptimo:
 
 ```text
-📦 OTE
- ┣ 📜 index.html                  # Portal Web Principal (Página de Inicio)
- ┣ 📂 image/
- ┃ ┗ 📂 logo/                     # Escudos, logos y recursos gráficos (PNG/SVG)
- ┣ 📂 Web_y_Redes/                # Presencia Digital e Identidad
- ┃ ┣ 📜 MANUAL_MARCA.html         # Estética Templaria Clásica v3.0 (Colores y fuentes)
- ┃ ┣ 📜 formulario_ingreso.html   # Sistema integrado de postulación
- ┃ ┣ 📜 ESTRATEGIA_REDES.html     # Planificación de Social Media
- ┃ ┗ 📜 LISTA_VERIFICACION.html   # Auditoría de canales y dominios
- ┣ 📂 Reglamentos/                # Normativa y Estructura Organizacional
- ┃ ┣ 📜 ESTATUTOS_GENERALES.html  # Leyes fundamentales de la Orden
- ┃ ┣ 📜 SISTEMA_INTEGRAL.html     # Modelo integral de grados, ciclos y operación
- ┃ ┣ 📜 ORGANIGRAMA_VISUAL.html   # Jerarquía gráfica de la OTE
- ┃ ┗ 📜 PROMPT_MAESTRO.md         # Motor base de IA para generación documental
- ┣ 📂 Prioratos_Regionales/       # Sub-divisiones Territoriales Multisito
- ┃ ┣ 📜 LISTA_PRIORATOS.html      # Directorio de Prioratos y Encomiendas
- ┃ ┣ 📜 priorato_pax.html         # Subpágina: Priorato Regional de Pax
- ┃ ┗ 📜 priorato_santo_grial.html # Subpágina: Priorato Santo Grial
- ┣ 📂 Origen/                     # Documentos Fundacionales
- ┃ ┣ 📜 CARTA_FUNDACIONAL.md
- ┃ ┣ 📜 JURAMENTO_ESCUDERO.md
- ┃ ┗ 📜 CONVOCATORIA_OFICIAL.md
- ┣ 📂 Calendarios/
- ┃ ┗ 📜 CALENDARIO_OPERATIVO.md   # Ciclos semanales, mensuales y litúrgicos
- ┗ 📂 Rituales/
-   ┗ 📜 RITUAL_INICIACION_ESCUDERO.md
+Biblioteca_Templaria_Drive/
+ ├── 1_Historia_General/
+ ├── 2_Origen_y_Fundacion/
+ ├── 3_Caida_de_la_Orden/
+ ├── 4_Mitos_y_Leyendas/
+ ├── 5_Cruzadas/
+ └── 6_Analisis_Academico/
 ```
 
-## 🎨 Diseño y Estética Visual
+## 🤖 Prompt Maestro para Continuar la Búsqueda
 
-Todo el ecosistema web estático está desarrollado respetando estrictamente el **Manual de Marca v3.0 (Estética Templaria Clásica)** de la Orden, logrando un balance entre elegancia histórica y legibilidad moderna.
+Si deseas ampliar esta biblioteca en el futuro utilizando un asistente de IA, copia y pega el siguiente prompt. Está calibrado para continuar la metodología legal y estructurada:
 
-- **Fondo Base:** Textura Pergamino (`#f4f1ea`)
-- **Texto Principal:** Gris Oscuro (`#2c2c2c`)
-- **Acento de Autoridad:** Rojo Templario (`#9b111e`) para la Cruz, botones y títulos.
-- **Acento Esotérico:** Lila Templario (`#9370db`) para interacciones (hovers) y heráldica específica.
-- **Tipografías Oficiales:** *Cinzel* (Titulares y Menús) y *EB Garamond* (Cuerpos de texto).
+```text
+Actúa como un asistente de investigación y automatización documental.
 
-## 🚀 Despliegue y Uso
+OBJETIVO:
+Continuar la búsqueda de libros en PDF sobre los Caballeros Templarios desde fuentes legales (Project Gutenberg, Internet Archive, Open Library, dominio público). 
 
-Este proyecto ha sido diseñado de manera modular utilizando tecnologías estándar de la web (**HTML5, CSS3, Vanilla JS**) sin depender de frameworks pesados, lo que asegura rapidez de carga, durabilidad a largo plazo y facilidad de lectura multiplataforma.
+REGLAS:
+- NO repitas los 20 libros de la Fase 1 (Addison, Lea, Mackey, Pike, etc.).
+- Busca exclusivamente obras en ESPAÑOL, o traducciones académicas de textos latinos (ej. Cartas de Clemente V, Bulas Papales como Vox in excelso).
+- Priorizar libros completos, tesis doctorales en repositorios universitarios de acceso abierto o documentos históricos.
 
-### Ejecución Local
-1. Clona este repositorio o descárgalo en tu equipo.
-2. Abre el archivo `index.html` en tu navegador web moderno de preferencia.
-3. Navega por todas las secciones, prioratos y reglamentos de manera nativa utilizando los enlaces integrados.
+PROCESO:
+1. Busca 10 nuevos libros/documentos.
+2. Clasifícalos según la estructura: Historia, Origen, Caída, Mitos, Cruzadas, Académico.
+3. Entrégame el resultado en formato de tabla Markdown con:
+   - Nombre sugerido del archivo: [Tema] - Autor - Título (Año).pdf
+   - Título Original
+   - Autor
+   - Año
+   - URL directa de la fuente
+   - Breve sinopsis
+```
 
-### Arquitectura Futura
-El proyecto está estructurado para soportar un **despliegue multisitio (Multi-tenant)** en plataformas como Vercel o Netlify, permitiendo la utilización de subdominios locales (ej. `prioratodepax.oteparaguay.org`) que apunten a sus respectivos módulos dentro de este mismo código fuente.
+## ☁️ Preparación para Subida a Drive
 
----
+1. **Descarga Manual:** Entra a los links provistos en `index.md` y descarga el formato `.pdf` o `.epub`.
+2. **Renombrado:** Renombra el archivo localmente utilizando la nomenclatura sugerida en la tabla.
+3. **Clasificación:** Arrastra el archivo a su carpeta temática correspondiente.
+4. **Subida:** Selecciona las 6 carpetas temáticas y arrástralas simultáneamente a tu cuenta de Google Drive.
 
-<div align="center">
-  <i>"Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam"</i>
-</div>
+*(Opcional)*: Para desarrolladores, se puede crear un script en Python utilizando la librería `PyDrive2` y `requests` que lea el archivo `index.md`, descargue los PDFs localmente y los suba por API a Google Drive.

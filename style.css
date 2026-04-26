@@ -911,3 +911,27 @@ body.priorato-layout {
 .cinzel {
     font-family: 'Cinzel', serif;
 }
+
+/* =========================================
+   ESTILOS ADICIONALES (Contadores y Biblioteca)
+   ========================================= */
+
+/* Contadores */
+.layout-centrado { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+.contenedor-botones { display: flex; gap: 20px; }
+.btn-contador { background-color: var(--rojo-templario); color: white; border: none; padding: 15px 30px; font-family: 'Cinzel', serif; font-size: 1.2rem; border-radius: 4px; cursor: pointer; transition: background-color 0.3s, transform 0.1s; }
+.btn-contador:hover { background-color: var(--negro); }
+.btn-contador:active { transform: scale(0.95); }
+
+/* Biblioteca */
+.table-responsive { overflow-x: auto; margin-bottom: 2rem; border-radius: 4px; border: 1px solid var(--gris-borde); }
+.table-responsive table { min-width: 800px; margin-top: 0; }
+.table-responsive td { vertical-align: top; font-size: 0.95rem; }
+.btn-download { display: inline-block; padding: 6px 12px; background: var(--rojo-templario); color: white; text-decoration: none; border-radius: 3px; font-size: 0.8rem; text-align: center; margin-top: 5px; font-family: 'Cinzel', serif; transition: background-color 0.3s; white-space: nowrap; }
+.btn-download:hover { background: var(--negro); color: white; }
+.filename { font-family: monospace; font-size: 0.85rem; color: #555; background: rgba(155,17,30,0.05); padding: 4px 6px; border-radius: 3px; display: block; margin-bottom: 5px; border-left: 2px solid var(--rojo-templario); }
+.btn-copy { background-color: transparent; border: 1px solid var(--gris-borde); color: #666; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; white-space: nowrap; }
+.btn-copy:hover { background-color: var(--rojo-templario); color: white; border-color: var(--rojo-templario); }
+.search-container { text-align: center; margin-bottom: 30px; }
+.search-input { width: 100%; max-width: 600px; padding: 12px 20px; font-size: 1.1rem; font-family: 'EB Garamond', serif; border: 1px solid var(--gris-borde); border-radius: 4px; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
+.search-input:focus { border-color: var(--rojo-templario); box-shadow: 0 0 8px rgba(155, 17, 30, 0.2); }
