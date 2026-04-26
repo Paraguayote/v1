@@ -310,23 +310,45 @@
             content.classList.add('fade-in-content');
         }
 
-        function openPanel(seccion) {
+        // Evento para que funcionen los botones de Atrás/Adelante del navegador
+        window.addEventListener('popstate', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const seccionParams = urlParams.get('seccion');
+            if (seccionParams && contenido[seccionParams]) {
+                openPanel(seccionParams, true);
+            } else {
+                document.getElementById('panel').style.display = 'none';
+            }
+        });
+
+        function openPanel(seccion, isPopState = false) {
+            if (!isPopState) {
+                const url = new URL(window.location);
+                url.searchParams.set('seccion', seccion);
+                window.history.pushState({}, '', url);
+            }
+
             if (seccion === 'miembros') {
-                actualizarContenido(contenido['login']);
-                document.getElementById('panel').style.display = 'block';
-                
-                // Dar foco automático al input y permitir envío con tecla Enter
-                setTimeout(() => {
-                    const input = document.getElementById('codigo-acceso');
-                    if(input) {
-                        input.focus();
-                        input.addEventListener('keypress', function (e) {
-                            if (e.key === 'Enter') {
-                                verificarAcceso();
-                            }
-                        });
-                    }
-                }, 100);
+                if (sessionStorage.getItem('ote_logged_in') === 'true') {
+                    actualizarContenido(contenido['miembros']);
+                    document.getElementById('panel').style.display = 'block';
+                    cargarGaleriaAleatoria();
+                } else {
+                    actualizarContenido(contenido['login']);
+                    document.getElementById('panel').style.display = 'block';
+                    
+                    setTimeout(() => {
+                        const input = document.getElementById('codigo-acceso');
+                        if(input) {
+                            input.focus();
+                            input.addEventListener('keypress', function (e) {
+                                if (e.key === 'Enter') {
+                                    verificarAcceso();
+                                }
+                            });
+                        }
+                    }, 100);
+                }
                 return;
             }
             
@@ -338,15 +360,16 @@
             const input = document.getElementById('codigo-acceso');
             const errorMsg = document.getElementById('login-error');
             
-            if (input.value === "123") {
-                // Acceso concedido: Mostrar el contenido real de miembros
+            if (input && input.value === "123") {
+                sessionStorage.setItem('ote_logged_in', 'true');
                 actualizarContenido(contenido['miembros']);
                 cargarGaleriaAleatoria();
             } else {
-                // Acceso denegado: Mostrar error
-                errorMsg.style.display = 'block';
-                input.value = '';
-                input.focus();
+                if (errorMsg) errorMsg.style.display = 'block';
+                if (input) {
+                    input.value = '';
+                    input.focus();
+                }
             }
         }
 
@@ -358,6 +381,11 @@
             document.getElementById('panel').style.display = 'none';
             document.getElementById('panel').scrollTop = 0; // Reinicia el scroll al cerrar el panel
             document.getElementById('side-menu').classList.remove('active'); // Ocultar el menú lateral al cerrar
+            
+            // Limpiar la URL sin recargar la página
+            const url = new URL(window.location);
+            url.searchParams.delete('seccion');
+            window.history.pushState({}, '', url);
         }
 
         function obtenerMensaje() {
