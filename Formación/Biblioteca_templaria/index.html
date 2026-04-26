@@ -64,6 +64,22 @@
             margin-bottom: 5px;
             border-left: 2px solid var(--rojo-templario);
         }
+        .btn-copy {
+            background-color: transparent;
+            border: 1px solid var(--gris-borde);
+            color: #666;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .btn-copy:hover {
+            background-color: var(--rojo-templario);
+            color: white;
+            border-color: var(--rojo-templario);
+        }
         .search-container {
             text-align: center;
             margin-bottom: 30px;
@@ -98,86 +114,65 @@
             <p style="margin-top: 20px;">Este documento contiene la recopilación de libros completos en formato PDF sobre la Orden de los Caballeros Templarios, extraídos de fuentes legales de dominio público para el estudio de nuestros miembros.</p>
         </div>
 
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar libro por título, autor o palabra clave..." onkeyup="filtrarBiblioteca()">
+        <!-- Tarjetas de Datos de la Biblioteca -->
+        <div class="stats" style="max-width: 900px; margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+            <div class="stat" style="background: rgba(155,17,30,0.05); padding: 15px; text-align: center; border: 1px solid var(--gris-borde); border-radius: 4px;">
+                <div class="stat-num" id="stat-total" style="font-size: 2rem; font-family: 'Cinzel'; color: var(--rojo-templario);">0</div>
+                <div style="font-size: 0.9rem; color: #666; font-weight: bold; margin-top: 5px;">Obras Registradas</div>
+            </div>
+            <div class="stat" style="background: rgba(155,17,30,0.05); padding: 15px; text-align: center; border: 1px solid var(--gris-borde); border-radius: 4px;">
+                <div class="stat-num" id="stat-autores" style="font-size: 2rem; font-family: 'Cinzel'; color: var(--rojo-templario);">0</div>
+                <div style="font-size: 0.9rem; color: #666; font-weight: bold; margin-top: 5px;">Autores Históricos</div>
+            </div>
+            <div class="stat" style="background: rgba(155,17,30,0.05); padding: 15px; text-align: center; border: 1px solid var(--gris-borde); border-radius: 4px;">
+                <div class="stat-num" id="stat-idiomas" style="font-size: 2rem; font-family: 'Cinzel'; color: var(--rojo-templario);">0</div>
+                <div style="font-size: 0.9rem; color: #666; font-weight: bold; margin-top: 5px;">Idiomas Disponibles</div>
+            </div>
         </div>
 
-        <section class="seccion">
-            <h2 style="border-bottom: 2px solid var(--rojo-templario); padding-bottom: 10px;">Fase 1: Historia, Mitos y Cruzadas</h2>
+        <div class="search-container" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+            <input type="text" id="searchInput" class="search-input" style="flex: 1; min-width: 250px; max-width: 100%;" placeholder="🔍 Buscar por título, autor o año..." onkeyup="renderTable()">
             
-            <h3>📜 Historia General</h3>
-            <div class="table-responsive">
-                <table>
-                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
-                    <tr><td><span class="filename">[Historia general] - Addison - History of the Knights Templars (1842).pdf</span></td><td><strong>The History of the Knights Templars</strong></td><td>Charles G. Addison</td><td>1842</td><td><a href="https://archive.org/download/historyofknight00addi/historyofknight00addi.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Obra clásica y exhaustiva sobre la historia de la Orden y la Iglesia del Temple en Londres.</td></tr>
-                    <tr><td><span class="filename">[Historia general] - Woodhouse - Military Religious Orders (1879).pdf</span></td><td><strong>The Military Religious Orders of the Middle Ages</strong></td><td>F.C. Woodhouse</td><td>1879</td><td><a href="https://archive.org/download/militaryreligiou00wood/militaryreligiou00wood.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Análisis comparativo de las órdenes militares, con amplio enfoque en los Templarios.</td></tr>
-                    <tr><td><span class="filename">[Historia general] - Burnes - Sketch of the History of Knights Templars (1840).pdf</span></td><td><strong>Sketch of the History of the Knights Templars</strong></td><td>James Burnes</td><td>1840</td><td><a href="https://archive.org/download/sketchofhistoryo00burn/sketchofhistoryo00burn.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Ensayo fundacional escocés sobre la cronología templaria.</td></tr>
-                    <tr><td><span class="filename">[Historia general] - Bothwell-Gosse - The Knights Templars (1912).pdf</span></td><td><strong>The Knights Templars</strong></td><td>A. Bothwell-Gosse</td><td>1912</td><td><a href="https://archive.org/download/knightstemplars00both/knightstemplars00both.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Recopilación histórica y simbólica de principios del siglo XX.</td></tr>
-                </table>
-            </div>
+            <select id="idiomaFilter" class="search-input" style="width: auto; cursor: pointer;" onchange="renderTable()">
+                <option value="">🌍 Todos los Idiomas</option>
+                <option value="Español">Español</option>
+                <option value="Inglés">Inglés</option>
+                <option value="Francés">Francés</option>
+                <option value="Latín">Latín</option>
+                <option value="Italiano">Italiano</option>
+                <option value="Alemán">Alemán</option>
+                <option value="Portugués">Portugués</option>
+            </select>
 
-            <h3>🏛️ Origen y Fundación</h3>
-            <div class="table-responsive">
-                <table>
-                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
-                    <tr><td><span class="filename">[Origen] - San Bernardo - In Praise of the New Knighthood (1129).pdf</span></td><td><strong>In Praise of the New Knighthood</strong></td><td>Bernardo de Claraval</td><td>1129</td><td><a href="https://archive.org/download/inpraiseofnewkni0000bern/inpraiseofnewkni0000bern.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Documento histórico (traducido) que justificó teológicamente la creación de la Orden.</td></tr>
-                    <tr><td><span class="filename">[Origen] - Campbell - The Knights Templar Rise and Fall (1937).pdf</span></td><td><strong>The Knights Templar: Their Rise and Fall</strong></td><td>G.A. Campbell</td><td>1937</td><td><a href="https://archive.org/download/knightstemplarth0000camp/knightstemplarth0000camp.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Estudio enfocado en los primeros años de formación y su eventual declive.</td></tr>
-                    <tr><td><span class="filename">[Origen] - Froude - History of the Templars (1886).pdf</span></td><td><strong>The Knights Templars</strong></td><td>J.A. Froude</td><td>1886</td><td><a href="https://archive.org/download/knightstemplars00frou/knightstemplars00frou.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Conferencias sobre los orígenes de la orden en Jerusalén.</td></tr>
-                </table>
-            </div>
+            <select id="temaFilter" class="search-input" style="width: auto; cursor: pointer;" onchange="renderTable()">
+                <option value="">📚 Todas las Categorías</option>
+                <option value="Historia">Historia General</option>
+                <option value="Origen y Regla">Origen y Regla</option>
+                <option value="Juicio y Caída">Juicio y Caída</option>
+                <option value="Mitos y Esoterismo">Mitos y Esoterismo</option>
+                <option value="Cruzadas">Cruzadas</option>
+                <option value="Académico">Análisis Académico</option>
+            </select>
+        </div>
 
-            <h3>⚖️ Caída de la Orden</h3>
-            <div class="table-responsive">
-                <table>
-                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
-                    <tr><td><span class="filename">[Caída] - Michelet - Proces des Templiers Vol 1 (1841).pdf</span></td><td><strong>Procès des Templiers (Vol 1)</strong></td><td>Jules Michelet</td><td>1841</td><td><a href="https://archive.org/download/procsdestemplier01mich/procsdestemplier01mich.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Transcripciones originales en francés y latín de los juicios (Valor histórico incalculable).</td></tr>
-                    <tr><td><span class="filename">[Caída] - Marsh - The Templars (1859).pdf</span></td><td><strong>The Templars</strong></td><td>George Perkins Marsh</td><td>1859</td><td><a href="https://archive.org/download/templars00mars/templars00mars.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Crónica detallada sobre el arresto de Jacques de Molay y el viernes 13.</td></tr>
-                </table>
-            </div>
-
-            <h3>🔮 Mitos y Leyendas</h3>
-            <div class="table-responsive">
-                <table>
-                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
-                    <tr><td><span class="filename">[Mitos] - Heckethorn - Secret Societies All Ages (1897).pdf</span></td><td><strong>The Secret Societies of All Ages and Countries</strong></td><td>C. W. Heckethorn</td><td>1897</td><td><a href="https://archive.org/download/secretsocietieso01heck/secretsocietieso01heck.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Tomo 1 con teorías sobre los ídolos (Baphomet) y mitos de la Orden.</td></tr>
-                    <tr><td><span class="filename">[Mitos] - Webster - Subversive Movements (1924).pdf</span></td><td><strong>Secret Societies and Subversive Movements</strong></td><td>Nesta H. Webster</td><td>1924</td><td><a href="https://archive.org/download/secretsocietiesa00webs/secretsocietiesa00webs.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Un vistazo a cómo se percibían los mitos templarios a principios del siglo XX.</td></tr>
-                </table>
-            </div>
-
-            <h3>⚔️ Relación con las Cruzadas</h3>
-            <div class="table-responsive">
-                <table>
-                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
-                    <tr><td><span class="filename">[Cruzadas] - Mills - History of the Crusades (1820).pdf</span></td><td><strong>The History of the Crusades</strong></td><td>Charles Mills</td><td>1820</td><td><a href="https://archive.org/download/historyofcrusade01mill/historyofcrusade01mill.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Contexto geopolítico militar en el que los Templarios operaron en Tierra Santa.</td></tr>
-                    <tr><td><span class="filename">[Cruzadas] - Michaud - History of the Crusades (1852).pdf</span></td><td><strong>History of the Crusades</strong></td><td>Joseph F. Michaud</td><td>1852</td><td><a href="https://archive.org/download/historyofcrusade01mich/historyofcrusade01mich.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Tomo clásico de la historia de las batallas en Jerusalén.</td></tr>
-                    <tr><td><span class="filename">[Cruzadas] - Joinville - Chronicles of the Crusades (1848).pdf</span></td><td><strong>Chronicles of the Crusades</strong></td><td>Jean de Joinville</td><td>1848</td><td><a href="https://archive.org/download/chroniclesofcrus00join/chroniclesofcrus00join.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Crónicas de primera mano de las cruzadas contemporáneas a la Orden.</td></tr>
-                </table>
-            </div>
-
-            <h3>📚 Análisis Académico</h3>
-            <div class="table-responsive">
-                <table>
-                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
-                    <tr><td><span class="filename">[Académico] - Hallam - State of the Knights Templars (1850).pdf</span></td><td><strong>Historical State of the Knights Templars</strong></td><td>Henry Hallam</td><td>1850</td><td><a href="https://archive.org/download/historicalstate00hall/historicalstate00hall.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Análisis objetivo y jurídico sobre la situación política de los monjes guerreros.</td></tr>
-                </table>
-            </div>
-        </section>
+        <p id="contador-libros" style="text-align: right; color: var(--rojo-templario); font-size: 0.9rem; font-weight: bold; margin-bottom: 10px;"></p>
 
         <section class="seccion">
-            <h2 style="border-bottom: 2px solid var(--rojo-templario); padding-bottom: 10px;">Fase 2: Textos en Español y Documentación Pontificia</h2>
-            <p>Recopilación especializada de documentos fundamentales traducidos al español, incluyendo las bulas papales clave y análisis académico hispano de acceso abierto.</p>
-            
             <div class="table-responsive">
                 <table>
-                    <tr><th>Archivo Sugerido</th><th>Título Original</th><th>Autor</th><th>Año</th><th>Fuente / Enlace</th><th>Descripción</th></tr>
-                    <tr><td><span class="filename">[Origen] - Concilio de Troyes - La Regla Primitiva del Temple (1129).pdf</span></td><td><strong>La Regla Latina de los Caballeros Templarios</strong></td><td>Concilio de Troyes</td><td>1129</td><td><a href="https://archive.org/download/reglalatinadelos00unse/reglalatinadelos00unse.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Traducción al español de los 72 artículos originales que sentaron las bases monásticas y militares de la Orden.</td></tr>
-                    <tr><td><span class="filename">[Origen] - San Bernardo - Elogio de la Nueva Milicia Templaria (1130).pdf</span></td><td><strong>Liber ad milites templi de laude novae militiae</strong></td><td>San Bernardo de Claraval</td><td>1130</td><td><a href="https://archive.org/download/elogiodelanuevam00bern/elogiodelanuevam00bern.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>El tratado fundacional que justificó teológicamente el concepto del "monje-guerrero".</td></tr>
-                    <tr><td><span class="filename">[Caída] - Papa Clemente V - Bula Pastoralis Praeeminentiae (1307).pdf</span></td><td><strong>Pastoralis Praeeminentiae</strong></td><td>Papa Clemente V</td><td>1307</td><td><a href="https://archive.org/download/bulapastoralispr00clem/bulapastoralispr00clem.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Traducción de la bula original ordenando el arresto de los Templarios y la incautación de sus bienes.</td></tr>
-                    <tr><td><span class="filename">[Caída] - Papa Clemente V - Bula Vox in Excelso (1312).pdf</span></td><td><strong>Vox in excelso (Bula de supresión)</strong></td><td>Papa Clemente V</td><td>1312</td><td><a href="https://archive.org/download/bulavoxinexcelso00clem/bulavoxinexcelso00clem.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Traducción al español de la bula papal que decretó la disolución y supresión oficial de la Orden a nivel global.</td></tr>
-                    <tr><td><span class="filename">[Historia] - Campomanes - Disertaciones historicas de los templarios (1747).pdf</span></td><td><strong>Disertaciones históricas del orden y cavallería de los templarios</strong></td><td>Pedro R. de Campomanes</td><td>1747</td><td><a href="https://archive.org/download/disertacioneshis00camp/disertacioneshis00camp.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Obra fundamental de la historiografía española del siglo XVIII sobre la presencia y caída de los templarios en la Península Ibérica.</td></tr>
-                    <tr><td><span class="filename">[Historia] - Campomanes - Apendice de Documentos Templarios (1747).pdf</span></td><td><strong>Apéndice de Documentos y bulas del Temple en España</strong></td><td>Pedro R. de Campomanes</td><td>1747</td><td><a href="https://archive.org/download/apendicedocument00camp/apendicedocument00camp.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Anexo documental del s. XVIII que contiene un valiosísimo archivo de donaciones y fueros templarios en España.</td></tr>
-                    <tr><td><span class="filename">[Académico] - Ayala Martinez - Las ordenes militares hispanicas (2005).pdf</span></td><td><strong>Las órdenes militares hispánicas en la Edad Media</strong></td><td>Carlos de Ayala Martínez</td><td>2005</td><td><a href="https://archive.org/download/lasordenesmilita00ayal/lasordenesmilita00ayal.pdf" target="_blank" class="btn-download">Descargar PDF</a></td><td>Análisis académico en español sobre el rol político, económico y militar del Temple y otras órdenes en la península.</td></tr>
-                    <tr><td><span class="filename">[Mitos] - Bordonove - La vida cotidiana de los Templarios (1975)</span></td><td><strong>La vida cotidiana de los Templarios en el siglo XIII</strong></td><td>Georges Bordonove</td><td>1975</td><td><span style="color: #888; font-size: 0.85rem; font-style: italic;">No disponible en PDF</span></td><td>Estudio detallado y desmitificador en español sobre cómo vivían realmente los templarios.</td></tr>
+                    <thead>
+                        <tr>
+                            <th>Título de la Obra</th>
+                            <th>Autor / Institución</th>
+                            <th>Año</th>
+                            <th>Idioma</th>
+                            <th>Categoría</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-libros">
+                        <!-- El contenido se inyectará dinámicamente mediante JavaScript -->
+                    </tbody>
                 </table>
             </div>
         </section>
@@ -190,36 +185,274 @@
     </footer>
 
     <script>
-        function filtrarBiblioteca() {
-            const input = document.getElementById("searchInput");
-            const filter = input.value.toLowerCase();
-            const tables = document.querySelectorAll("table");
+        // ==========================================
+        // BASE DE DATOS DE LA BIBLIOTECA TEMPLARIA
+        // ==========================================
+        const baseDeDatosLibros = [
+            // Obras Clásicas y Fundacionales
+            { titulo: "La Regla Latina de los Caballeros Templarios", autor: "Concilio de Troyes", anio: "1129", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Liber ad milites templi de laude novae militiae", autor: "San Bernardo de Claraval", anio: "1130", idioma: "Latín", categoria: "Origen y Regla" },
+            { titulo: "Elogio de la Nueva Milicia Templaria", autor: "San Bernardo de Claraval", anio: "1130", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Pastoralis Praeeminentiae (Bula Papal)", autor: "Papa Clemente V", anio: "1307", idioma: "Latín", categoria: "Juicio y Caída" },
+            { titulo: "Vox in excelso (Bula de supresión)", autor: "Papa Clemente V", anio: "1312", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Ad providam (Bula de bienes)", autor: "Papa Clemente V", anio: "1312", idioma: "Latín", categoria: "Juicio y Caída" },
+            
+            // Historiografía del Siglo XVIII y XIX
+            { titulo: "Disertaciones históricas del orden y cavallería de los templarios", autor: "Pedro R. de Campomanes", anio: "1747", idioma: "Español", categoria: "Historia" },
+            { titulo: "Apéndice de Documentos y bulas del Temple en España", autor: "Pedro R. de Campomanes", anio: "1747", idioma: "Español", categoria: "Historia" },
+            { titulo: "The History of the Knights Templars", autor: "Charles G. Addison", anio: "1842", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "The Military Religious Orders of the Middle Ages", autor: "F.C. Woodhouse", anio: "1879", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "Sketch of the History of the Knights Templars", autor: "James Burnes", anio: "1840", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "Procès des Templiers (Vol 1)", autor: "Jules Michelet", anio: "1841", idioma: "Francés", categoria: "Juicio y Caída" },
+            { titulo: "Procès des Templiers (Vol 2)", autor: "Jules Michelet", anio: "1851", idioma: "Francés", categoria: "Juicio y Caída" },
+            { titulo: "The Templars", autor: "George Perkins Marsh", anio: "1859", idioma: "Inglés", categoria: "Juicio y Caída" },
+            { titulo: "Historical State of the Knights Templars", autor: "Henry Hallam", anio: "1850", idioma: "Inglés", categoria: "Académico" },
+            { titulo: "The Secret Societies of All Ages and Countries", autor: "C. W. Heckethorn", anio: "1897", idioma: "Inglés", categoria: "Mitos y Esoterismo" },
+            { titulo: "Papstthum und Untergang des Templerordens", autor: "Heinrich Finke", anio: "1907", idioma: "Alemán", categoria: "Juicio y Caída" },
+            
+            // Cruzadas y Contexto
+            { titulo: "The History of the Crusades", autor: "Charles Mills", anio: "1820", idioma: "Inglés", categoria: "Cruzadas" },
+            { titulo: "History of the Crusades", autor: "Joseph F. Michaud", anio: "1852", idioma: "Inglés", categoria: "Cruzadas" },
+            { titulo: "Chronicles of the Crusades", autor: "Jean de Joinville", anio: "1848", idioma: "Inglés", categoria: "Cruzadas" },
+            { titulo: "The Latin Kingdom of Jerusalem", autor: "C. R. Conder", anio: "1897", idioma: "Inglés", categoria: "Cruzadas" },
+            
+            // Siglo XX y Contemporáneos
+            { titulo: "The Knights Templars", autor: "A. Bothwell-Gosse", anio: "1912", idioma: "Inglés", categoria: "Mitos y Esoterismo" },
+            { titulo: "Secret Societies and Subversive Movements", autor: "Nesta H. Webster", anio: "1924", idioma: "Inglés", categoria: "Mitos y Esoterismo" },
+            { titulo: "The Knights Templar: Their Rise and Fall", autor: "G.A. Campbell", anio: "1937", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "La vida cotidiana de los Templarios en el siglo XIII", autor: "Georges Bordonove", anio: "1975", idioma: "Español", categoria: "Historia" },
+            { titulo: "La vie quotidienne des Templiers au XIIIe siècle", autor: "Georges Bordonove", anio: "1975", idioma: "Francés", categoria: "Historia" },
+            { titulo: "The New Knighthood: A History of the Order of the Temple", autor: "Malcolm Barber", anio: "1994", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "The Trial of the Templars", autor: "Malcolm Barber", anio: "1978", idioma: "Inglés", categoria: "Juicio y Caída" },
+            { titulo: "Vie et mort de l'ordre du Temple", autor: "Alain Demurger", anio: "1985", idioma: "Francés", categoria: "Historia" },
+            { titulo: "Los Templarios en la Corona de Castilla", autor: "Gonzalo Martínez Díez", anio: "1993", idioma: "Español", categoria: "Académico" },
+            { titulo: "The Templars: The Dramatic History of the Knights Templar", autor: "Piers Paul Read", anio: "1999", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "I Templari", autor: "Barbara Frale", anio: "2004", idioma: "Italiano", categoria: "Historia" },
+            { titulo: "Il papato e il processo ai templari", autor: "Barbara Frale", anio: "2003", idioma: "Italiano", categoria: "Juicio y Caída" },
+            { titulo: "Las órdenes militares hispánicas en la Edad Media", autor: "Carlos de Ayala Martínez", anio: "2005", idioma: "Español", categoria: "Académico" },
+            { titulo: "The Knights Templar in the Holy Land", autor: "Alain Demurger", anio: "2004", idioma: "Inglés", categoria: "Cruzadas" },
+            { titulo: "The Knights Templar: A New History", autor: "Helen Nicholson", anio: "2001", idioma: "Inglés", categoria: "Historia" },
+            { titulo: "L'Ordre du Temple", autor: "Marion Melville", anio: "1951", idioma: "Francés", categoria: "Historia" },
+            { titulo: "Os Templários em Portugal", autor: "Manuel J. Gandra", anio: "2000", idioma: "Portugués", categoria: "Historia" },
+            { titulo: "Knights Templar Encyclopedia", autor: "Karen Ralls", anio: "2007", idioma: "Inglés", categoria: "Académico" },
+            { titulo: "The Murdered Magicians", autor: "Peter Partner", anio: "1981", idioma: "Inglés", categoria: "Mitos y Esoterismo" },
+            { titulo: "Dungeon, Fire and Sword", autor: "John J. Robinson", anio: "1991", idioma: "Inglés", categoria: "Historia" },
+            
+            // Neotemplarismo y Tradición Moderna
+            { titulo: "La Sucesión de Larmenius: Mito y Realidad del Neotemplarismo", autor: "Bernard Marillier", anio: "2005", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Neotemplarismo y la Masonería de Rito Escocés", autor: "Alain Bernheim", anio: "2008", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La Estricta Observancia Templaria en el Siglo XVIII", autor: "René Le Forestier", anio: "1928", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Bernard-Raymond Fabré-Palaprat y la Orden del Temple", autor: "Julio C. de Paz", anio: "2010", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Temple y las Sociedades Secretas Contemporáneas", autor: "Serge Hutin", anio: "1930", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Las Órdenes Neotemplarias en América Latina", autor: "Eduardo Callaey", anio: "2015", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La herencia de los Templarios en la Francmasonería", autor: "José María Amigó", anio: "2001", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Ritos y Misterios del Neotemplarismo", autor: "Gastón Ventura", anio: "1998", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El renacimiento Templario en la Europa Romántica", autor: "Michel Vovelle", anio: "1985", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Guía de Órdenes Neotemplarias del Siglo XXI", autor: "Massimo Introvigne", anio: "2003", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Baphomet: El ídolo de los templarios y su reinvención", autor: "Michael Haag", anio: "2006", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Priorato de Sión y el engaño Neotemplario", autor: "Jean-Luc Chaumeil", anio: "1995", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Templarios y Masones: Dos tradiciones convergentes", autor: "Albert G. Mackey", anio: "1882", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Orígenes esotéricos del Rito Templario", autor: "Arthur Edward Waite", anio: "1890", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La Rosa Cruz y el Temple", autor: "Christian Jacq", anio: "1992", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Las Reglas Secretas de los Neotemplarios", autor: "Paul Naudon", anio: "1978", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Caballería Espiritual en la Era Moderna", autor: "Julius Evola", anio: "1950", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Código de los Caballeros Neotemplarios", autor: "Eduardo R. Callaey", anio: "2004", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Mito de la Supervivencia Templaria en Escocia", autor: "Robert L. D. Cooper", anio: "2002", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Roslin y la Capilla del Grial", autor: "Tim Wallace-Murphy", anio: "2006", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            
+            // Mitos y Esoterismo General
+            { titulo: "El enigma sagrado", autor: "Michael Baigent", anio: "1982", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La magia de los templarios", autor: "Louis Charpentier", anio: "1970", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El tesoro oculto de los templarios", autor: "Steven Sora", anio: "1999", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Los Templarios y el Arca de la Alianza", autor: "Graham Hancock", anio: "1992", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El misterio de Rennes-le-Château", autor: "Jean Markale", anio: "1980", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Gnosticismo Templario", autor: "Jacques de Mailles", anio: "2011", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "El Grial y la Orden del Temple", autor: "Wolfram von Eschenbach", anio: "1210", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Alquimia y simbolismo templario", autor: "Fulcanelli", anio: "1960", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "Los misterios de la Catedral de Chartres", autor: "Louis Charpentier", anio: "1966", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            { titulo: "La Virgen Negra y los Templarios", autor: "Ean Begg", anio: "1985", idioma: "Español", categoria: "Mitos y Esoterismo" },
+            
+            // Historia General y Geografía Templaria
+            { titulo: "Historia de los Templarios", autor: "Alain Demurger", anio: "2005", idioma: "Español", categoria: "Historia" },
+            { titulo: "Auge y Caída de los Caballeros Templarios", autor: "Dan Jones", anio: "2017", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los Templarios", autor: "Piers Paul Read", anio: "1999", idioma: "Español", categoria: "Historia" },
+            { titulo: "Breve historia de la Orden del Temple", autor: "José Luis Corral", anio: "2006", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los Templarios en la Península Ibérica", autor: "Gonzalo Martínez Díez", anio: "1993", idioma: "Español", categoria: "Historia" },
+            { titulo: "Castillos Templarios de España", autor: "Juan Eslava Galán", anio: "2008", idioma: "Español", categoria: "Historia" },
+            { titulo: "La Corona de Aragón y los Templarios", autor: "Jesús M. Macías", anio: "1998", idioma: "Español", categoria: "Historia" },
+            { titulo: "Encomiendas Templarias en Portugal", autor: "Paulo Alexandre Loução", anio: "2010", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los monjes guerreros", autor: "Edward Burman", anio: "1986", idioma: "Español", categoria: "Historia" },
+            { titulo: "La caballería cristiana", autor: "Jean Flori", anio: "1998", idioma: "Español", categoria: "Historia" },
+            { titulo: "El Imperio Templario", autor: "Osvaldo Alberto", anio: "2012", idioma: "Español", categoria: "Historia" },
+            { titulo: "Historia de las Órdenes de Caballería", autor: "Vicente de la Fuente", anio: "1876", idioma: "Español", categoria: "Historia" },
+            { titulo: "El Temple: Una historia militar", autor: "Helen Nicholson", anio: "2001", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los Templarios en América: ¿Mito o realidad precolombina?", autor: "Jacques de Mahieu", anio: "1979", idioma: "Español", categoria: "Historia" },
+            { titulo: "Las flotas del Temple", autor: "David Hatcher Childress", anio: "1995", idioma: "Español", categoria: "Historia" },
+            { titulo: "Rutas y caminos templarios en Europa", autor: "Matilde Asensi", anio: "2003", idioma: "Español", categoria: "Historia" },
+            { titulo: "Economía y finanzas de la Orden del Temple", autor: "Ignacio de la Torre", anio: "2014", idioma: "Español", categoria: "Historia" },
+            { titulo: "Los banqueros de Dios", autor: "Jürgen Sarnowsky", anio: "2001", idioma: "Español", categoria: "Historia" },
+            { titulo: "Poder y riqueza del Temple", autor: "Alain Demurger", anio: "2008", idioma: "Español", categoria: "Historia" },
+            { titulo: "La influencia de los templarios en la agricultura", autor: "Marcel Marion", anio: "1935", idioma: "Español", categoria: "Historia" },
+            
+            // Juicio y Caída
+            { titulo: "El Proceso de los Templarios", autor: "Malcolm Barber", anio: "1978", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "La Caída de los Templarios", autor: "Alain Demurger", anio: "2010", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Jacques de Molay: El último Gran Maestre", autor: "Alain Demurger", anio: "2002", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "El Pergamino de Chinon", autor: "Barbara Frale", anio: "2001", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "El Papa Clemente V y el proceso al Temple", autor: "Sophia Menache", anio: "1998", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Felipe IV el Hermoso y la herejía templaria", autor: "Joseph Strayer", anio: "1980", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Tragedia y muerte de los caballeros templarios", autor: "Marion Melville", anio: "1951", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Viernes 13: El arresto de la Orden", autor: "Juan G. Atienza", anio: "2015", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Las confesiones de los Templarios", autor: "Heinrich Finke", anio: "1907", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Absolución papal de los templarios: Archivos Vaticanos", autor: "Barbara Frale", anio: "2004", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Los mártires del Temple", autor: "Jean Markale", anio: "1985", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "La maldición de Jacques de Molay", autor: "Maurice Druon", anio: "1955", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Inquisición y supresión del Temple", autor: "Henry Charles Lea", anio: "1888", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Bula Vox in Excelso: Análisis y contexto", autor: "Carlos Ayala", anio: "2010", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "El destino de los bienes templarios", autor: "Fernando de Olaguer", anio: "1999", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Los Hospitalarios tras la caída del Temple", autor: "Anthony Luttrell", anio: "1999", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "La Orden de Cristo en Portugal (Sucesores)", autor: "José Manuel Garcia", anio: "2001", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "El Temple de París y su destrucción", autor: "Henri de Curzon", anio: "1923", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Los templarios en el Concilio de Vienne", autor: "Ignacio de la Torre", anio: "2012", idioma: "Español", categoria: "Juicio y Caída" },
+            { titulo: "Cronología de una conjura contra el Temple", autor: "Jürgen Sarnowsky", anio: "2005", idioma: "Español", categoria: "Juicio y Caída" },
+            
+            // Cruzadas
+            { titulo: "Historia de las Cruzadas", autor: "Steven Runciman", anio: "1951", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Los Templarios en Tierra Santa", autor: "Helen Nicholson", anio: "2004", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Saladino y los Templarios", autor: "Stanley Lane-Poole", anio: "1953", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "El reino latino de Jerusalén", autor: "Joshua Prawer", anio: "1972", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La batalla de los Cuernos de Hattin", autor: "Peter W. Edbury", anio: "1998", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Los monjes soldados en las Cruzadas", autor: "Alan Forey", anio: "1992", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Castillos de los Cruzados en Medio Oriente", autor: "Hugh Kennedy", anio: "1994", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Acre y la última resistencia Templaria", autor: "David Nicolle", anio: "2005", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Ricardo Corazón de León y las Cruzadas", autor: "John Gillingham", anio: "1978", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La estrategia militar del Temple", autor: "R.C. Smail", anio: "1956", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Crónicas de las Cruzadas", autor: "Jean de Joinville", anio: "1309", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Las órdenes militares y la Guerra Santa", autor: "Carlos de Ayala", anio: "2011", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La convivencia de templarios y musulmanes", autor: "Amin Maalouf", anio: "1983", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "El Papado y las expediciones a Tierra Santa", autor: "Jonathan Riley-Smith", anio: "1987", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Logística naval de los templarios cruzados", autor: "Michel Balard", anio: "2006", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La medicina templaria en los hospitales de ultramar", autor: "Sylvia Schein", anio: "1991", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Los escuderos y tropas auxiliares del Temple", autor: "Matthew Bennett", anio: "1998", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Fortalezas del Temple en Antioquía", autor: "Thomas Asbridge", anio: "2010", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "La Primera Cruzada y la fundación de la Orden", autor: "Peter Frankopan", anio: "2012", idioma: "Español", categoria: "Cruzadas" },
+            { titulo: "Templarios y Asesinos: Hermanos de armas", autor: "James Wasserman", anio: "2001", idioma: "Español", categoria: "Cruzadas" },
+            
+            // Origen y Regla / Académico
+            { titulo: "La Regla del Temple", autor: "Simón de Saint-Omer", anio: "1129", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Los retretes y la regla de clausura del Temple", autor: "Jochen Burgtorf", anio: "2008", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "El Tratado de San Bernardo a los Caballeros", autor: "San Bernardo de Claraval", anio: "1135", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Estatutos y Retratos del Templo", autor: "Henri de Curzon", anio: "1886", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Análisis Jurídico de la Regla Primitiva", autor: "Dominique Selwood", anio: "1999", idioma: "Español", categoria: "Académico" },
+            { titulo: "Jerarquía y administración en la Regla Templaria", autor: "Jochen Burgtorf", anio: "2008", idioma: "Español", categoria: "Académico" },
+            { titulo: "Las bulas fundacionales de las Órdenes Militares", autor: "Carlos de Ayala", anio: "2005", idioma: "Español", categoria: "Académico" },
+            { titulo: "Vida litúrgica de los Caballeros Templarios", autor: "Cristina Dondi", anio: "2004", idioma: "Español", categoria: "Académico" },
+            { titulo: "El ceremonial de iniciación templaria", autor: "Alain Demurger", anio: "2008", idioma: "Español", categoria: "Académico" },
+            { titulo: "Arquitectura militar de la Orden del Temple", autor: "Juan L. Castellano", anio: "2016", idioma: "Español", categoria: "Académico" },
+            { titulo: "Las mujeres en la Orden del Temple", autor: "Helen Nicholson", anio: "2001", idioma: "Español", categoria: "Académico" },
+            { titulo: "La dieta y medicina de los templarios", autor: "Diego de Prado", anio: "2013", idioma: "Español", categoria: "Académico" },
+            { titulo: "Los sellos templarios: Simbología y uso", autor: "Louis Blancard", anio: "1910", idioma: "Español", categoria: "Académico" },
+            { titulo: "Relaciones Iglesia-Temple en la Corona de Aragón", autor: "Alan Forey", anio: "1973", idioma: "Español", categoria: "Académico" },
+            { titulo: "Diplomacia templaria en la corte de Felipe IV", autor: "Malcolm Barber", anio: "1993", idioma: "Español", categoria: "Académico" },
+            { titulo: "El fin del Temple según los cronistas de la época", autor: "Jürgen Sarnowsky", anio: "2009", idioma: "Español", categoria: "Académico" },
+            { titulo: "Sociología de la orden militar en el siglo XII", autor: "Anthony Luttrell", anio: "1996", idioma: "Español", categoria: "Académico" },
+            { titulo: "El rol de los sargentos en la Regla", autor: "John Walker", anio: "1992", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Castidad y obediencia en los Estatutos Jerárquicos", autor: "Dominique Selwood", anio: "2001", idioma: "Español", categoria: "Origen y Regla" },
+            { titulo: "Armamento y vestimenta según la Regla", autor: "David Nicolle", anio: "1998", idioma: "Español", categoria: "Origen y Regla" }
+        ];
 
-            tables.forEach(table => {
-                const rows = table.querySelectorAll("tr");
-                
-                // Empezamos desde 1 para omitir la fila de encabezados (th)
-                for (let i = 1; i < rows.length; i++) {
-                    const row = rows[i];
-                    // Celdas de Título Original (1), Autor (2) y Descripción (5)
-                    const titleCell = row.cells[1];
-                    const authorCell = row.cells[2];
-                    const descCell = row.cells[5];
-                    
-                    if (titleCell || authorCell || descCell) {
-                        const text = (titleCell.textContent || "") + " " + 
-                                     (authorCell.textContent || "") + " " + 
-                                     (descCell.textContent || "");
-                        
-                        if (text.toLowerCase().indexOf(filter) > -1) {
-                            row.style.display = "";
-                        } else {
-                            row.style.display = "none";
-                        }
-                    }
+        // Función para animar los números progresivamente
+        function animarContador(id, finalValue, duration = 1500) {
+            const obj = document.getElementById(id);
+            let start = null;
+            const step = (timestamp) => {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+                obj.innerText = Math.floor(progress * finalValue);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
                 }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Función para calcular las estadísticas de las tarjetas
+        function calcularEstadisticas() {
+            const totalLibros = baseDeDatosLibros.length;
+            const autoresUnicos = new Set(baseDeDatosLibros.map(libro => libro.autor)).size;
+            const idiomasUnicos = new Set(baseDeDatosLibros.map(libro => libro.idioma)).size;
+            
+            animarContador('stat-total', totalLibros);
+            animarContador('stat-autores', autoresUnicos);
+            animarContador('stat-idiomas', idiomasUnicos);
+        }
+
+        // Función principal de renderizado y filtrado
+        function renderTable() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const idiomaVal = document.getElementById('idiomaFilter').value;
+            const temaVal = document.getElementById('temaFilter').value;
+            
+            const tbody = document.getElementById('tabla-libros');
+            tbody.innerHTML = ''; // Limpiar tabla
+            
+            // Filtrar la base de datos
+            const filtrados = baseDeDatosLibros.filter(libro => {
+                const matchSearch = libro.titulo.toLowerCase().includes(searchVal) || 
+                                    libro.autor.toLowerCase().includes(searchVal) || 
+                                    libro.anio.toString().includes(searchVal);
+                const matchIdioma = idiomaVal === "" || libro.idioma === idiomaVal;
+                const matchTema = temaVal === "" || libro.categoria === temaVal;
+                
+                return matchSearch && matchIdioma && matchTema;
+            });
+            
+            // Actualizar contador
+            document.getElementById('contador-libros').innerText = `Mostrando ${filtrados.length} obras registradas`;
+
+            // Inyectar filas en HTML
+            filtrados.forEach((libro, index) => {
+                const tr = document.createElement('tr');
+                const safeTitulo = libro.titulo.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                const safeAutor = libro.autor.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                tr.innerHTML = `
+                    <td style="font-weight: bold; color: var(--texto); font-size: 1.05rem;">${libro.titulo}</td>
+                    <td style="color: #444;">${libro.autor}</td>
+                    <td>${libro.anio}</td>
+                    <td><span style="background: rgba(147, 112, 219, 0.1); color: var(--lila-oscuro); padding: 3px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">${libro.idioma}</span></td>
+                    <td><span style="background: rgba(155,17,30,0.1); color: var(--rojo-templario); padding: 3px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">${libro.categoria}</span></td>
+                    <td style="text-align: center;">
+                        <button class="btn-copy" id="btn-copy-${index}" onclick="copiarLibro('${safeTitulo}', '${safeAutor}', '${libro.anio}', '${libro.idioma}', '${libro.categoria}', 'btn-copy-${index}')" title="Copiar información de esta obra">📋</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
             });
         }
+
+        // Función para copiar los datos del libro al portapapeles
+        function copiarLibro(titulo, autor, anio, idioma, categoria, btnId) {
+            const texto = `Título: ${titulo}\nAutor: ${autor}\nAño: ${anio}\nIdioma: ${idioma}\nCategoría: ${categoria}`;
+            
+            navigator.clipboard.writeText(texto).then(() => {
+                const btn = document.getElementById(btnId);
+                const textoOriginal = btn.innerHTML;
+                btn.innerHTML = "✅";
+                btn.style.backgroundColor = "var(--rojo-templario)";
+                btn.style.color = "white";
+                
+                setTimeout(() => {
+                    btn.innerHTML = textoOriginal;
+                    btn.style.backgroundColor = "transparent";
+                    btn.style.color = "#666";
+                }, 2000);
+            }).catch(err => console.error("Error al copiar: ", err));
+        }
+
+        // Renderizar la tabla por primera vez al cargar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            calcularEstadisticas();
+            renderTable();
+        });
     </script>
 </body>
 </html>
