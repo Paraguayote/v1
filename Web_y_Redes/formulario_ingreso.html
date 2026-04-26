@@ -5,211 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitud de Ingreso | OTE Paraguay</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --lila: #9370DB;
-            --rojo: #8B0000;
-            --blanco: #FFFFFF;
-            --negro: #0D0D0D;
-            --gris-plata: #C0C0C0;
-            --gris-oscuro: #2D2D2D;
-            --lila-oscuro: #4B0082;
-            --lila-claro: #E6E6FA;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--negro);
-            color: var(--blanco);
-            font-family: 'Georgia', Arial, sans-serif;
-            line-height: 1.6;
-            padding: 2rem 1rem;
-        }
-
-        .cinzel {
-            font-family: 'Cinzel', serif;
-        }
-
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--gris-oscuro);
-            border: 1px solid var(--gris-plata);
-            border-radius: 6px;
-            padding: 3rem 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--rojo);
-            padding-bottom: 1.5rem;
-        }
-
-        .form-header h1 {
-            color: var(--lila);
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-header p {
-            color: var(--gris-plata);
-            font-style: italic;
-            font-size: 1.1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--lila-claro);
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="date"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--negro);
-            border: 1px solid var(--gris-plata);
-            border-radius: 4px;
-            color: var(--blanco);
-            font-family: 'Georgia', Arial, sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--lila);
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            background: rgba(147, 112, 219, 0.1);
-            padding: 15px;
-            border-left: 4px solid var(--lila);
-            margin-top: 2rem;
-        }
-
-        .checkbox-group input {
-            margin-top: 5px;
-            transform: scale(1.2);
-        }
-
-        .checkbox-group label {
-            color: var(--gris-plata);
-            font-weight: normal;
-            font-size: 0.95rem;
-        }
-
-        .btn-submit {
-            display: block;
-            width: 100%;
-            background-color: var(--rojo);
-            color: var(--blanco);
-            border: none;
-            padding: 16px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-top: 2rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .btn-submit:hover {
-            background-color: #A00000;
-        }
-    </style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%239b111e%22>✠</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body class="priorato-layout">
 
-    <div class="form-container">
-        <div class="form-header">
-            <div style="color: var(--rojo); font-size: 3rem; line-height: 1;">✠</div>
-            <h1 class="cinzel">Solicitud de Ingreso</h1>
-            <p>Gran Priorato Nacional del Paraguay - OTE</p>
-        </div>
+    <header class="priorato-header">
+        <img src="../image/logo/OTE.png" alt="Escudo OTE" onerror="this.outerHTML='<div style=\'font-size: 8rem; color: var(--rojo-templario); margin-bottom: 1rem;\'>✠</div>'">
+        <h1>Solicitud de Ingreso</h1>
+        <h2>Gran Priorato Nacional del Paraguay - OTE</h2>
+        <p class="lema">Vía, Veritas, Vita<br>"El Camino, la Verdad, la Vida"</p>
+    </header>
 
-        <form id="ingresoForm">
-            <div class="form-group">
+    <main class="container" style="max-width: 800px;">
+        <a href="../index.html" class="btn-volver">← Volver al Inicio</a>
+
+        <div class="contact-container" style="margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="color: var(--rojo-templario); font-size: 3rem; line-height: 1;">✠</div>
+                <h2 style="border: none; padding: 0;">FORMULARIO DE POSTULACIÓN</h2>
+                <p class="contact-subtitle">Completa tus datos con sinceridad. Un miembro de la Orden revisará tu perfil.</p>
+            </div>
+
+            <form id="ingresoForm">
                 <label>Nombre Completo (Legal)</label>
                 <input type="text" id="nombre" required placeholder="Ej. Juan Carlos Pérez">
-            </div>
+                
+                <label>Correo Electrónico</label>
+                <input type="email" id="email" required placeholder="tu@correo.com">
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                <div class="form-group">
-                    <label>Fecha de Nacimiento</label>
-                    <input type="date" id="fechaNac" required>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" id="fechaNac" required>
+                    </div>
+                    <div>
+                        <label>Teléfono / WhatsApp</label>
+                        <input type="tel" id="telefono" required placeholder="+595 ...">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Teléfono / WhatsApp</label>
-                    <input type="tel" id="telefono" required placeholder="+595 ...">
-                </div>
-            </div>
 
-            <div class="form-group">
                 <label>Ciudad y País de Residencia</label>
                 <input type="text" id="ciudad" required placeholder="Ej. Asunción, Paraguay">
-            </div>
 
-            <div class="form-group">
                 <label>¿Por qué deseas unirte a la Orden Templaria Ecléctica?</label>
                 <textarea id="motivos" rows="5" required placeholder="Describe brevemente tus motivos espirituales, filosóficos o personales..."></textarea>
-            </div>
 
-            <div class="checkbox-group">
-                <input type="checkbox" id="compromiso" required>
-                <label for="compromiso">Declaro ser mayor de edad y me comprometo solemnemente a que los datos aquí proporcionados son verdaderos. Comprendo que la OTE es una institución esotérica, filosófica y hermética, y que enviar esta solicitud es el primer paso de un período de evaluación, sin garantizar mi admisión automática a la Orden.</label>
-            </div>
+                <div style="background: rgba(155,17,30,0.05); padding: 15px; border-left: 4px solid var(--rojo-templario); margin-top: 20px; border-radius: 4px; display: flex; gap: 10px; align-items: flex-start;">
+                    <input type="checkbox" id="compromiso" required style="width: auto; margin-top: 4px;">
+                    <label for="compromiso" style="margin: 0; color: var(--texto); font-weight: normal; font-size: 0.9rem; line-height: 1.5;">Declaro ser mayor de edad y me comprometo a que los datos proporcionados son verdaderos. Comprendo que la OTE es una institución esotérica, filosófica y hermética, y que enviar esta solicitud es el primer paso de evaluación.</label>
+                </div>
 
-            <button type="submit" class="btn-submit cinzel">✠ ENVIAR SOLICITUD ✠</button>
-        </form>
-    </div>
+                <div class="contact-actions">
+                    <button type="submit" id="btn-submit" class="btn btn-full">✠ ENVIAR SOLICITUD ✠</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="priorato-footer">
+        <div style="color: var(--rojo-templario); font-size: 2rem; margin-bottom: 1rem; line-height: 1;">✠</div>
+        <p class="cinzel" style="color: var(--rojo-templario); font-weight: bold;">Non nobis, Domine, non nobis, sed Nomini Tuo da gloriam</p>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">&copy; 2026 Orden Templaria Ecléctica (OTE) - Gran Priorato del Paraguay.</p>
+    </footer>
 
     <script>
         document.getElementById('ingresoForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Evita que la página se recargue
+            e.preventDefault();
 
-            // Recopilación de los datos del formulario
+            const btn = document.getElementById('btn-submit');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = "⏳ Enviando Solicitud...";
+            btn.disabled = true;
+
             const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
             const fechaNac = document.getElementById('fechaNac').value;
             const telefono = document.getElementById('telefono').value;
             const ciudad = document.getElementById('ciudad').value;
             const motivos = document.getElementById('motivos').value;
 
-            // Formateo del asunto y cuerpo del correo
-            const emailDestino = "granprioratodelparaguay.ote@gmail.com";
-            const asunto = encodeURIComponent("✠ Solicitud de Ingreso OTE - " + nombre);
-            
-            const cuerpoMensaje = encodeURIComponent(
-                "✠ SOLICITUD DE INGRESO - OTE PARAGUAY ✠\n\n" +
-                "Nombre Completo: " + nombre + "\n" +
-                "Fecha de Nacimiento: " + fechaNac + "\n" +
-                "Teléfono/WhatsApp: " + telefono + "\n" +
-                "Ciudad y País: " + ciudad + "\n\n" +
-                "Motivos de ingreso:\n" + motivos + "\n\n" +
-                "✓ El postulante ha declarado ser mayor de edad y aceptado los términos de evaluación."
-            );
-
-            // Redirección al cliente de correo
-            window.location.href = "mailto:" + emailDestino + "?subject=" + asunto + "&body=" + cuerpoMensaje;
+            fetch("https://formsubmit.co/ajax/643d4eaaa5173f5c183249de7397751a", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: "✠ SOLICITUD DE INGRESO (STANDALONE) ✠ - " + nombre,
+                    email: email, 
+                    _autoresponse: "Saludos cordiales. Hemos recibido tu solicitud de postulación a la Orden Templaria Ecléctica (Gran Priorato del Paraguay). Un miembro de nuestra Orden analizará tu perfil y se pondrá en contacto contigo a la brevedad.\n\nNon nobis, Domine, non nobis, sed Nomini Tuo da gloriam.",
+                    Nombre: nombre,
+                    "Fecha de Nacimiento": fechaNac,
+                    Teléfono: telefono,
+                    "Ciudad y País": ciudad,
+                    Motivación: motivos
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("✠ Solicitud enviada con éxito. Se ha enviado una confirmación a tu correo electrónico.");
+                window.location.href = "../index.html"; // Redirige al inicio tras enviar
+            })
+            .catch(error => {
+                alert("Error de conexión. Por favor, intenta nuevamente más tarde.");
+                console.error(error);
+            })
+            .finally(() => {
+                btn.innerHTML = textoOriginal;
+                btn.disabled = false;
+            });
         });
     </script>
 </body>
