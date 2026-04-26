@@ -328,7 +328,6 @@
             h1 { font-size: 1.4rem; letter-spacing: 2px; }
             .subtitle { font-size: 0.7rem; }
             .menu li { padding-bottom: 8px; margin: 10px 0; }
-            .btn-access { position: relative; margin-top: 20px; width: 100%; }
             .panel-content h2 { font-size: 1.2rem; }
             .stats { grid-template-columns: 1fr; gap: 10px; }
             .stat { padding: 10px; }
@@ -340,7 +339,6 @@
             .brand { border-right: none; border-bottom: 1px solid var(--gris-borde); padding: 40px 20px; }
             .nav { padding: 25px 20px; }
             .grid { grid-template-columns: 1fr; }
-            .btn-access { position: relative; margin-top: 20px; width: 100%; }
             h1 { font-size: 1.6rem; letter-spacing: 3px; }
             .subtitle { font-size: 0.75rem; }
             .menu li { padding-bottom: 10px; margin: 12px 0; }
@@ -360,10 +358,52 @@
             .grid { grid-template-columns: 1fr 1fr; }
             h1 { font-size: 1.8rem; }
             .subtitle { font-size: 0.85rem; }
-            .btn-access { position: relative; margin-top: 25px; }
             .stats { grid-template-columns: repeat(2, 1fr); }
             .llamado { padding: 20px; }
             .valor { padding: 18px; }
+        }
+        
+        /* Adaptación Global y Reordenamiento para Móviles/Tablets (Hasta 768px) */
+        @media (max-width: 768px) {
+            .nav {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Centra el contenido horizontalmente */
+            }
+            .menu {
+                order: 2; /* Envía el menú a segundo lugar visualmente */
+                width: 100%;
+                text-align: center; /* Centra los enlaces y las cruces */
+                padding: 0;
+            }
+            .btn-access {
+                order: 1; /* Sube el botón en primer lugar visualmente */
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-top: 0 !important;
+                margin-bottom: 25px;
+                width: 100%;
+            }
+            #panel {
+                padding: 70px 20px 30px 20px; /* Da más espacio arriba para que el botón de volver no se superponga al título */
+            }
+            .close-btn {
+                top: 15px;
+                right: 15px;
+                background: var(--pergamino);
+                padding: 8px 12px;
+                border-radius: 4px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 10;
+            }
+            .table-responsive {
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin-top: 15px;
+            }
+            .contact-container { padding: 20px; }
             .contact-actions { flex-direction: column; }
             .contact-actions button { width: 100%; }
         }
@@ -504,9 +544,9 @@
             color: var(--rojo-templario);
             border: 1px solid var(--rojo-templario);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
             cursor: pointer;
             z-index: 150;
             display: flex;
@@ -519,6 +559,41 @@
             color: var(--blanco);
             transform: scale(1.1);
             box-shadow: 0 0 15px var(--rojo-templario);
+        }
+        
+        /* Animación de latido cuando suena la música para ubicar el reproductor */
+        @keyframes pulse-music {
+            0% { box-shadow: 0 0 0 0 rgba(155, 17, 30, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(155, 17, 30, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(155, 17, 30, 0); }
+        }
+        .music-toggle.playing {
+            animation: pulse-music 2s infinite;
+            background: rgba(155, 17, 30, 0.2);
+        }
+
+        /* Créditos de Audio */
+        #audio-credits {
+            position: fixed;
+            bottom: 15px;
+            left: 20px;
+            background: rgba(244, 241, 234, 0.9);
+            border: 1px solid var(--gris-borde);
+            border-left: 3px solid var(--rojo-templario);
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            z-index: 100;
+            /* Efecto Fade-in */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+        #audio-credits.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -574,13 +649,17 @@
         <div class="panel-content" id="content"></div>
     </div>
 
-    <!-- Reproductor de Audio (oculto) -->
-    <audio id="bg-music" loop preload="auto" crossorigin="anonymous" style="display:none" aria-hidden="true">
-        <!-- Enlace MP3 directo y universal (Archive.org) que no falla -->
+    <!-- Créditos de Audio -->
+    <div id="audio-credits">
+        🎵 Audio: Ave Maria Gregorian Chant. Fuente: <a href="https://commons.wikimedia.org/wiki/File:Ave_Maria_(Gregorian_Chant).ogg" target="_blank" style="color: var(--rojo-templario); text-decoration: none; font-weight: bold;">Wikimedia Commons</a>.
+    </div>
+
+    <!-- Reproductor de Audio -->
+    <audio id="bg-music" preload="auto" crossorigin="anonymous">
+        <!-- Enlace directo Wikimedia Commons -->
+        <source src="https://upload.wikimedia.org/wikipedia/commons/2/23/Ave_Maria_%28Gregorian_Chant%29.ogg" type="audio/ogg">
+        <!-- Fallback de seguridad -->
         <source src="https://ia600408.us.archive.org/29/items/gregorian-chant/Gregorian%20Chant.mp3" type="audio/mpeg">
-        <!-- Fallback local (si se añade en /public/audio) -->
-        <source src="/audio/ote-theme.mp3" type="audio/mpeg">
-        <source src="/audio/ote-theme.ogg" type="audio/ogg">
     </audio>
     <button class="music-toggle" id="musicBtn" onclick="toggleMusic(event)" title="Reproducir/Pausar Canto Gregoriano">
         🔇
@@ -614,6 +693,7 @@
             `,
             autoridades: `
                 <h2>✠ CUADRO DE AUTORIDADES ✠</h2>
+                <div class="table-responsive">
                 <table>
                     <tr><th>Dignidad</th><th>Función</th></tr>
                     <tr><td>Gran Prior</td><td>Custodio de la Orden y Dirección Suprema</td></tr>
@@ -623,6 +703,7 @@
                     <tr><td>Escudero</td><td>Miembro en Formación</td></tr>
                     <tr><td>Novicio/Postulante</td><td>Candidato en Evaluación</td></tr>
                 </table>
+                </div>
             `,
             contacto: `
                 <div class="contact-container">
@@ -695,49 +776,103 @@
             `,
             miembros: `
                 <h2>✠ ÁREA DE MIEMBROS ✠</h2>
-                <p style="text-align: center; margin-bottom: 30px;">Bienvenido, Hermano.</p>
-                
-                <h3>⚔ GALERÍA FRATERNAL</h3>
-                <div id="galeria-miembros" class="galeria-grid"></div>
-
-                <h3>⚔ GESTIÓN DE LA ORDEN</h3>
-                <ul style="margin-left: 20px;">
-                    <li style="margin-bottom: 10px;"><strong>Registro de Miembros</strong><br>Carpeta de Integrantes, fichas, historial</li>
-                    <li style="margin-bottom: 10px;"><strong>Gestión de Encomiendas</strong><br>Asunción Centro, Graneros del Norte, San Antonio, Ciudad del Este</li>
-                    <li style="margin-bottom: 10px;"><strong>Programa de Formación</strong><br>5 módulos: Filosofía, Hermetismo, Gnosis, Simbolismo, Ética</li>
-                    <li style="margin-bottom: 10px;"><strong>Calendario de Actividades</strong><br>Tenidas, Capítulos, Rituales</li>
-                    <li style="margin-bottom: 10px;"><strong>Archivo Documental</strong><br>Estatutos, Rituales, Actas</li>
-                </ul>
+                <p style="text-align: center; margin-bottom: 30px;">Bienvenido, Hermano. Que la luz de la sabiduría guíe tus pasos.</p>
                 
                 <h3>⚔ ESTADÍSTICAS</h3>
-                <div class="stats">
-                    <div class="stat"><div class="stat-num">24</div><div>Miembros</div></div>
+                <div class="stats" style="margin-bottom: 40px;">
+                    <div class="stat"><div class="stat-num">24</div><div>Miembros Activos</div></div>
                     <div class="stat"><div class="stat-num">4</div><div>Encomiendas</div></div>
-                    <div class="stat"><div class="stat-num">8</div><div>Documentos</div></div>
+                    <div class="stat"><div class="stat-num">04</div><div>Próximo Evento (May)</div></div>
                 </div>
                 
-                <div style="text-align: center;">
-                    <p style="margin-bottom: 15px; font-size: 1.2rem;">⚙ DESARROLLO 199% ⚙</p>
-                    <a href="mailto:granprioratodelparaguay.ote@gmail.com?subject=Solicitud acceso" class="btn">✠ DESARROLLAR ✠</a>
+                <h3>⚔ PLATAFORMA INTEGRAL</h3>
+                <p style="margin-bottom: 20px;">Accede al sistema de administración general de la Orden para gestionar registros, avances de formación y biblioteca documental.</p>
+                
+                <div class="grid" style="margin-bottom: 30px;">
+                    <div class="valor" style="text-align: center; padding: 25px 15px;">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">👥</div>
+                        <h4>Directorio</h4>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;">Fichas e historial</p>
+                    </div>
+                    <div class="valor" style="text-align: center; padding: 25px 15px;">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">🎓</div>
+                        <h4>Formación</h4>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;">Módulos de estudio</p>
+                    </div>
+                    <div class="valor" style="text-align: center; padding: 25px 15px;">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">📅</div>
+                        <h4>Calendario</h4>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;">Tenidas y Rituales</p>
+                    </div>
+                    <div class="valor" style="text-align: center; padding: 25px 15px;">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">📁</div>
+                        <h4>Archivo Central</h4>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;">Estatutos y Actas</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <!-- Nota: El enlace apunta a localhost:3000 suponiendo que el panel en React se ejecuta localmente así -->
+                    <a href="http://localhost:3000" target="_blank" class="btn" style="font-size: 1.1rem; padding: 15px 30px;">✠ INGRESAR AL PANEL DE CONTROL ✠</a>
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">* Requiere credenciales de acceso de alto grado</p>
+                </div>
+
+                <h3>⚔ GALERÍA FRATERNAL</h3>
+                <div id="galeria-miembros" class="galeria-grid"></div>
+            `,
+            login: `
+                <div style="text-align: center; max-width: 400px; margin: 40px auto; padding: 40px; background: var(--blanco); border: 1px solid var(--gris-borde); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <div style="font-size: 4rem; color: var(--rojo-templario); margin-bottom: 20px;">🔒</div>
+                    <h2 style="font-family: 'Cinzel', serif; color: var(--rojo-templario); border: none; padding-bottom: 0; margin-bottom: 10px;">ACCESO RESTRINGIDO</h2>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 25px;">Ingrese sus credenciales capitulares para acceder al área de miembros.</p>
+                    
+                    <input type="password" id="codigo-acceso" placeholder="Código de acceso" style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid var(--gris-borde); border-radius: 4px; text-align: center; font-size: 1.2rem; letter-spacing: 5px; font-family: monospace;">
+                    
+                    <p id="login-error" style="color: red; font-size: 0.85rem; display: none; margin-top: -10px; margin-bottom: 15px;">Código incorrecto. Intente nuevamente.</p>
+                    
+                    <button onclick="verificarAcceso()" class="btn" style="width: 100%; font-size: 1.1rem; padding: 15px;">✠ DESBLOQUEAR ✠</button>
                 </div>
             `
         };
 
         function openPanel(seccion) {
             if (seccion === 'miembros') {
-                var code = prompt("Código de acceso:");
-                if (code !== "123") {
-                    alert("Código incorrecto.");
-                    return;
-                }
+                document.getElementById('content').innerHTML = contenido['login'];
+                document.getElementById('panel').style.display = 'block';
+                
+                // Dar foco automático al input y permitir envío con tecla Enter
+                setTimeout(() => {
+                    const input = document.getElementById('codigo-acceso');
+                    if(input) {
+                        input.focus();
+                        input.addEventListener('keypress', function (e) {
+                            if (e.key === 'Enter') {
+                                verificarAcceso();
+                            }
+                        });
+                    }
+                }, 100);
+                return;
             }
+            
             document.getElementById('content').innerHTML = contenido[seccion];
-            
-            if (seccion === 'miembros') {
-                cargarGaleriaAleatoria();
-            }
-            
             document.getElementById('panel').style.display = 'block';
+        }
+
+        function verificarAcceso() {
+            const input = document.getElementById('codigo-acceso');
+            const errorMsg = document.getElementById('login-error');
+            
+            if (input.value === "123") {
+                // Acceso concedido: Mostrar el contenido real de miembros
+                document.getElementById('content').innerHTML = contenido['miembros'];
+                cargarGaleriaAleatoria();
+            } else {
+                // Acceso denegado: Mostrar error
+                errorMsg.style.display = 'block';
+                input.value = '';
+                input.focus();
+            }
         }
 
         function closePanel() {
@@ -756,12 +891,29 @@
             );
         }
 
+        function validarFormulario() {
+            const mensaje = document.getElementById("mensaje")?.value.trim() || "";
+            const nombre = document.getElementById("nombre")?.value.trim() || "";
+
+            if (mensaje === "") {
+                alert("✠ Por favor, escribe un mensaje antes de enviar.");
+                return false;
+            }
+            if (nombre === "") {
+                alert("✠ Por favor, ingresa tu nombre completo.");
+                return false;
+            }
+            return true;
+        }
+
         function enviarEmail() {
+            if (!validarFormulario()) return;
             const cuerpo = obtenerMensaje();
             window.location.href = "mailto:granprioratodelparaguay.ote@gmail.com?subject=Contacto OTE&body=" + cuerpo;
         }
 
         function enviarWhatsApp() {
+            if (!validarFormulario()) return;
             const cuerpo = obtenerMensaje();
             const telefono = "595994340472";
             window.open("https://wa.me/" + telefono + "?text=" + cuerpo, "_blank");
@@ -798,18 +950,30 @@
         let musicPlaying = false;
         const bgMusic = document.getElementById('bg-music');
         const musicBtn = document.getElementById('musicBtn');
-        if (!bgMusic || !musicBtn) {
-          console.warn('Audio elements not found');
-        }
+
+        // Cargar configuración de música guardada desde el panel administrador
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedUrl = localStorage.getItem('ote_bg_music_url');
+            const savedCredits = localStorage.getItem('ote_bg_music_credits');
+            
+            if (savedUrl) {
+                bgMusic.innerHTML = ''; // Elimina las fuentes predeterminadas del HTML
+                bgMusic.src = savedUrl;
+            }
+            if (savedCredits) {
+                document.getElementById('audio-credits').innerHTML = '🎵 ' + savedCredits;
+            }
+        });
 
         // Auto-reproducir al primer clic en la pantalla (Evita el bloqueo de navegadores)
         document.body.addEventListener('click', function initMusic() {
-            if (!bgMusic) return;
             if (!musicPlaying) {
                 bgMusic.volume = 0.5; // Volumen al 50% para que se escuche bien
                 bgMusic.play().then(() => {
                     musicPlaying = true;
                     musicBtn.innerHTML = '🔊';
+                    musicBtn.classList.add('playing');
+                    document.getElementById('audio-credits').classList.add('visible');
                 }).catch(e => {
                     console.log("Autoplay bloqueado o audio no encontrado", e);
                     musicPlaying = false;
@@ -819,19 +983,30 @@
             document.body.removeEventListener('click', initMusic);
         }, { once: true });
 
+        // Restablecer la interfaz cuando la música termine de reproducirse (1 sola vez)
+        bgMusic.addEventListener('ended', function() {
+            musicPlaying = false;
+            musicBtn.innerHTML = '🔇';
+            musicBtn.classList.remove('playing');
+            document.getElementById('audio-credits').classList.remove('visible');
+        });
+
         function toggleMusic(event) {
-            if (!bgMusic) return;
             if (event) event.stopPropagation(); // Evita conflicto con el clic del fondo
 
             if (musicPlaying) {
                 bgMusic.pause();
                 musicBtn.innerHTML = '🔇';
                 musicPlaying = false;
+                musicBtn.classList.remove('playing');
+                document.getElementById('audio-credits').classList.remove('visible');
             } else {
                 bgMusic.volume = 0.5;
                 bgMusic.play().then(() => {
                     musicBtn.innerHTML = '🔊';
                     musicPlaying = true;
+                    musicBtn.classList.add('playing');
+                    document.getElementById('audio-credits').classList.add('visible');
                 }).catch(e => alert("No se pudo reproducir. Verifica tu conexión a internet o el archivo local."));
             }
         }
