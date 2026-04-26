@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contadores de Clics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="layout-centrado">
+    <h1>Contadores (Inician en 7)</h1>
+    <div class="contenedor-botones">
+        <button id="contador-1" class="btn-contador" onclick="sumarClic(this)" data-count="7">Clics: 7</button>
+        <button id="contador-2" class="btn-contador" onclick="sumarClic(this)" data-count="7">Clics: 7</button>
+        <button id="contador-3" class="btn-contador" onclick="sumarClic(this)" data-count="7">Clics: 7</button>
+    </div>
+
+    <script>
+        // Recuperar los valores guardados al cargar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('.btn-contador').forEach(boton => {
+                const valorGuardado = localStorage.getItem(boton.id);
+                if (valorGuardado) {
+                    boton.setAttribute('data-count', valorGuardado);
+                    boton.innerText = 'Clics: ' + valorGuardado;
+                }
+            });
+        });
+
+        function sumarClic(boton) {
+            // 1. Obtenemos el valor actual guardado en 'data-count' y lo convertimos a número
+            let conteoActual = parseInt(boton.getAttribute('data-count'));
+            
+            // 2. Le sumamos 1
+            conteoActual++;
+            
+            // 3. Guardamos el nuevo valor en el atributo
+            boton.setAttribute('data-count', conteoActual);
+            
+            // 4. Actualizamos el texto visible del botón
+            boton.innerText = 'Clics: ' + conteoActual;
+
+            // 5. Guardamos el valor permanentemente en el navegador
+            localStorage.setItem(boton.id, conteoActual);
+        }
+    </script>
+</body>
+</html>
