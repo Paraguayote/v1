@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Ingreso | OTE Paraguay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --lila: #9370DB;
+            --rojo: #8B0000;
+            --blanco: #FFFFFF;
+            --negro: #0D0D0D;
+            --gris-plata: #C0C0C0;
+            --gris-oscuro: #2D2D2D;
+            --lila-oscuro: #4B0082;
+            --lila-claro: #E6E6FA;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--negro);
+            color: var(--blanco);
+            font-family: 'Georgia', Arial, sans-serif;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--gris-oscuro);
+            border: 1px solid var(--gris-plata);
+            border-radius: 6px;
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--rojo);
+            padding-bottom: 1.5rem;
+        }
+
+        .form-header h1 {
+            color: var(--lila);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--gris-plata);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--lila-claro);
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--negro);
+            border: 1px solid var(--gris-plata);
+            border-radius: 4px;
+            color: var(--blanco);
+            font-family: 'Georgia', Arial, sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--lila);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: rgba(147, 112, 219, 0.1);
+            padding: 15px;
+            border-left: 4px solid var(--lila);
+            margin-top: 2rem;
+        }
+
+        .checkbox-group input {
+            margin-top: 5px;
+            transform: scale(1.2);
+        }
+
+        .checkbox-group label {
+            color: var(--gris-plata);
+            font-weight: normal;
+            font-size: 0.95rem;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: var(--rojo);
+            color: var(--blanco);
+            border: none;
+            padding: 16px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #A00000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="form-header">
+            <div style="color: var(--rojo); font-size: 3rem; line-height: 1;">✠</div>
+            <h1 class="cinzel">Solicitud de Ingreso</h1>
+            <p>Gran Priorato Nacional del Paraguay - OTE</p>
+        </div>
+
+        <form id="ingresoForm">
+            <div class="form-group">
+                <label>Nombre Completo (Legal)</label>
+                <input type="text" id="nombre" required placeholder="Ej. Juan Carlos Pérez">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="form-group">
+                    <label>Fecha de Nacimiento</label>
+                    <input type="date" id="fechaNac" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono / WhatsApp</label>
+                    <input type="tel" id="telefono" required placeholder="+595 ...">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ciudad y País de Residencia</label>
+                <input type="text" id="ciudad" required placeholder="Ej. Asunción, Paraguay">
+            </div>
+
+            <div class="form-group">
+                <label>¿Por qué deseas unirte a la Orden Templaria Ecléctica?</label>
+                <textarea id="motivos" rows="5" required placeholder="Describe brevemente tus motivos espirituales, filosóficos o personales..."></textarea>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="compromiso" required>
+                <label for="compromiso">Declaro ser mayor de edad y me comprometo solemnemente a que los datos aquí proporcionados son verdaderos. Comprendo que la OTE es una institución esotérica, filosófica y hermética, y que enviar esta solicitud es el primer paso de un período de evaluación, sin garantizar mi admisión automática a la Orden.</label>
+            </div>
+
+            <button type="submit" class="btn-submit cinzel">✠ ENVIAR SOLICITUD ✠</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('ingresoForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que la página se recargue
+
+            // Recopilación de los datos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const fechaNac = document.getElementById('fechaNac').value;
+            const telefono = document.getElementById('telefono').value;
+            const ciudad = document.getElementById('ciudad').value;
+            const motivos = document.getElementById('motivos').value;
+
+            // Formateo del asunto y cuerpo del correo
+            const emailDestino = "granprioratodelparaguay.ote@gmail.com";
+            const asunto = encodeURIComponent("✠ Solicitud de Ingreso OTE - " + nombre);
+            
+            const cuerpoMensaje = encodeURIComponent(
+                "✠ SOLICITUD DE INGRESO - OTE PARAGUAY ✠\n\n" +
+                "Nombre Completo: " + nombre + "\n" +
+                "Fecha de Nacimiento: " + fechaNac + "\n" +
+                "Teléfono/WhatsApp: " + telefono + "\n" +
+                "Ciudad y País: " + ciudad + "\n\n" +
+                "Motivos de ingreso:\n" + motivos + "\n\n" +
+                "✓ El postulante ha declarado ser mayor de edad y aceptado los términos de evaluación."
+            );
+
+            // Redirección al cliente de correo
+            window.location.href = "mailto:" + emailDestino + "?subject=" + asunto + "&body=" + cuerpoMensaje;
+        });
+    </script>
+</body>
+</html>

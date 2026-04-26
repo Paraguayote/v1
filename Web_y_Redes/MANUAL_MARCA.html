@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Marca - OTE Paraguay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo-templario: #9b111e;
+            --pergamino: #f4f1ea;
+            --texto: #2c2c2c;
+            --blanco: #ffffff;
+            --gris-borde: #dddddd;
+            --lila: #9370DB;
+            --negro: #0D0D0D;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'EB Garamond', 'Georgia', serif; background: var(--pergamino); color: var(--texto); line-height: 1.8; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--blanco); padding: 40px; border-radius: 4px; border: 1px solid var(--gris-borde); }
+        h1 { font-family: 'Cinzel', serif; text-align: center; font-size: 1.8em; margin-bottom: 10px; color: var(--rojo-templario); border-bottom: 2px solid var(--rojo-templario); padding-bottom: 15px; }
+        h2 { font-family: 'Cinzel', serif; color: var(--rojo-templario); margin: 28px 0 14px; font-size: 1.25em; border-left: 3px solid var(--rojo-templario); padding-left: 12px; }
+        h3 { font-family: 'Cinzel', serif; color: var(--rojo-templario); margin: 18px 0 10px; font-size: 1.1em; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+        th, td { border: 1px solid var(--gris-borde); padding: 10px; text-align: left; }
+        th { background: rgba(155,17,30,0.1); color: var(--rojo-templario); font-family: 'Cinzel', serif; }
+        td { background: var(--blanco); }
+        ul, ol { margin: 10px 0 10px 25px; }
+        li { margin: 5px 0; }
+        strong { color: var(--rojo-templario); }
+        hr { border: none; border-top: 1px solid var(--gris-borde); margin: 25px 0; }
+        .muestra { display: inline-block; width: 50px; height: 30px; border-radius: 3px; text-align: center; line-height: 30px; font-size: 0.7em; margin-left: 10px; border: 1px solid rgba(0,0,0,0.2); }
+        .nav { text-align: center; margin-bottom: 20px; }
+        .nav a { color: var(--rojo-templario); text-decoration: none; margin: 0 10px; font-family: 'Cinzel', serif; font-weight: bold; transition: color 0.3s; }
+        .nav a:hover { color: var(--lila); }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="../index.html">← Volver al Gran Priorato</a>
+    </div>
+    <div class="container">
+        <h1>MANUAL DE MARCA VISUAL</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px; font-family: 'Cinzel', serif;">OTE PARAGUAY - Estética Templaria Clásica</p>
+
+        <h2>PALETA DE COLORES</h2>
+        <table>
+            <tr><th>Color</th><th>Código Hex</th><th>Uso Sugerido</th><th></th></tr>
+            <tr><td><strong>Lila Templario</strong></td><td>#9370DB</td><td>Identidad principal</td><td><span class="muestra" style="background:#9370DB;color:#fff">Lila</span></td></tr>
+            <tr><td><strong>Rojo Sangre</strong></td><td>#8B0000</td><td>Cruz / Call to Action</td><td><span class="muestra" style="background:#8B0000;color:#fff">Rojo</span></td></tr>
+            <tr><td><strong>Blanco Puro</strong></td><td>#FFFFFF</td><td>Fondo / Texto</td><td><span class="muestra" style="background:#fff;color:#333">Bco</span></td></tr>
+            <tr><td><strong>Negro Noche</strong></td><td>#0D0D0D</td><td>Fondo principal</td><td><span class="muestra" style="background:#0d0d0d;color:#fff">Negro</span></td></tr>
+            <tr><td><strong>Gris Plata</strong></td><td>#C0C0C0</td><td>Bordes / Divisores</td><td><span class="muestra" style="background:#c0c0c0;color:#333">Plata</span></td></tr>
+            <tr><td><strong>Gris Oscuro</strong></td><td>#2D2D2D</td><td>Tarjetas / Secciones</td><td><span class="muestra" style="background:#2d2d2d;color:#fff">G.Osc</span></td></tr>
+            <tr><td><strong>Lila Oscuro</strong></td><td>#4B0082</td><td>Hover / Activo</td><td><span class="muestra" style="background:#4b0082;color:#fff">L.Osc</span></td></tr>
+            <tr><td><strong>Lila Claro</strong></td><td>#E6E6FA</td><td>Highlights</td><td><span class="muestra" style="background:#e6e6fa;color:#333">L.Claro</span></td></tr>
+        </table>
+
+        <h2>CÓDIGO CSS</h2>
+        <pre style="background:#0d0d0d;padding:15px;border-radius:4px;font-family:monospace;font-size:0.85em;">
+/* v3.0 Estética Templaria Clásica */
+:root {
+    --rojo-templario: #9b111e;
+    --pergamino: #f4f1ea;
+    --texto: #2c2c2c;
+    --blanco: #ffffff;
+    --gris-borde: #dddddd;
+    --lila: #9370DB;
+    --negro: #0D0D0D;
+}</pre>
+
+        <h2>SÍMBOLOS</h2>
+        <ul>
+            <li>✠ <strong>Cruz de Malta</strong> - Color: #8B0000 (Rojo Sangre)</li>
+            <li>⚔️ <strong>Espadas</strong> - Color: #9370DB (Lila)</li>
+            <li>🕯️ <strong>Vela</strong> - Color: #C0C0C0 (Plata)</li>
+            <li>🏰 <strong>Castillo</strong> - Color: #9370DB (Lila)</li>
+        </ul>
+
+        <h2>RESPALDO DE COLOR</h2>
+        <ul>
+            <li><strong>Títulos:</strong> Lila (#9370DB)</li>
+            <li><strong>Cruz/emblema:</strong> Rojo (#8B0000)</li>
+            <li><strong>Fondo:</strong> Negro (#0D0D0D)</li>
+            <li><strong>Texto:</strong> Blanco (#FFFFFF)</li>
+            <li><strong>Bordes:</strong> Gris Plata (#C0C0C0)</li>
+        </ul>
+
+        <hr>
+        <p style="color: #666; font-style: italic;">Manual de Marca - OTE Paraguay v3.0</p>
+    </div>
+</body>
+</html>

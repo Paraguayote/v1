@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Verificación - OTE Paraguay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo-templario: #9b111e;
+            --pergamino: #f4f1ea;
+            --texto: #2c2c2c;
+            --blanco: #ffffff;
+            --gris-borde: #dddddd;
+            --lila: #9370DB;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'EB Garamond', 'Georgia', serif; background: var(--pergamino); color: var(--texto); line-height: 1.7; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--blanco); padding: 40px; border-radius: 4px; border: 1px solid var(--gris-borde); }
+        h1 { font-family: 'Cinzel', serif; text-align: center; font-size: 1.8em; margin-bottom: 10px; color: var(--rojo-templario); }
+        h2 { font-family: 'Cinzel', serif; color: var(--rojo-templario); margin: 25px 0 12px; font-size: 1.25em; border-left: 3px solid var(--rojo-templario); padding-left: 12px; }
+        h3 { font-family: 'Cinzel', serif; color: var(--rojo-templario); margin: 15px 0 8px; font-size: 1.1em; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9em; }
+        th, td { border: 1px solid var(--gris-borde); padding: 8px; text-align: left; }
+        th { background: rgba(155,17,30,0.1); color: var(--rojo-templario); font-family: 'Cinzel', serif; }
+        td { background: var(--blanco); }
+        ul { margin: 10px 0 10px 20px; font-size: 0.9em; }
+        li { margin: 5px 0; }
+        strong { color: var(--rojo-templario); }
+        hr { border: none; border-top: 1px solid var(--gris-borde); margin: 20px 0; }
+        .checkbox { font-family: monospace; font-size: 1.2em; }
+        .ok { color: #4caf50; }
+        .pendiente { color: #ff9800; }
+        .no { color: #f44336; }
+        .instrucciones { background: rgba(155,17,30,0.05); padding: 15px; border-radius: 4px; border-left: 3px solid var(--rojo-templario); margin-bottom: 20px; }
+        .resumen { background: rgba(155,17,30,0.05); padding: 15px; border-radius: 4px; border-left: 3px solid var(--lila); }
+        .nav { text-align: center; margin-bottom: 20px; }
+        .nav a { color: var(--rojo-templario); text-decoration: none; margin: 0 10px; font-family: 'Cinzel', serif; font-weight: bold; transition: color 0.3s; }
+        .nav a:hover { color: var(--lila); }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="../index.html">← Volver al Gran Priorato</a>
+    </div>
+    <div class="container">
+        <h1>LISTA DE VERIFICACIÓN</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 25px; font-family: 'Cinzel', serif;">IDENTIDAD OTE PARAGUAY</p>
+
+        <div class="instrucciones">
+            <strong>Leyenda:</strong><br>
+            <span class="checkbox ok">☑</span> = Verificado y disponible<br>
+            <span class="checkbox pendiente">☐</span> = Por verificar<br>
+            <span class="checkbox no">✗</span> = No disponible
+        </div>
+
+        <h2>REDES SOCIALES</h2>
+
+        <h3>Facebook</h3>
+        <table>
+            <tr><th>Usuario Propuesto</th><th>Estado</th><th>Alternativo</th></tr>
+            <tr><td>@OTEParaguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@OrdenTemplariaPY</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@TemplariosParaguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@GranPrioratoPY</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>Priorato PAX (Regional)</td><td><span class="checkbox ok">☑</span></td><td><a href="https://www.facebook.com/people/Priorato-PAX/61569422430208/" target="_blank">Enlace</a></td></tr>
+        </table>
+
+        <h3>Instagram</h3>
+        <table>
+            <tr><th>Usuario</th><th>Estado</th><th>Alternativo</th></tr>
+            <tr><td>@ote.paraguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@ote_paraguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@orden.templaria.py</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@templarios.py</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@granpriorato.py</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+        </table>
+
+        <h3>WhatsApp</h3>
+        <table>
+            <tr><th>Número</th><th>Estado</th><th>Notas</th></tr>
+            <tr><td>+595 981 XXX XXX</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>+595 983 XXX XXX</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>+595 985 XXX XXX</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+        </table>
+
+        <h3>TikTok</h3>
+        <table>
+            <tr><th>Usuario</th><th>Estado</th><th>Alternativo</th></tr>
+            <tr><td>@OTEParaguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@TemplariosPY</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@OTE_Oficial</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+        </table>
+
+        <h3>YouTube</h3>
+        <table>
+            <tr><th>Canal</th><th>Estado</th><th>Alternativo</th></tr>
+            <tr><td>OTE Paraguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>Gran Priorato OTE PY</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>Orden Templaria Paraguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+        </table>
+
+        <h3>Telegram</h3>
+        <table>
+            <tr><th>Usuario</th><th>Estado</th><th>Alternativo</th></tr>
+            <tr><td>@OTEParaguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@TemplariosPy</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>@GranPrioratoPY</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+        </table>
+
+        <h3>LinkedIn</h3>
+        <table>
+            <tr><th>Nombre</th><th>Estado</th><th>Alternativo</th></tr>
+            <tr><td>Gran Priorato Nacional del Paraguay - OTE</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>Orden Templaria Eclectica Paraguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>OTE Paraguay</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+        </table>
+
+        <h2>CORREO ELECTRÓNICO</h2>
+        <table>
+            <tr><th>Correo</th><th>Estado</th><th>Notas</th></tr>
+            <tr><td>granprioratodelparaguay.ote@gmail.com</td><td><span class="checkbox ok">☑</span></td><td>YA REGISTRADO</td></tr>
+        </table>
+
+        <h2>DOMINIO WEB (Opcional)</h2>
+        <table>
+            <tr><th>Dominio</th><th>Estado</th><th>Notas</th></tr>
+            <tr><td>oteparaguay.org</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>oteparaguay.com</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>orden-templaria-py.org</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>templariosparaguay.org</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+            <tr><td>granprioratopy.org</td><td><span class="checkbox pendiente">☐</span></td><td></td></tr>
+        </table>
+
+        <h2>RESUMEN</h2>
+        <div class="resumen">
+            <table>
+                <tr><th>Sección</th><th>Total</th><th>Verificados</th><th>Pendientes</th></tr>
+                <tr><td>Facebook</td><td>5</td><td>1</td><td>4</td></tr>
+                <tr><td>Instagram</td><td>5</td><td>0</td><td>5</td></tr>
+                <tr><td>WhatsApp</td><td>3</td><td>0</td><td>3</td></tr>
+                <tr><td>TikTok</td><td>3</td><td>0</td><td>3</td></tr>
+                <tr><td>YouTube</td><td>3</td><td>0</td><td>3</td></tr>
+                <tr><td>Telegram</td><td>3</td><td>0</td><td>3</td></tr>
+                <tr><td>LinkedIn</td><td>3</td><td>0</td><td>3</td></tr>
+                <tr><td>Dominios</td><td>5</td><td>0</td><td>5</td></tr>
+                <tr><td><strong>TOTAL</strong></td><td><strong>30</strong></td><td><strong>2</strong></td><td><strong>28</strong></td></tr>
+            </table>
+        </div>
+
+        <hr>
+        <p style="color: #666; font-style: italic;">Lista de verificación - OTE Paraguay</p>
+    </div>
+</body>
+</html>
