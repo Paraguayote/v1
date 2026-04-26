@@ -82,6 +82,16 @@
         <span class="lightbox-nav lightbox-next" onclick="cambiarImagen(1, event)">&#10095;</span>
     </div>
 
+    <!-- Mensaje de Alerta Institucional -->
+    <div id="custom-alert" class="lightbox" style="z-index: 2000; padding: 20px;">
+        <div class="contact-container" style="max-width: 450px; width: 100%; text-align: center; position: relative; animation: zoomIn 0.3s ease; margin: 0;">
+            <div style="font-size: 3rem; color: var(--rojo-templario); margin-bottom: 10px; line-height: 1;">✠</div>
+            <h3 id="alert-title" style="font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--rojo-templario); margin-bottom: 15px;">Título</h3>
+            <p id="alert-message" style="color: var(--texto); margin-bottom: 25px; font-size: 1.05rem; line-height: 1.6;"></p>
+            <button class="btn btn-full" onclick="cerrarMensaje()" style="max-width: 200px;">ENTENDIDO</button>
+        </div>
+    </div>
+
     <script>
         // Contenido de cada sección
         var contenido = {
@@ -255,6 +265,17 @@
             `
         };
 
+        // Funciones para Alertas Institucionales
+        function mostrarMensaje(titulo, texto) {
+            document.getElementById('alert-title').innerText = titulo;
+            document.getElementById('alert-message').innerHTML = texto;
+            document.getElementById('custom-alert').style.display = 'flex';
+        }
+
+        function cerrarMensaje() {
+            document.getElementById('custom-alert').style.display = 'none';
+        }
+
         // Función para inyectar contenido con animación de desvanecimiento
         function actualizarContenido(html) {
             const content = document.getElementById('content');
@@ -326,11 +347,11 @@
             const nombre = document.getElementById("nombre")?.value.trim() || "";
 
             if (mensaje === "") {
-                alert("✠ Por favor, escribe un mensaje antes de enviar.");
+                mostrarMensaje("Atención", "Por favor, escribe un mensaje antes de enviar.");
                 return false;
             }
             if (nombre === "") {
-                alert("✠ Por favor, ingresa tu nombre completo.");
+                mostrarMensaje("Atención", "Por favor, ingresa tu nombre completo.");
                 return false;
             }
             return true;
@@ -341,7 +362,7 @@
             
             const email = document.getElementById("email")?.value.trim() || "";
             if (email === "") {
-                alert("✠ Por favor, ingresa tu correo electrónico para que podamos responderte.");
+                mostrarMensaje("Atención", "Por favor, ingresa tu correo electrónico para que podamos responderte.");
                 return;
             }
             
@@ -364,19 +385,20 @@
                 },
                 body: JSON.stringify({
                     _subject: "✠ CONTACTO OTE ✠ - " + asunto,
+                    email: email, // FormSubmit necesita leer este campo en minúsculas para saber a dónde responder
+                    _autoresponse: "Saludos cordiales. Hemos recibido tu mensaje en la Orden Templaria Ecléctica (Gran Priorato del Paraguay). Un miembro de nuestra Orden leerá tu solicitud y se pondrá en contacto contigo a la brevedad posible.\n\nNon nobis, Domine, non nobis, sed Nomini Tuo da gloriam.",
                     Nombre: nombre,
-                    Email: email,
                     Organización: org,
                     Mensaje: mensaje
                 })
             })
             .then(response => response.json())
             .then(data => {
-                alert("✠ Mensaje enviado con éxito. La Orden se pondrá en contacto pronto.");
+                mostrarMensaje("Mensaje Enviado", "Su solicitud ha sido procesada con éxito.<br><br><strong style='color: var(--rojo-templario);'>Aviso Importante:</strong> Como medida de seguridad, el sistema le enviará un correo a su bandeja de entrada. Usted <strong>debe darle en Activar</strong> para confirmar su identidad y contacto con la Orden.");
                 document.getElementById("contactForm").reset();
             })
             .catch(error => {
-                alert("✠ Error de red al enviar el mensaje. Por favor, utiliza el botón de WhatsApp como alternativa.");
+                mostrarMensaje("Error de Conexión", "No se pudo conectar con el servidor. Por favor, utilice el botón de WhatsApp como alternativa para contactarnos.");
                 console.error("Error:", error);
             })
             .finally(() => {
